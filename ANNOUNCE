@@ -1,0 +1,59 @@
+
+                                mimedecode.py
+
+WHAT IS IT
+
+   Mail users, especially in non-English countries, often find that mail
+messages arrived in different formats, with different content types, in
+different encodings and charsets. Usually this is good because it allows us to
+use apropriate format/encoding/whatever. Sometimes, though, some unification is
+desireable. For example, one may want to put mail messages into an archive,
+make HTML indicies, run search indexer, etc. In such situations converting
+messages to text in one character set and skipping some binary atachmetnts is
+much desireable.
+
+   Here is the solution - mimedecode.py.
+
+   This is a program to decode MIME messages. The program expects one input
+file (either on command line or on stdin) which is treated as an RFC822 mesage,
+and decoded to stdout. If the file is not an RFC822 message it is just piped to
+stdout one-to-one. If the file is a simple RFC822 message it is just decoded as
+one part. If it is a MIME message with multiple parts ("attachments") all parts
+are decoded. Decoding can be controlled by command-line options.
+
+
+WHAT'S NEW in version 2.0.0d (2004-08-26)
+   Documentation update. Changed and corrected documentation, especially
+docbook source file. Changed Makefiles to use sgml-tools or 4xslt (from
+4Suite.org).
+
+
+WHAT'S NEW in version 2.0.0
+   Major rewrite to use python email package. Old version is still inluded in
+the archive; the latest bug-fix version is 1.1.7.
+
+
+WHERE TO GET
+   Master site:    http://phd.pp.ru/Software/Python/#mimedecode
+
+   Faster mirrors: http://phd.by.ru/Software/Python/#mimedecode
+                http://phd2.chat.ru/Software/Python/#mimedecode
+
+   Requires: Python 2.2.2+
+
+   Recommends: configured mailcap database.
+
+   Documentation (also included in the package):
+         http://phd.pp.ru/Software/Python/mimedecode.txt
+         http://phd.by.ru/Software/Python/mimedecode.txt
+      http://phd2.chat.ru/Software/Python/mimedecode.txt
+
+
+AUTHOR
+   Oleg Broytmann <phd@phd.pp.ru>
+
+COPYRIGHT
+   Copyright (C) 2001-2004 PhiloSoft Design
+
+LICENSE
+   GPL

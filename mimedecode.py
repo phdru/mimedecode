@@ -6,11 +6,12 @@ Copyright: (C) 2001-2002 PhiloSoft Design
 License: GPL
 """
 
-__version__ = "1.1.7"
+__version__ = "2.0.0"
+__copyright__ = "Copyright (C) 2001-2002 PhiloSoft Design"
 
 
 import sys, os
-import mimetools
+import email
 
 try:
    from cStringIO import StringIO
@@ -24,27 +25,31 @@ host_name = socket.gethostname()
 me = os.path.basename(sys.argv[0])
 
 
+def version(exit=1):
+   sys.stdout.write("""\
+BroytMann mimedecode.py version %s, %s
+""" % (__version__, __copyright__))
+   if exit: sys.exit(0)
+
+
 def usage(code=0):
+   version(0)
    sys.stdout.write("""\
 Usage: %s [-h|--help] [-V|--version] [-cCDP] [-f charset] [-d header] [-p header:param] [-beit mask] [filename]
 """ % me)
    sys.exit(code)
 
 
-def version():
-   sys.stdout.write("""\
-BroytMann mimedecode.py version %s
-""" % __version__)
-   sys.exit(0)
+def output(s, outfile = sys.stdout):
+   outfile.write(s)
 
-
-def output(s):
-   sys.stdout.write(s)
-
-def output_headers(msg):
-   if msg.unixfrom:
-      output(msg.unixfrom)
-   output("%s\n" % msg)
+def output_headers(msg, outfile = sys.stdout):
+   unix_from = msg.get_unixfrom()
+   if unix_from:
+      output(unix_from + os.linesep)
+   for key, value in msg.items():
+      output("%s: %s\n" % (key, value), outfile)
+   output("\n", outfile) # End of headers
 
 
 def recode(s, charset):
@@ -53,50 +58,34 @@ def recode(s, charset):
 
 def recode2(s, charset):
    if charset and charset <> GlobalOptions.default_charset:
-      charset = charset.lower()
       s = recode(s, charset)
    return s
 
 
-def getparam(msg, header, param):
-   "Get parameter from the header; return the header without the parameter, parameter itself and rfc2231 flag"
+def _decode_header(s):
+   """Return a decoded string according to RFC 2047.
+   NOTE: This is almost the same as email.Utils.decode.
+   """
+   from types import ListType
+   import email.Header
 
-   if not msg.has_key(header):
-      return None, None, 0
+   L = email.Header.decode_header(s)
+   if not isinstance(L, ListType):
+      # s wasn't decoded
+      return s
 
-   header = msg[header]
-   parts = [part.strip() for part in header.split(';')]
-
-   new_parts = [parts[0]] # The header itself
-   del parts[0]
-
-   new_value = None
-   rfc2231_encoded = 0
-
-   import re, rfc822
-   rfc2231_continuation = re.compile("^%s\\*[0-9]+\\*?$" % param)
-   rfc2231_header = []
-
-   for part in parts:
-      name, value = part.split('=', 1)
-      # The code is incomplete. Continuations in rfc2231-encoded paramters
-      # (header*1, header*2, etc) are not yet supported
-      if (name == param) or (name == param + '*'):
-         new_value = rfc822.unquote(value)
-         rfc2231_encoded += (name <> param)
-      elif rfc2231_continuation.match(name):
-         rfc2231_header.append(rfc822.unquote(value))
-         rfc2231_encoded = 1
+   rtn = []
+   for atom, charset in L:
+      if charset is None:
+         rtn.append(atom)
       else:
-         new_parts.append(part)
+         rtn.append(recode2(atom, charset))
+      rtn.append(' ')
+   del rtn[-1] # remove the last space
 
-   if rfc2231_header:
-      new_value = ''.join(rfc2231_header)
-
-   if new_value is not None:
-      return "; ".join(new_parts), new_value, rfc2231_encoded
-
-   return None, None, 0
+   # Now that we've decoded everything, we just need to join all the parts
+   # together into the final string.
+   return ''.join(rtn)
 
 
 def decode_header(msg, header):
@@ -104,97 +93,28 @@ def decode_header(msg, header):
 
    if msg.has_key(header):
       value = msg[header]
-      new_value = decode_rfc2047(value)
-      if value <> new_value: # do not bother to touch msg if not changed
-         msg[header] = new_value
+      new_value = _decode_header(value)
+      if new_value <> value: # do not bother to touch msg if not changed
+         set_header(msg, header, new_value)
+
+
+def _decode_header_param(s):
+   return recode2(s[2], s[0])
 
 
 def decode_header_param(msg, header, param):
    "Decode mail header's parameter (if exists) and put it back, if it was encoded"
 
    if msg.has_key(header):
-      new_value, pstr, rfc2231_encoded = getparam(msg, header, param)
-      if pstr is not None:
-         if rfc2231_encoded:
-            new_str = decode_rfc2231(pstr)
+      value = msg.get_param(param, header=header)
+      if value:
+         from types import TupleType
+         if isinstance(value, TupleType):
+            new_value = _decode_header_param(value)
          else:
-            new_str = decode_rfc2047(pstr)
-         if pstr <> new_str: # do not bother to touch msg if not changed
-            msg[header] = "%s; %s=\"%s\"" % (new_value, param, new_str)
-
-
-def decode_rfc2047(s):
-   "Decode string according to rfc2047"
-
-   parts = s.split() # by whitespaces
-   new_parts = []
-   got_encoded = 0
-
-   for s in parts:
-      l = s.split('?')
-
-      if l[0] <> '=' or l[4] <> '=': # assert correct format
-         new_parts.append(' ')
-         new_parts.append(s) # if not encoded - just put it into output
-         got_encoded = 0
-         continue
-
-      if not got_encoded:
-         new_parts.append(' ') # no space between encoded parts, one space otherwise
-         got_encoded = 1
-
-      charset = l[1].lower()
-      encoding = l[2].lower()
-      s = l[3]
-
-      if '*' in charset:
-         charset, language = charset.split('*', 1) # language ignored
-
-      infile = StringIO(s)
-      outfile = StringIO()
-
-      if encoding == "b":
-         from base64 import decode
-      elif encoding == "q":
-         from quopri import decode
-      else:
-         raise ValueError, "wrong encoding `%s' (expected 'b' or 'q')" % encoding
-
-      decode(infile, outfile)
-      s = outfile.getvalue()
-
-      if charset == GlobalOptions.default_charset:
-         new_parts.append(s) # do not recode
-         continue
-
-      s = recode(s, charset)
-      new_parts.append(s)
-
-   if new_parts and new_parts[0] == ' ':
-      del new_parts[0]
-   return ''.join(new_parts)
-
-
-def decode_rfc2231(s):
-   "Decode string according to rfc2231"
-
-   charset, language, s = s.split("'", 2) # language ignored
-
-   i = 0
-   result = []
-
-   while i < len(s):
-      c = s[i]
-      if c == '%': # hex
-         i += 1
-         c = chr(int(s[i:i+2], 16))
-         i += 1
-      result.append(c)
-      i += 1
-
-   s = ''.join(result)
-   s = recode2(s, charset)
-   return s
+            new_value = _decode_header(value)
+         if new_value <> value: # do not bother to touch msg if not changed
+            msg.set_param(param, new_value, header)
 
 
 def decode_headers(msg):
@@ -205,32 +125,23 @@ def decode_headers(msg):
 
    for header, param in GlobalOptions.decode_header_params:
       decode_header_param(msg, header, param)
-      if header.lower() == "content-type" and msg.has_key(header):
-         # reparse type
-         msg.typeheader = msg[header]
-         msg.parsetype() # required for plist...
-         msg.parseplist() #... and reparse decoded plist
+
+
+def set_header(msg, header, value):
+   "Replace header"
+
+   if msg.has_key(header):
+      msg.replace_header(header, value)
+   else:
+      msg[header] = value
 
 
 def set_content_type(msg, newtype, charset=None):
-   plist = msg.getplist()
-   if plist:
-      if charset:
-         newplist = []
-         for p in plist:
-            if p.split('=')[0] == "charset":
-               p = "charset=%s" % charset
-            newplist.append(p)
-         plist = newplist
+   msg.set_type(newtype)
 
-   elif charset:
-      plist = ["charset=%s" % charset]
+   if charset:
+      msg.set_param("charset", charset, "Content-Type")
 
-   else:
-      plist = []
-
-   if plist and plist[0]: plist.insert(0, '')
-   msg["Content-Type"] = "%s%s" % (newtype, ";\n ".join(plist))
 
 
 caps = None # Globally stored mailcap database; initialized only if needed
@@ -244,7 +155,7 @@ def decode_body(msg, s):
    if caps is None:
       caps = mailcap.getcaps()
 
-   content_type = msg.gettype()
+   content_type = msg.get_content_type()
    filename = tempfile.mktemp()
    command = None
 
@@ -271,11 +182,7 @@ def decode_body(msg, s):
    os.remove(filename)
 
    set_content_type(msg, "text/plain")
-   msg["X-MIME-Body-Autoconverted"] = "from %s to text/plain by %s id %s" % (content_type, host_name, command.split()[0])
-
-   msg.maintype = "text"
-   msg.subtype = "plain"
-   msg.type = "text/plain"
+   msg["X-MIME-Autoconverted"] = "from %s to text/plain by %s id %s" % (content_type, host_name, command.split()[0])
 
    return s
 
@@ -283,25 +190,26 @@ def decode_body(msg, s):
 def recode_charset(msg, s):
    "Recode charset of the message to the default charset"
 
-   save_charset = charset = msg.getparam("charset")
+   save_charset = charset = msg.get_content_charset()
    if charset and charset <> GlobalOptions.default_charset:
       s = recode2(s, charset)
-      content_type = msg.gettype()
+      content_type = msg.get_content_type()
       set_content_type(msg, content_type, GlobalOptions.default_charset)
-      msg["X-MIME-Charset-Autoconverted"] = "from %s to %s by %s id %s" % (save_charset, GlobalOptions.default_charset, host_name, me)
+      msg["X-MIME-Autoconverted"] = "from %s to %s by %s id %s" % (save_charset, GlobalOptions.default_charset, host_name, me)
    return s
 
 
-def totext(msg, infile):
-   "Convert infile (StringIO) content to text"
+def totext(msg, instring):
+   "Convert instring content to text"
 
-   if msg.getmaintype() == "multipart": # Recursively decode all parts of the multipart message
-      newfile = StringIO("%s\n%s" % (msg, infile.getvalue()))
+   if msg.is_multipart(): # Recursively decode all parts of the multipart message
+      newfile = StringIO(str(msg))
+      newfile.seek(0)
       decode_file(newfile)
       return
 
    # Decode body and recode charset
-   s = decode_body(msg, infile.getvalue())
+   s = decode_body(msg, instring)
    if GlobalOptions.recode_charset:
       s = recode_charset(msg, s)
 
@@ -309,30 +217,36 @@ def totext(msg, infile):
    output(s)
 
 
-def decode_part(msg, infile):
+def decode_part(msg):
    "Decode one part of the message"
 
-   encoding = msg.getencoding()
-   outfile = StringIO()
+   decode_headers(msg)
+   encoding = msg["Content-Transfer-Encoding"]
 
-   if encoding in ('', '7bit', '8bit', 'binary'):
-      mimetools.copyliteral(infile, outfile)
+   if encoding in (None, '', '7bit', '8bit', 'binary'):
+      outstring = str(msg.get_payload())
    else: # Decode from transfer ecoding to text or binary form
-      mimetools.decode(infile, outfile, encoding)
-      msg["Content-Transfer-Encoding"] = "8bit"
+      outstring = str(msg.get_payload(decode=1))
+      set_header(msg, "Content-Transfer-Encoding", "8bit")
       msg["X-MIME-Autoconverted"] = "from %s to 8bit by %s id %s" % (encoding, host_name, me)
 
-   decode_headers(msg)
-
    # Test all mask lists and find what to do with this content type
+   masks = []
+   ctype = msg.get_content_type()
+   if ctype:
+      masks.append(ctype)
+   mtype = msg.get_content_maintype()
+   if mtype:
+      masks.append(mtype + '/*')
+   masks.append('*/*')
 
-   for content_type in msg.gettype(), msg.getmaintype()+"/*", "*/*":
+   for content_type in masks:
       if content_type in GlobalOptions.totext_mask:
-         totext(msg, outfile)
+         totext(msg, outstring)
          return
       elif content_type in GlobalOptions.binary_mask:
          output_headers(msg)
-         output(outfile.getvalue())
+         output(outstring)
          return
       elif content_type in GlobalOptions.ignore_mask:
          output_headers(msg)
@@ -342,43 +256,37 @@ def decode_part(msg, infile):
          raise ValueError, "content type `%s' prohibited" % content_type
 
    # Neither content type nor masks were listed - decode by default
-   totext(msg, outfile)
+   totext(msg, outstring)
 
 
-def decode_file(infile, seekable=1):
+def decode_file(infile):
    "Decode the entire message"
 
-   m = mimetools.Message(infile)
-   boundary = m.getparam("boundary")
+   msg = email.message_from_file(infile)
+   boundary = msg.get_boundary()
 
-   if not boundary:
-      if not m.getheader("Content-Type"): # Not a message, just text - copy it literally
-         output(infile.read())
+   if msg.is_multipart():
+      decode_headers(msg)
+      output_headers(msg)
 
-      else: # Simple one-part message - decode it
-         decode_part(m, infile)
+      if msg.preamble: # Preserve the first part, it is probably not a RFC822-message
+         output(msg.preamble) # Usually it is just a few lines of text (MIME warning)
 
-   else: # MIME message - decode all parts; may be recursive
-      decode_headers(m)
-      output_headers(m)
-
-      import multifile
-      mf = multifile.MultiFile(infile, seekable)
-      mf.push(boundary)
-
-      if not seekable: # Preserve the first part, it is probably not a RFC822-message
-         output(mf.read()) # Usually it is just a few lines of text (MIME warning)
-
-      while 1:
-         m = mimetools.Message(mf)
-         decode_part(m, mf)
-
-         if not mf.next():
-            break
+      for subpart in msg.get_payload():
          output("\n--%s\n" % boundary)
+         decode_part(subpart)
 
-      mf.pop()
       output("\n--%s--\n" % boundary)
+
+      if msg.epilogue:
+         output(msg.epilogue)
+
+   else:
+      if msg.has_key("Content-Type"): # Simple one-part message - decode it
+         decode_part(msg)
+
+      else: # Not a message, just text - copy it literally
+         output(str(msg))
 
 
 class GlobalOptions:
@@ -445,7 +353,6 @@ def init():
 if __name__ == "__main__":
    arguments = init()
 
-   seekable = 0
    if len(arguments) == 0:
       infile = sys.stdin
    elif len(arguments) <> 1:
@@ -454,6 +361,5 @@ if __name__ == "__main__":
       infile = sys.stdin
    else:
       infile = open(arguments[0], 'r')
-      seekable = 1
 
-   decode_file(infile, seekable)
+   decode_file(infile)

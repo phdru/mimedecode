@@ -1,0 +1,342 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1//EN"
+   "http://www.oasis-open.org/docbook/xml/4.1/docbook.dtd">
+
+<refentry id="mimedecode.py">
+
+<refmeta>
+   <refentrytitle>mimedecode.py</refentrytitle>
+   <manvolnum>1</manvolnum>
+</refmeta>
+
+<refnamediv>
+   <refname>mimedecode.py</refname>
+   <refpurpose>decode MIME message</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+   <cmdsynopsis>
+      <command>mimedecode.py</command>
+      <arg choice="opt">
+         <option>-h|--help</option>
+      </arg>
+      <arg choice="opt">
+         <option>-V|--version</option>
+      </arg>
+      <arg choice="opt">
+         <option>-cCDP</option>
+      </arg>
+      <arg choice="opt">
+         <option>-f charset</option>
+      </arg>
+      <arg choice="opt">
+         <option>-d header</option>
+      </arg>
+      <arg choice="opt">
+         <option>-p header:param</option>
+      </arg>
+      <arg choice="opt">
+         <option>-beit mask</option>
+      </arg>
+      <arg choice="opt">filename</arg>
+   </cmdsynopsis>
+</refsynopsisdiv>
+
+
+<refsect1>
+<title>DESCRIPTION</title>
+<para>
+   Mail users, especially in non-English countries, often find that mail
+messages arrived in different formats, with different content types, in
+different encodings and charsets. Usually it is good because it allows to use
+an appropriate format/encoding/whatever. Sometimes, though, some unification is
+desirable. For example, one may want to put mail messages into an archive,
+make HTML indices, run search indexer, etc. In such situations converting
+messages to text in one character set and skipping some binary attachments is
+much desirable.
+</para>
+
+<para>
+   Here is the solution - mimedecode.py!
+</para>
+
+<para>
+   It is a program to decode MIME messages. The program expects one input file
+(either on the command line or on stdin) which is treated as an RFC822 message,
+and decoded to stdout. If the file is not an RFC822 message it is just piped to
+stdout as is. If the file is a simple RFC822 message it is just decoded as one
+part. If it is a MIME message with multiple parts ("attachments") all parts are
+decoded recursively. Decoding can be controlled by the command-line options.
+</para>
+
+<para>
+   First, Subject and Content-Disposition headers are examined. If any of those
+exists, it is decoded according to RFC2047. Content-Disposition header is not
+decoded - only its "filename" parameter. Encoded header parameters violate
+the RFC, but widely deployed anyway, especially in the M$ Ophice GUI (often
+referred as "Windoze") world, where programmers are often ignorant lamers who
+never even heard about RFCs. Correct parameter encoding specified by RFC2231.
+This program decodes RFC2231-encoded parameters, too.
+</para>
+
+<para>
+   Then the body of the message (or the current part) is decoded. Decoding
+starts with looking at header Content-Transfer-Encoding. If the header
+specifies non-8bit encoding (usually base64 or quoted-printable), the body
+converted to 8bit. Then, if its content type is multipart (multipart/related or
+multipart/mixed, e.g) every part is recursively decoded. If it is not
+multipart, mailcap database is consulted to find a way to convert the body to
+plain text. (I have no idea how mailcap could be configured on said M$ Ophice
+GUI, please don't ask me; real OS users can consult my example at
+http://phd.pp.ru/Software/dotfiles/mailcap.html). The decoding process uses
+first copiousoutput filter it can find. If there is no any filter the body just
+passed unconverted.
+</para>
+
+<para>
+   Then Content-Type header consulted for charset. If it is not equal to
+current default charset the body text recoded. Finally message headers and body
+flushed to stdout.
+</para>
+</refsect1>
+
+
+<refsect1>
+<title>OPTIONS</title>
+<variablelist>
+   <varlistentry>
+      <term>-h</term>
+      <term>-help</term>
+      <listitem>
+         <para>
+            Print brief usage help and exit.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-V</term>
+      <term>--version</term>
+      <listitem>
+         <para>
+            Print version and exit.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-c</term>
+      <listitem>
+         <para>
+            Recode different character sets in message body to current default
+            charset; this is the default.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-C</term>
+      <listitem>
+         <para>
+            Do not recode character sets in message body.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-f charset</term>
+      <listitem>
+         <para>
+            Force this charset to be the current default charset instead of
+            sys.getdefaultencoding().
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-d header</term>
+      <listitem>
+         <para>
+            Add the header to a list of headers to decode; initially the list
+            contains headers "From" and "Subject".
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-D</term>
+      <listitem>
+         <para>
+            Clear the list of headers to decode (make it empty).
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-p header:param</term>
+      <listitem>
+         <para>
+            Add the (header, param) pair to a list of headers' parameters to
+            decode; initially the list contains header "Content-Disposition",
+            parameter "filename".
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-P</term>
+      <listitem>
+         <para>
+            Clear the list of headers' parameters to decode (make it empty).
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-b mask</term>
+      <listitem>
+         <para>
+            Append mask to the list of binary content types; if the message to
+            decode has a part of this type the program will pass the part as is,
+            without any additional processing.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-e mask</term>
+      <listitem>
+         <para>
+            Append mask to the list of error content types; if the message to
+            decode has a part of this type the program will raise ValueError.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-i mask</term>
+      <listitem>
+         <para>
+            Append mask to the list of content types to ignore; if the message to
+            decode has a part of this type the program will not pass it, instead
+            a line "Message body of type `%s' skipped." will be issued.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-t mask</term>
+      <listitem>
+         <para>
+            Append mask to the list of content types to convert to text; if the
+            message to decode has a part of this type the program will consult
+            mailcap database, find first copiousoutput filter and convert the
+            part.
+         </para>
+      </listitem>
+   </varlistentry>
+</variablelist>
+
+<para>
+   The last 4 options (-beit) require more explanation. They allow a user
+to control body decoding with great flexibility. Think about said mail
+archive; for example, its maintainer wants to put there only texts, convert
+Postscript/PDF to text, pass HTML and images as is, and ignore everything
+else. Easy:
+</para>
+
+<para>
+<code language="shell">
+   mimedecode.py -t application/postscript -t application/pdf -b text/html
+         -b 'image/*' -i '*/*'
+</code>
+</para>
+
+<para>
+   When the program decodes a message (or its part), it consults
+Content-Type header. The content type is searched in all 4 lists, in order
+"text-binary-ignore-error". If found, appropriate action performed. If not
+found, the program search the same lists for "type/*" mask (the type of
+"text/html" is just "text"). If found, appropriate action performed. If not
+found, the program search the same lists for "*/*" mask. If found,
+appropriate action performed. If not found, the program uses default
+action, which is to decode everything to text (if mailcap specifies
+a filter).
+</para>
+
+<para>
+   Initially all 4 lists are empty, so without any additional parameters
+the program always uses the default decoding.
+</para>
+</refsect1>
+
+
+<refsect1>
+<title>ENVIRONMENT</title>
+<para>
+   LANG
+   LC_ALL
+   LC_CTYPE
+      Define current locale settings. Used to determine current default
+      charset (if your Python is properly installed and configured).
+</para>
+</refsect1>
+
+
+<refsect1>
+<title>BUGS</title>
+<para>
+   The program may produce incorrect MIME message. The purpose of the program
+is to decode whatever it is possible to decode, not to produce absolutely
+correct MIME output. The incorrect parts are obvious - decoded Subject headers
+and filenames. Other than that output is correct MIME message. The program does
+not try to guess whether the headers are correct. For example, if a message
+header states that charset is iso8859-5, but the body is actually in koi8-r -
+the program will recode the message to the wrong charset.
+</para>
+</refsect1>
+
+
+<refsect1>
+<title>AUTHOR</title>
+<para>
+   Oleg Broytmann &lt;phd@phd.pp.ru&gt;
+</para>
+</refsect1>
+
+
+<refsect1>
+<title>COPYRIGHT</title>
+<para>
+   Copyright (C) 2001-2004 PhiloSoft Design
+</para>
+</refsect1>
+
+
+<refsect1>
+<title>LICENSE</title>
+<para>
+   GNU GPL
+</para>
+</refsect1>
+
+
+<refsect1>
+<title>NO WARRANTIES</title>
+<para>
+   This program is distributed in the hope that it will be useful, but WITHOUT
+   ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+   FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+   more details.
+</para>
+</refsect1>
+
+
+<refsect1>
+<title>SEE ALSO</title>
+<para>
+   mimedecode.py home page: http://phd.pp.ru/Software/Python/#mimedecode
+</para>
+</refsect1>
+
+</refentry>

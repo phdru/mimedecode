@@ -1,0 +1,3 @@
+include mimedecode.py mimedecode1.py
+include Makefile* MANIFEST.in ANNOUNCE
+include mimedecode.docbook mimedecode.html mimedecode.txt mimedecode.man

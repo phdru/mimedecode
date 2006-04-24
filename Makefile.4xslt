@@ -1,0 +1,11 @@
+DOCBOOK_XSL=/usr/local/src/DocBook/docbook-xsl
+
+mimedecode.html: mimedecode.docbook Makefile.4xslt
+	4xslt $< $(DOCBOOK_XSL)/html/docbook.xsl >$@
+
+mimedecode.txt: mimedecode.html Makefile.4xslt
+	elinks -dump $< >$@
+
+mimedecode.man: mimedecode.docbook Makefile.4xslt
+	4xslt $< $(DOCBOOK_XSL)/manpages/docbook.xsl
+	mv mimedecode.py.1 $@
