@@ -13,12 +13,14 @@ mimedecode.html \
 mimedecode.man \
 mimedecode.txt
 
+.PHONY: sdist
 sdist: dist/mimedecode-2.1.0.tar.gz
-	touch sdist
 
+.PHONY: dist
 dist/mimedecode-2.1.0.tar.gz: $(DISTFILES)
-	umask 022 && python setup.py sdist
+	umask 022 && chmod a+rX $(DISTFILES) && python setup.py sdist
 
+.PHONY: docs
 docs: mimedecode.man mimedecode.txt mimedecode.html
 
 include Makefile.4xslt
@@ -26,8 +28,10 @@ include Makefile.4xslt
 
 CLEANFILES = mimedecode.pyc MANIFEST sdist
 
+.PHONY: clean
 clean:
 	rm -f $(CLEANFILES)
 
+.PHONY: distclean
 distclean: clean
 	rm -rf dist sdist
