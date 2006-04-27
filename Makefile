@@ -14,10 +14,10 @@ mimedecode.html \
 mimedecode.man \
 mimedecode.txt
 
-sdist: dist/mimedecode-2.0.0d.tar.gz
+sdist: dist/mimedecode-2.1.0.tar.gz
 	touch sdist
 
-dist/mimedecode-2.0.0d.tar.gz: $(DISTFILES)
+dist/mimedecode-2.1.0.tar.gz: $(DISTFILES)
 	umask 022 && python setup.py sdist
 
 docs: mimedecode.man mimedecode.txt mimedecode.html
