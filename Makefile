@@ -2,7 +2,6 @@
 all: docs sdist
 
 DISTFILES = mimedecode.py \
-mimedecode1.py \
 setup.py \
 Makefile \
 Makefile.sgmlt \
