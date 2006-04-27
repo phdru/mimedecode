@@ -64,7 +64,7 @@ def recode(s, charset):
 
 
 def recode2(s, charset):
-   if charset and charset <> GlobalOptions.default_charset:
+   if charset and charset.lower() <> GlobalOptions.default_charset:
       s = recode(s, charset)
    return s
 
@@ -198,7 +198,7 @@ def recode_charset(msg, s):
    "Recode charset of the message to the default charset"
 
    save_charset = charset = msg.get_content_charset()
-   if charset and charset <> GlobalOptions.default_charset:
+   if charset and charset.lower() <> GlobalOptions.default_charset:
       s = recode2(s, charset)
       content_type = msg.get_content_type()
       set_content_type(msg, content_type, GlobalOptions.default_charset)
@@ -315,6 +315,8 @@ class GlobalOptions:
             default_charset = sys.getdefaultencoding()
    else:
       default_charset = sys.getdefaultencoding()
+
+   default_charset = default_charset.lower()
 
    recode_charset = 1 # recode charset of message body
 
