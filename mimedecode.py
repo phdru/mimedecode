@@ -1,6 +1,7 @@
 #! /usr/local/bin/python -O
 """Decode MIME message"""
 
+
 _version = "2.1.0"
 __version__ = "$Revision$"[11:-2]
 __date__ = "$Date$"[7:-2]
@@ -12,7 +13,12 @@ __license__ = "GNU GPL"
 
 import sys, os
 import email
-import locale
+
+try:
+   import locale
+   use_locale = True
+except ImportError:
+   use_locale = False
 
 try:
    from cStringIO import StringIO
@@ -291,21 +297,24 @@ def decode_file(infile):
 
 
 class GlobalOptions:
-   # Get a default charset.
-   try:
-      lcAll = locale.setlocale(locale.LC_ALL, '').split('.')
-   except locale.Error, err:
-      print >> sys.stderr, "WARNING:", err
-      lcAll = []
-
-   if len(lcAll) == 2:
-      default_charset = lcAll[1]
-   else:
+   if use_locale:
+      # Get the default charset.
       try:
-         default_charset = locale.getpreferredencoding()
+         lcAll = locale.setlocale(locale.LC_ALL, '').split('.')
       except locale.Error, err:
          print >> sys.stderr, "WARNING:", err
-         default_charset = sys.getdefaultencoding()
+         lcAll = []
+
+      if len(lcAll) == 2:
+         default_charset = lcAll[1]
+      else:
+         try:
+            default_charset = locale.getpreferredencoding()
+         except locale.Error, err:
+            print >> sys.stderr, "WARNING:", err
+            default_charset = sys.getdefaultencoding()
+   else:
+      default_charset = sys.getdefaultencoding()
 
    recode_charset = 1 # recode charset of message body
 
@@ -369,9 +378,10 @@ def init():
 if __name__ == "__main__":
    arguments = init()
 
-   if len(arguments) == 0:
+   la = len(arguments)
+   if la == 0:
       infile = sys.stdin
-   elif len(arguments) <> 1:
+   elif la <> 1:
       usage(1)
    elif arguments[0] == '-':
       infile = sys.stdin
