@@ -1,10 +1,5 @@
 #! /usr/local/bin/python -O
-"""Decode MIME message.
-
-Author: Oleg Broytmann <phd@phd.pp.ru>
-Copyright: (C) 2001-2006 PhiloSoft Design
-License: GPL
-"""
+"""Decode MIME message"""
 
 _version = "2.1.0"
 __version__ = "$Revision$"[11:-2]
@@ -13,11 +8,11 @@ __revision__ = "$Id$"[5:-2]
 __author__ = "Oleg Broytmann <phd@phd.pp.ru>"
 __copyright__ = "Copyright (C) 2001-2006 PhiloSoft Design"
 __license__ = "GNU GPL"
-__docformat__ = "epytext en"
 
 
 import sys, os
 import email
+import locale
 
 try:
    from cStringIO import StringIO
@@ -296,7 +291,22 @@ def decode_file(infile):
 
 
 class GlobalOptions:
-   default_charset = sys.getdefaultencoding()
+   # Get a default charset.
+   try:
+      lcAll = locale.setlocale(locale.LC_ALL, '').split('.')
+   except locale.Error, err:
+      print >> sys.stderr, "WARNING:", err
+      lcAll = []
+
+   if len(lcAll) == 2:
+      default_charset = lcAll[1]
+   else:
+      try:
+         default_charset = locale.getpreferredencoding()
+      except locale.Error, err:
+         print >> sys.stderr, "WARNING:", err
+         default_charset = sys.getdefaultencoding()
+
    recode_charset = 1 # recode charset of message body
 
    decode_headers = ["Subject", "From"] # A list of headers to decode
