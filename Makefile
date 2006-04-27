@@ -26,7 +26,7 @@ docs: mimedecode.man mimedecode.txt mimedecode.html
 include Makefile.4xslt
 
 
-CLEANFILES = mimedecode.pyc MANIFEST sdist
+CLEANFILES = *.py[co] MANIFEST
 
 .PHONY: clean
 clean:
@@ -34,4 +34,4 @@ clean:
 
 .PHONY: distclean
 distclean: clean
-	rm -rf dist sdist
+	rm -rf dist
