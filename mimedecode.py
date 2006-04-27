@@ -2,12 +2,18 @@
 """Decode MIME message.
 
 Author: Oleg Broytmann <phd@phd.pp.ru>
-Copyright: (C) 2001-2002 PhiloSoft Design
+Copyright: (C) 2001-2006 PhiloSoft Design
 License: GPL
 """
 
-__version__ = "2.0.0"
-__copyright__ = "Copyright (C) 2001-2002 PhiloSoft Design"
+_version = "2.1.0"
+__version__ = "$Revision$"[11:-2]
+__date__ = "$Date$"[7:-2]
+__revision__ = "$Id$"[5:-2]
+__author__ = "Oleg Broytmann <phd@phd.pp.ru>"
+__copyright__ = "Copyright (C) 2001-2006 PhiloSoft Design"
+__license__ = "GNU GPL"
+__docformat__ = "epytext en"
 
 
 import sys, os
@@ -28,7 +34,7 @@ me = os.path.basename(sys.argv[0])
 def version(exit=1):
    sys.stdout.write("""\
 BroytMann mimedecode.py version %s, %s
-""" % (__version__, __copyright__))
+""" % (_version, __copyright__))
    if exit: sys.exit(0)
 
 
