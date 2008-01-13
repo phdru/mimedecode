@@ -1,4 +1,4 @@
-#! /usr/local/bin/python -O
+#! /usr/bin/env python
 """Decode MIME message"""
 
 
@@ -13,12 +13,6 @@ __license__ = "GNU GPL"
 
 import sys, os
 import email
-
-try:
-   import locale
-   use_locale = True
-except ImportError:
-   use_locale = False
 
 try:
    from cStringIO import StringIO
@@ -60,11 +54,11 @@ def output_headers(msg, outfile = sys.stdout):
 
 
 def recode(s, charset):
-   return unicode(s, charset, "replace").encode(GlobalOptions.default_charset, "replace")
+   return unicode(s, charset, "replace").encode(GlobalOptions.default_encoding, "replace")
 
 
 def recode2(s, charset):
-   if charset and charset.lower() <> GlobalOptions.default_charset:
+   if charset and charset.lower() <> GlobalOptions.default_encoding:
       s = recode(s, charset)
    return s
 
@@ -198,11 +192,11 @@ def recode_charset(msg, s):
    "Recode charset of the message to the default charset"
 
    save_charset = charset = msg.get_content_charset()
-   if charset and charset.lower() <> GlobalOptions.default_charset:
+   if charset and charset.lower() <> GlobalOptions.default_encoding:
       s = recode2(s, charset)
       content_type = msg.get_content_type()
-      set_content_type(msg, content_type, GlobalOptions.default_charset)
-      msg["X-MIME-Autoconverted"] = "from %s to %s by %s id %s" % (save_charset, GlobalOptions.default_charset, host_name, me)
+      set_content_type(msg, content_type, GlobalOptions.default_encoding)
+      msg["X-MIME-Autoconverted"] = "from %s to %s by %s id %s" % (save_charset, GlobalOptions.default_encoding, host_name, me)
    return s
 
 
@@ -297,27 +291,7 @@ def decode_file(infile):
 
 
 class GlobalOptions:
-   if use_locale:
-      # Get the default charset.
-      try:
-         lcAll = locale.setlocale(locale.LC_ALL, '').split('.')
-      except locale.Error, err:
-         print >> sys.stderr, "WARNING:", err
-         lcAll = []
-
-      if len(lcAll) == 2:
-         default_charset = lcAll[1]
-      else:
-         try:
-            default_charset = locale.getpreferredencoding()
-         except locale.Error, err:
-            print >> sys.stderr, "WARNING:", err
-            default_charset = sys.getdefaultencoding()
-   else:
-      default_charset = sys.getdefaultencoding()
-
-   default_charset = default_charset.lower()
-
+   from m_lib.defenc import default_encoding
    recode_charset = 1 # recode charset of message body
 
    decode_headers = ["Subject", "From"] # A list of headers to decode
@@ -354,7 +328,7 @@ def init():
       elif option == '-C':
          GlobalOptions.recode_charset = 0
       elif option == '-f':
-         GlobalOptions.default_charset = value
+         GlobalOptions.default_encoding = value
       elif option == '-d':
          GlobalOptions.decode_headers.append(value)
       elif option == '-D':
