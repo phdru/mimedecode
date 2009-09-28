@@ -23,7 +23,7 @@ dist/mimedecode-2.1.0.tar.gz: $(DISTFILES)
 .PHONY: docs
 docs: mimedecode.man mimedecode.txt mimedecode.html
 
-include Makefile.4xslt
+include Makefile.xsltproc
 
 
 CLEANFILES = *.py[co] MANIFEST
