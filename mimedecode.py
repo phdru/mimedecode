@@ -4,10 +4,10 @@
 
 _version = "2.1.0"
 __version__ = "$Revision$"[11:-2]
-__date__ = "$Date$"[7:-2]
 __revision__ = "$Id$"[5:-2]
-__author__ = "Oleg Broytmann <phd@phd.pp.ru>"
-__copyright__ = "Copyright (C) 2001-2006 PhiloSoft Design"
+__date__ = "$Date$"[7:-2]
+__author__ = "Oleg Broytman <phd@phd.pp.ru>"
+__copyright__ = "Copyright (C) 2001-2009 PhiloSoft Design"
 __license__ = "GNU GPL"
 
 
@@ -28,7 +28,7 @@ me = os.path.basename(sys.argv[0])
 
 def version(exit=1):
    sys.stdout.write("""\
-BroytMann mimedecode.py version %s, %s
+Broytman mimedecode.py version %s, %s
 """ % (_version, __copyright__))
    if exit: sys.exit(0)
 

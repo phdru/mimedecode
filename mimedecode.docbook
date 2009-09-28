@@ -300,7 +300,7 @@ the program will recode the message to the wrong charset.
 <refsect1>
 <title>AUTHOR</title>
 <para>
-   Oleg Broytmann &lt;phd@phd.pp.ru&gt;
+   Oleg Broytman &lt;phd@phd.pp.ru&gt;
 </para>
 </refsect1>
 
