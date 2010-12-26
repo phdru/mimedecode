@@ -31,25 +31,25 @@ WHAT'S NEW in version 2.0.0
 
 
 WHERE TO GET
-   Master site:    http://phd.pp.ru/Software/Python/#mimedecode
-   Mirrors:   http://phd.webhost.ru/Software/Python/#mimedecode
-                   http://phd.by.ru/Software/Python/#mimedecode
+   Master site: http://phdru.name/Software/Python/#mimedecode
+   Mirrors: http://phd.webhost.ru/Software/Python/#mimedecode
+                 http://phd.by.ru/Software/Python/#mimedecode
 
    Requires: Python 2.2.2+
 
    Recommends: configured mailcap database.
 
    Documentation (also included in the package):
-           http://phd.pp.ru/Software/Python/mimedecode.txt
+           http://phdru.name/Software/Python/mimedecode.txt
       http://phd.webhost.ru/Software/Python/mimedecode.txt
            http://phd.by.ru/Software/Python/mimedecode.txt
 
 
 AUTHOR
-   Oleg Broytman <phd@phd.pp.ru>
+   Oleg Broytman <phd@phdru.name>
 
 COPYRIGHT
-   Copyright (C) 2001-2009 PhiloSoft Design
+   Copyright (C) 2001-2010 PhiloSoft Design
 
 LICENSE
    GPL

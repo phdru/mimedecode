@@ -6,8 +6,8 @@ _version = "2.1.0"
 __version__ = "$Revision$"[11:-2]
 __revision__ = "$Id$"[5:-2]
 __date__ = "$Date$"[7:-2]
-__author__ = "Oleg Broytman <phd@phd.pp.ru>"
-__copyright__ = "Copyright (C) 2001-2009 PhiloSoft Design"
+__author__ = "Oleg Broytman <phd@phdru.name>"
+__copyright__ = "Copyright (C) 2001-2010 PhiloSoft Design"
 __license__ = "GNU GPL"
 
 
