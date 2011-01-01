@@ -1,4 +1,6 @@
 
+VERSION=$(shell python -c "from mimedecode import _version; print _version")
+
 all: docs sdist
 
 DISTFILES = mimedecode.py \
@@ -14,10 +16,10 @@ mimedecode.man \
 mimedecode.txt
 
 .PHONY: sdist
-sdist: dist/mimedecode-2.1.0.tar.gz
+sdist: dist/mimedecode-$(VERSION).tar.gz
 
 .PHONY: dist
-dist/mimedecode-2.1.0.tar.gz: $(DISTFILES)
+dist/mimedecode-$(VERSION).tar.gz: $(DISTFILES)
 	umask 022 && chmod a+rX $(DISTFILES) && python setup.py sdist
 
 .PHONY: docs
