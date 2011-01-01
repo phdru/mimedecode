@@ -20,7 +20,7 @@ sdist: dist/mimedecode-$(VERSION).tar.gz
 
 .PHONY: dist
 dist/mimedecode-$(VERSION).tar.gz: $(DISTFILES)
-	umask 022 && chmod a+rX $(DISTFILES) && python setup.py sdist
+	umask 022 && chmod a+rX $(DISTFILES) && python setup.py sdist --formats=bztar
 
 .PHONY: docs
 docs: mimedecode.man mimedecode.txt mimedecode.html
