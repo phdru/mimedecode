@@ -31,9 +31,8 @@ WHAT'S NEW in version 2.0.0
 
 
 WHERE TO GET
-   Master site: http://phdru.name/Software/Python/#mimedecode
-   Mirrors: http://phd.webhost.ru/Software/Python/#mimedecode
-                 http://phd.by.ru/Software/Python/#mimedecode
+   Master site:  http://phdru.name/Software/Python/#mimedecode
+   A mirror: http://phd.webhost.ru/Software/Python/#mimedecode
 
    Requires: Python 2.2.2+
 
@@ -41,8 +40,7 @@ WHERE TO GET
 
    Documentation (also included in the package):
            http://phdru.name/Software/Python/mimedecode.txt
-      http://phd.webhost.ru/Software/Python/mimedecode.txt
-           http://phd.by.ru/Software/Python/mimedecode.txt
+       http://phd.webhost.ru/Software/Python/mimedecode.txt
 
 
 AUTHOR
