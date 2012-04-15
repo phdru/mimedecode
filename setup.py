@@ -1,10 +1,10 @@
 #! /usr/bin/env python
 
 from distutils.core import setup
-from mimedecode import _version, __copyright__
+from mimedecode import __version__, __copyright__
 
 setup(name = "mimedecode",
-   version = _version,
+   version = __version__,
    description = "A program to decode MIME messages",
    long_description = "A program to decode MIME messages. " + __copyright__,
    author = "Oleg Broytman",

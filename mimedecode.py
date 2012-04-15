@@ -2,12 +2,9 @@
 """Decode MIME message"""
 
 
-_version = "2.2.0"
-__version__ = "$Revision$"[11:-2]
-__revision__ = "$Id$"[5:-2]
-__date__ = "$Date$"[7:-2]
+__version__ = "2.2.1"
 __author__ = "Oleg Broytman <phd@phdru.name>"
-__copyright__ = "Copyright (C) 2001-2010 PhiloSoft Design"
+__copyright__ = "Copyright (C) 2001-2012 PhiloSoft Design"
 __license__ = "GNU GPL"
 
 
