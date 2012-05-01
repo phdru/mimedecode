@@ -1,5 +1,5 @@
 
-VERSION=$(shell python -c "from mimedecode import _version; print _version")
+VERSION=$(shell python -c "from mimedecode import __version__; print __version__")
 
 all: docs sdist
 
