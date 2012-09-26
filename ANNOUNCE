@@ -35,7 +35,7 @@ WHAT'S NEW in version 2.0.0
 
 WHERE TO GET
    Master site:  http://phdru.name/Software/Python/#mimedecode
-   A mirror: http://phd.webhost.ru/Software/Python/#mimedecode
+   A mirror:    http://phdru.co.cc/Software/Python/#mimedecode
 
    Requires: Python 2.2.2+
 
@@ -50,7 +50,7 @@ AUTHOR
    Oleg Broytman <phd@phdru.name>
 
 COPYRIGHT
-   Copyright (C) 2001-2010 PhiloSoft Design
+   Copyright (C) 2001-2012 PhiloSoft Design
 
 LICENSE
    GPL
