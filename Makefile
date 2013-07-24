@@ -1,6 +1,7 @@
 
 VERSION=$(shell python -c "from mimedecode import __version__; print __version__")
 
+.PHONY: all
 all: docs sdist
 
 DISTFILES = mimedecode.py \
