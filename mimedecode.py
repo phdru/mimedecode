@@ -2,9 +2,9 @@
 """Decode MIME message"""
 
 
-__version__ = "2.1.1"
+__version__ = "2.1.2"
 __author__ = "Oleg Broytman <phd@phdru.name>"
-__copyright__ = "Copyright (C) 2001-2012 PhiloSoft Design"
+__copyright__ = "Copyright (C) 2001-2013 PhiloSoft Design"
 __license__ = "GNU GPL"
 
 

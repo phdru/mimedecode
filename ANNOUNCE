@@ -22,6 +22,9 @@ one part. If it is a MIME message with multiple parts ("attachments") all parts
 are decoded. Decoding can be controlled by command-line options.
 
 
+WHAT'S NEW in version 2.1.2 (2013-07-26)
+   Minor fix in Makefile. Switched to git.
+
 WHAT'S NEW in version 2.1.1 (2012-04-15)
    Removed svn:keywords.
 
@@ -50,7 +53,7 @@ AUTHOR
    Oleg Broytman <phd@phdru.name>
 
 COPYRIGHT
-   Copyright (C) 2001-2012 PhiloSoft Design
+   Copyright (C) 2001-2013 PhiloSoft Design
 
 LICENSE
    GPL
