@@ -1,0 +1,20 @@
+mimedecode requires Python2; preferred versions are 2.6 or 2.7.
+mimedecode requires m_lib library.
+
+First install m_lib.
+
+To install the program from sources system-wide run run the following
+command:
+
+   sudo python setup.py install -O2
+
+If you don't want to install it system-wide you can install it in your
+home directory; run run the following command:
+
+   python setup.py install -O2 --user
+
+Option '--user' only available in Python 2.6 or 2.7. The command
+installs mimedecode into $HOME/.local/bin; add the directory to your
+$PATH.
+
+Or you can simple drop mimedecode.py somewhere in your $PATH.
