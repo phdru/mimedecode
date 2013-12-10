@@ -2,7 +2,7 @@
 """Decode MIME message"""
 
 
-__version__ = "2.1.2"
+__version__ = "2.1.3"
 __author__ = "Oleg Broytman <phd@phdru.name>"
 __copyright__ = "Copyright (C) 2001-2013 PhiloSoft Design"
 __license__ = "GNU GPL"
@@ -26,7 +26,7 @@ me = os.path.basename(sys.argv[0])
 def version(exit=1):
    sys.stdout.write("""\
 Broytman mimedecode.py version %s, %s
-""" % (_version, __copyright__))
+""" % (__version__, __copyright__))
    if exit: sys.exit(0)
 
 

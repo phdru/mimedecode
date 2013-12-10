@@ -22,6 +22,9 @@ one part. If it is a MIME message with multiple parts ("attachments") all parts
 are decoded. Decoding can be controlled by command-line options.
 
 
+WHAT'S NEW in version 2.1.3 (2013-12-10)
+   Minor bugfix.
+
 WHAT'S NEW in version 2.1.2 (2013-07-26)
    Minor fix in Makefile. Switched to git.
 
