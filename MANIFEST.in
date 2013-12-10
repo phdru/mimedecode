@@ -1,2 +1,2 @@
-include mimedecode.py Makefile* MANIFEST.in ANNOUNCE
+include ANNOUNCE INSTALL.txt Makefile* MANIFEST.in
 include mimedecode.docbook mimedecode.html mimedecode.txt mimedecode.man
