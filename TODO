@@ -1,1 +1,1 @@
-pip install -r
+setuptools/easy_install; pip.
