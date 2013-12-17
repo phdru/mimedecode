@@ -1,1 +1,4 @@
+Move __version__ out of mimedecode.py to allow installation without m_lib.
+
+
 setuptools/easy_install; pip.
