@@ -2,10 +2,7 @@
 """Decode MIME message"""
 
 
-__version__ = "2.1.4"
-__author__ = "Oleg Broytman <phd@phdru.name>"
-__copyright__ = "Copyright (C) 2001-2013 PhiloSoft Design"
-__license__ = "GNU GPL"
+from __version__ import __version__, __author__, __copyright__, __license__
 
 
 import sys, os

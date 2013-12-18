@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
 from distutils.core import setup
-from mimedecode import __version__, __copyright__
+from __version__ import __version__, __copyright__, __license__
 
 setup(name = "mimedecode",
    version = __version__,
@@ -10,7 +10,7 @@ setup(name = "mimedecode",
    author = "Oleg Broytman",
    author_email = "phd@phdru.name",
    url = "http://phdru.name/Software/Python/#mimedecode",
-   license = "GPL",
+   license = __license__,
    platforms = "All",
    scripts = ['mimedecode.py']
 )
