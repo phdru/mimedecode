@@ -22,6 +22,10 @@ one part. If it is a MIME message with multiple parts ("attachments") all parts
 are decoded. Decoding can be controlled by command-line options.
 
 
+WHAT'S NEW in version 2.1.5 (2013-12-18)
+   Move __version__ out of mimedecode.py to __version__.py
+   to allow installation without m_lib.
+
 WHAT'S NEW in version 2.1.4 (2013-12-11)
    Add installation instruction in INSTALL.txt.
 
