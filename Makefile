@@ -1,20 +1,22 @@
 
-VERSION=$(shell python -c "from mimedecode import __version__; print __version__")
+VERSION=$(shell python -c "from __version__ import __version__; print __version__")
 
 .PHONY: all
 all: docs sdist
 
-DISTFILES = mimedecode.py \
-setup.py \
-Makefile \
-Makefile.sgmlt \
-Makefile.4xslt \
-MANIFEST.in \
+DISTFILES = \
 ANNOUNCE \
+MANIFEST.in \
+Makefile \
+Makefile.4xslt \
+Makefile.sgmlt \
+__version__.py \
 mimedecode.docbook \
 mimedecode.html \
 mimedecode.man \
-mimedecode.txt
+mimedecode.py \
+mimedecode.txt \
+setup.py
 
 .PHONY: sdist
 sdist: dist/mimedecode-$(VERSION).tar.gz
