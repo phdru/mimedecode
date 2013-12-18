@@ -6,10 +6,12 @@ all: docs sdist
 
 DISTFILES = \
 ANNOUNCE \
+INSTALL.txt \
 MANIFEST.in \
 Makefile \
 Makefile.4xslt \
 Makefile.sgmlt \
+Makefile.xsltproc \
 __version__.py \
 mimedecode.docbook \
 mimedecode.html \
