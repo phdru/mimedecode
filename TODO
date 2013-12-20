@@ -1,1 +1,3 @@
 setuptools/easy_install; pip.
+
+Upgrade docbook-xsl.
