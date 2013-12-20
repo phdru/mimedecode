@@ -2,7 +2,7 @@
 """Decode MIME message"""
 
 
-from __version__ import __version__, __author__, __copyright__, __license__
+from mimedecode_version import __version__, __author__, __copyright__, __license__
 
 
 import sys, os
