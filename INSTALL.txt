@@ -3,6 +3,9 @@ mimedecode requires m_lib library.
 
 First install m_lib.
 
+Installation script setup.py requires setuptools. If you don't have it
+installed setup.py will try to download and install it.
+
 To install the program from sources system-wide run run the following
 command:
 
