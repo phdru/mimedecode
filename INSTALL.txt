@@ -1,10 +1,10 @@
 mimedecode requires Python2; preferred versions are 2.6 or 2.7.
-mimedecode requires m_lib library.
-
-First install m_lib.
 
 Installation script setup.py requires setuptools. If you don't have it
 installed setup.py will try to download and install it.
+
+mimedecode requires m_lib library. If you don't have it installed
+setup.py will try to download and install it after installing mimedecode.
 
 To install the program from sources system-wide run run the following
 command:
@@ -19,5 +19,3 @@ home directory; run run the following command:
 Option '--user' only available in Python 2.6 or 2.7. The command
 installs mimedecode into $HOME/.local/bin; add the directory to your
 $PATH.
-
-Or you can simple drop mimedecode.py somewhere in your $PATH.
