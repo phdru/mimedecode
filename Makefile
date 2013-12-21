@@ -12,12 +12,12 @@ Makefile \
 Makefile.4xslt \
 Makefile.sgmlt \
 Makefile.xsltproc \
-__version__.py \
 mimedecode.docbook \
 mimedecode.html \
 mimedecode.man \
 mimedecode.py \
 mimedecode.txt \
+mimedecode_version.py \
 setup.py
 
 .PHONY: sdist
