@@ -1,6 +1,23 @@
 #! /usr/bin/env python
 
-from distutils.core import setup
+try:
+    from ez_setup import use_setuptools
+    use_setuptools()
+    from setuptools import setup
+    is_setuptools = True
+except ImportError:
+    from distutils.core import setup
+    is_setuptools = False
+
+kw = {}
+if is_setuptools:
+    kw['setup_requires'] = ['m_lib']
+    kw['install_requires'] = ['m_lib']
+    kw['dependency_links'] = [
+        'http://phdru.name/Software/Python/#egg=m_lib',
+        'git+http://git.phdru.name/mimedecode.git#egg=m_lib',
+    ]
+
 from mimedecode_version import __version__, __copyright__, __license__
 
 setup(name = "mimedecode",
@@ -13,5 +30,6 @@ setup(name = "mimedecode",
    license = __license__,
    platforms = "All",
    py_modules = ['mimedecode_version'],
-   scripts = ['mimedecode.py']
+   scripts = ['mimedecode.py'],
+   **kw
 )

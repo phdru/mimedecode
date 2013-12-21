@@ -1,2 +1,2 @@
-include ANNOUNCE INSTALL.txt Makefile* MANIFEST.in __version__.py
+include ANNOUNCE INSTALL.txt Makefile* MANIFEST.in ez_setup.py
 include mimedecode.docbook mimedecode.html mimedecode.txt mimedecode.man
