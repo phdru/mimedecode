@@ -11,13 +11,7 @@ except ImportError:
 
 kw = {}
 if is_setuptools:
-    kw['setup_requires'] = ['m_lib']
-    kw['install_requires'] = ['m_lib']
-    kw['dependency_links'] = [
-        'http://phdru.name/Software/Python/#egg=m_lib',
-        'git+http://git.phdru.name/m_lib.git#egg=m_lib',
-         'git+git://git.phdru.name/m_lib.git#egg=m_lib',
-    ]
+    kw['install_requires'] = ['m_lib>=2.0']
 
 from mimedecode_version import __version__, __copyright__, __license__
 
