@@ -17,5 +17,8 @@ home directory; run run the following command:
    python setup.py install -O2 --user
 
 Option '--user' only available in Python 2.6 or 2.7. The command
-installs mimedecode into $HOME/.local/bin; add the directory to your
-$PATH.
+installs library parts into $HOME/.local/lib/python2.$VERSION/site-packages/
+where python finds it.
+
+It also installs mimedecode script into $HOME/.local/bin; add the
+directory to your $PATH or move the script to a directory in your $PATH.
