@@ -1,0 +1,16 @@
+#! /bin/sh
+
+umask 022
+
+if [ -n "$1" ]; then
+   git checkout "$1"
+fi &&
+
+git archive --format=tar --prefix=mimedecode/ HEAD |
+   (cd "$HOME/tmp" && exec tar xf -) &&
+cp -p mimedecode.man mimedecode.html mimedecode.txt "$HOME/tmp/mimedecode" &&
+
+cd "$HOME/tmp/mimedecode" &&
+chmod a+r mimedecode.man mimedecode.html mimedecode.txt &&
+python setup.py sdist &&
+cd dist && mv mimedecode-*.tar.gz ../.. && cd ../.. && exec rm -rf mimedecode
