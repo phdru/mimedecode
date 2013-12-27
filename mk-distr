@@ -12,5 +12,5 @@ cp -p mimedecode.man mimedecode.html mimedecode.txt "$HOME/tmp/mimedecode" &&
 
 cd "$HOME/tmp/mimedecode" &&
 chmod a+r mimedecode.man mimedecode.html mimedecode.txt &&
-python setup.py sdist &&
-cd dist && mv mimedecode-*.tar.gz ../.. && cd ../.. && exec rm -rf mimedecode
+python setup.py sdist --formats=bztar &&
+cd dist && mv mimedecode-*.tar.bz2 ../.. && cd ../.. && exec rm -rf mimedecode
