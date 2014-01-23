@@ -350,11 +350,9 @@ if __name__ == "__main__":
     arguments = init()
 
     la = len(arguments)
-    if la == 0:
-        infile = sys.stdin
-    elif la <> 1:
+    if la >= 2:
         usage(1)
-    elif arguments[0] == '-':
+    if (la == 0) or (arguments[0] == '-'):
         infile = sys.stdin
     else:
         infile = open(arguments[0], 'r')
