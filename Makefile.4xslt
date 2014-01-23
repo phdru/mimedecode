@@ -1,4 +1,4 @@
-DOCBOOK_XSL=/usr/local/src/DocBook/docbook-xsl
+DOCBOOK_XSL=/usr/share/xml/docbook/stylesheet/docbook-xsl
 
 mimedecode.html: mimedecode.docbook Makefile.4xslt
 	4xslt $< $(DOCBOOK_XSL)/html/docbook.xsl >$@

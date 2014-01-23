@@ -21,6 +21,8 @@ stdout one-to-one. If the file is a simple RFC822 message it is just decoded as
 one part. If it is a MIME message with multiple parts ("attachments") all parts
 are decoded. Decoding can be controlled by command-line options.
 
+WHAT'S NEW in version 2.2.2 (2014-01-23)
+   Upgrade docbook-xsl.
 
 WHAT'S NEW in version 2.2.1 (2013-12-24)
    Add mk-distr helper.
@@ -48,7 +50,7 @@ AUTHOR
    Oleg Broytman <phd@phdru.name>
 
 COPYRIGHT
-   Copyright (C) 2001-2013 PhiloSoft Design
+   Copyright (C) 2001-2014 PhiloSoft Design
 
 LICENSE
    GPL
