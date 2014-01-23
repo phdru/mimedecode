@@ -41,7 +41,7 @@ def output(s, outfile=sys.stdout):
 def output_headers(msg, outfile=sys.stdout):
     unix_from = msg.get_unixfrom()
     if unix_from:
-        output(unix_from + os.linesep)
+        output(unix_from + '\n')
     for key, value in msg.items():
         output("%s: %s\n" % (key, value), outfile)
     output("\n", outfile) # End of headers
