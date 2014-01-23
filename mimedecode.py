@@ -35,10 +35,10 @@ Usage: %s [-h|--help] [-V|--version] [-cCDP] [-f charset] [-d header] [-p header
    sys.exit(code)
 
 
-def output(s, outfile = sys.stdout):
+def output(s, outfile=sys.stdout):
    outfile.write(s)
 
-def output_headers(msg, outfile = sys.stdout):
+def output_headers(msg, outfile=sys.stdout):
    unix_from = msg.get_unixfrom()
    if unix_from:
       output(unix_from + os.linesep)
@@ -288,9 +288,10 @@ class GlobalOptions:
    from m_lib.defenc import default_encoding
    recode_charset = 1 # recode charset of message body
 
-   decode_headers = ["Subject", "From"] # A list of headers to decode
-   decode_header_params = [("Content-Type", "name"),
-      ("Content-Disposition", "filename")
+   decode_headers = ["From", "Subject"] # A list of headers to decode
+   decode_header_params = [
+      ("Content-Type", "name"),
+      ("Content-Disposition", "filename"),
    ] # A list of headers' parameters to decode
 
    totext_mask = [] # A list of content-types to decode
