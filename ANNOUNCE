@@ -36,7 +36,7 @@ WHAT'S NEW in version 2.2.0 (2013-12-21)
 WHERE TO GET
    Home page: http://phdru.name/Software/Python/#mimedecode
     git clone http://git.phdru.name/mimedecode.git
-     git clone git://git.phdru.name/mimedecode.git
+    git clone  git://git.phdru.name/mimedecode.git
 
    Requires: Python 2.2.2+
 
