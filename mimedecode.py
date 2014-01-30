@@ -30,7 +30,7 @@ Broytman mimedecode.py version %s, %s
 def usage(code=0):
     version(0)
     sys.stdout.write("""\
-Usage: %s [-h|--help] [-V|--version] [-cCDP] [-f charset] [-d header] [-p header:param] [-beit mask] [input_file [output_file]]
+Usage: %s [-h|--help] [-V|--version] [-cCDP] [-f charset] [-d header] [-p header:param] [-beit mask] [-o output_file] [input_file [output_file]]
 """ % me)
     sys.exit(code)
 
@@ -299,6 +299,9 @@ class GlobalOptions:
     ignore_mask = [] # Ignore (skip, do not decode and do not include into output)
     error_mask = []  # Raise error if encounter one of these
 
+    input_filename = None
+    output_filename = None
+
 gopts = GlobalOptions
 
 
@@ -306,7 +309,7 @@ def get_opt():
     from getopt import getopt, GetoptError
 
     try:
-        options, arguments = getopt(sys.argv[1:], 'hVcCDPf:d:p:b:e:i:t:',
+        options, arguments = getopt(sys.argv[1:], 'hVcCDPf:d:p:b:e:i:t:o:',
             ['help', 'version'])
     except GetoptError:
         usage(1)
@@ -342,6 +345,8 @@ def get_opt():
             gopts.ignore_mask.append(value)
         elif option == '-e':
             gopts.error_mask.append(value)
+        elif option == '-o':
+            gopts.output_filename = value
         else:
             usage(1)
 
@@ -353,18 +358,31 @@ if __name__ == "__main__":
 
     la = len(arguments)
     if la == 0:
+        gopts.input_filename = '-'
+        gopts.output_filename = '-'
         infile = sys.stdin
+        outfile = sys.stdout
     elif la in (1, 2):
         if (arguments[0] == '-'):
+            gopts.input_filename = '-'
             infile = sys.stdin
         else:
+            gopts.input_filename = arguments[0]
             infile = open(arguments[0], 'r')
         if la == 1:
-            outfile = sys.stdout
+            if gopts.output_filename:
+                outfile = open(gopts.output_filename, 'w')
+            else:
+                gopts.output_filename = '-'
+                outfile = sys.stdout
         elif la == 2:
+            if gopts.output_filename: # Too many output filenames
+                usage(1)
             if (arguments[1] == '-'):
+                gopts.output_filename = '-'
                 outfile = sys.stdout
             else:
+                gopts.output_filename = arguments[1]
                 outfile = open(arguments[1], 'w')
     else:
         usage(1)

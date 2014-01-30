@@ -38,6 +38,9 @@
       <arg choice="opt">
          <option>-beit mask</option>
       </arg>
+      <arg choice="opt">
+         <option>-o output_file</option>
+      </arg>
       <arg choice="opt">input_file
         <arg choice="opt">output_file</arg>
       </arg>
@@ -234,6 +237,17 @@ flushed to stdout.
             message to decode has a part of this type the program will consult
             mailcap database, find first copiousoutput filter and convert the
             part.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-o output_file</term>
+      <listitem>
+         <para>
+            Useful to set the output file in case of redirected stdin:
+            <programlisting language="sh">mimedecode.py -o output_file &lt; input_file
+cat input_file | mimedecode.py -o output_file</programlisting>
          </para>
       </listitem>
    </varlistentry>
