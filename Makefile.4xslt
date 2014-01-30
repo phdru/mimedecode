@@ -3,9 +3,9 @@ DOCBOOK_XSL=/usr/share/xml/docbook/stylesheet/docbook-xsl
 mimedecode.html: mimedecode.docbook Makefile.4xslt
 	4xslt $< $(DOCBOOK_XSL)/html/docbook.xsl >$@
 
-mimedecode.txt: mimedecode.html Makefile.4xslt
-	elinks -dump $< >$@
-
 mimedecode.man: mimedecode.docbook Makefile.4xslt
 	4xslt $< $(DOCBOOK_XSL)/manpages/docbook.xsl
 	mv mimedecode.py.1 $@
+
+mimedecode.txt: mimedecode.html Makefile.4xslt
+	elinks -dump $< >$@

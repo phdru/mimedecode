@@ -7,7 +7,7 @@ distr:
 	./mk-distr
 
 .PHONY: docs
-docs: mimedecode.man mimedecode.txt mimedecode.html
+docs: mimedecode.html mimedecode.man mimedecode.txt
 
 include Makefile.xsltproc
 

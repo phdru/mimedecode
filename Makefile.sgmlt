@@ -3,8 +3,8 @@ mimedecode.html: mimedecode.docbook Makefile.sgmlt
 	mv mimedecode/mimedecode.py.html mimedecode.html
 	rmdir mimedecode
 
-mimedecode.txt: mimedecode.docbook Makefile.sgmlt
-	sgmltools -b txt $<
-
 mimedecode.man: mimedecode.docbook Makefile.sgmlt
 	docbook-to-man $< >$@
+
+mimedecode.txt: mimedecode.docbook Makefile.sgmlt
+	sgmltools -b txt $<
