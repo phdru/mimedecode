@@ -27,11 +27,13 @@ Broytman mimedecode.py version %s, %s
     if exit: sys.exit(0)
 
 
-def usage(code=0):
+def usage(code=0, errormsg=''):
     version(0)
     sys.stdout.write("""\
 Usage: %s [-h|--help] [-V|--version] [-cCDP] [-f charset] [-d header] [-p header:param] [-beit mask] [-o output_file] [input_file [output_file]]
 """ % me)
+    if errormsg:
+        sys.stderr.write(errormsg + '\n')
     sys.exit(code)
 
 
@@ -376,8 +378,8 @@ if __name__ == "__main__":
                 gopts.output_filename = '-'
                 outfile = sys.stdout
         elif la == 2:
-            if gopts.output_filename: # Too many output filenames
-                usage(1)
+            if gopts.output_filename:
+                usage(1, 'Too many output filenames')
             if (arguments[1] == '-'):
                 gopts.output_filename = '-'
                 outfile = sys.stdout
@@ -385,7 +387,7 @@ if __name__ == "__main__":
                 gopts.output_filename = arguments[1]
                 outfile = open(arguments[1], 'w')
     else:
-        usage(1)
+        usage(1, 'Too many arguments')
 
     gopts.outfile = outfile
     decode_file(infile)
