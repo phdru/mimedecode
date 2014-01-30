@@ -21,11 +21,8 @@ stdout one-to-one. If the file is a simple RFC822 message it is just decoded as
 one part. If it is a MIME message with multiple parts ("attachments") all parts
 are decoded. Decoding can be controlled by command-line options.
 
-WHAT'S NEW in version 2.2.2 (2014-01-23)
-   Upgrade docbook-xsl.
-
-WHAT'S NEW in version 2.2.1 (2013-12-24)
-   Add mk-distr helper.
+WHAT'S NEW in version 2.3.0 (2014-01-30)
+   Add option -o and output_file argument.
 
 WHAT'S NEW in version 2.2.0 (2013-12-21)
    Rename __version__.py to mimedecode_version.py.
