@@ -389,6 +389,10 @@ if __name__ == "__main__":
     else:
         usage(1, 'Too many arguments')
 
+    if (infile is sys.stdin) and (outfile is sys.stdout) and \
+            sys.stdin.isatty() and sys.stdout.isatty():
+        usage(1, 'Filtering from console to console is forbidden')
+
     gopts.outfile = outfile
     decode_file(infile)
 

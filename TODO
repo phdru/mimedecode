@@ -1,1 +1,0 @@
-Forbid filtering stdin to stdout - require one of them to be a file.
