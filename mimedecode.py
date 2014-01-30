@@ -48,11 +48,11 @@ def output_headers(msg, outfile=sys.stdout):
 
 
 def recode(s, charset):
-    return unicode(s, charset, "replace").encode(GlobalOptions.default_encoding, "replace")
+    return unicode(s, charset, "replace").encode(gopts.default_encoding, "replace")
 
 
 def recode2(s, charset):
-    if charset and charset.lower() <> GlobalOptions.default_encoding:
+    if charset and charset.lower() <> gopts.default_encoding:
         s = recode(s, charset)
     return s
 
@@ -115,10 +115,10 @@ def decode_header_param(msg, header, param):
 def decode_headers(msg):
     "Decode message headers according to global options"
 
-    for header in GlobalOptions.decode_headers:
+    for header in gopts.decode_headers:
         decode_header(msg, header)
 
-    for header, param in GlobalOptions.decode_header_params:
+    for header, param in gopts.decode_header_params:
         decode_header_param(msg, header, param)
 
 
@@ -186,11 +186,11 @@ def recode_charset(msg, s):
     "Recode charset of the message to the default charset"
 
     save_charset = charset = msg.get_content_charset()
-    if charset and charset.lower() <> GlobalOptions.default_encoding:
+    if charset and charset.lower() <> gopts.default_encoding:
         s = recode2(s, charset)
         content_type = msg.get_content_type()
-        set_content_type(msg, content_type, GlobalOptions.default_encoding)
-        msg["X-MIME-Autoconverted"] = "from %s to %s by %s id %s" % (save_charset, GlobalOptions.default_encoding, host_name, me)
+        set_content_type(msg, content_type, gopts.default_encoding)
+        msg["X-MIME-Autoconverted"] = "from %s to %s by %s id %s" % (save_charset, gopts.default_encoding, host_name, me)
     return s
 
 
@@ -205,7 +205,7 @@ def totext(msg, instring):
 
     # Decode body and recode charset
     s = decode_body(msg, instring)
-    if GlobalOptions.recode_charset:
+    if gopts.recode_charset:
         s = recode_charset(msg, s)
 
     output_headers(msg)
@@ -236,18 +236,18 @@ def decode_part(msg):
     masks.append('*/*')
 
     for content_type in masks:
-        if content_type in GlobalOptions.totext_mask:
+        if content_type in gopts.totext_mask:
             totext(msg, outstring)
             return
-        elif content_type in GlobalOptions.binary_mask:
+        elif content_type in gopts.binary_mask:
             output_headers(msg)
             output(outstring)
             return
-        elif content_type in GlobalOptions.ignore_mask:
+        elif content_type in gopts.ignore_mask:
             output_headers(msg)
             output("\nMessage body of type `%s' skipped.\n" % content_type)
             return
-        elif content_type in GlobalOptions.error_mask:
+        elif content_type in gopts.error_mask:
             raise ValueError, "content type `%s' prohibited" % content_type
 
     # Neither content type nor masks were listed - decode by default
@@ -299,6 +299,8 @@ class GlobalOptions:
     ignore_mask = [] # Ignore (skip, do not decode and do not include into output)
     error_mask = []  # Raise error if encounter one of these
 
+gopts = GlobalOptions
+
 
 def init():
     from getopt import getopt, GetoptError
@@ -319,27 +321,27 @@ def init():
         elif option == '--version':
             version()
         elif option == '-c':
-            GlobalOptions.recode_charset = 1
+            gopts.recode_charset = 1
         elif option == '-C':
-            GlobalOptions.recode_charset = 0
+            gopts.recode_charset = 0
         elif option == '-f':
-            GlobalOptions.default_encoding = value
+            gopts.default_encoding = value
         elif option == '-d':
-            GlobalOptions.decode_headers.append(value)
+            gopts.decode_headers.append(value)
         elif option == '-D':
-            GlobalOptions.decode_headers = []
+            gopts.decode_headers = []
         elif option == '-p':
-            GlobalOptions.decode_header_params.append(value.split(':', 1))
+            gopts.decode_header_params.append(value.split(':', 1))
         elif option == '-P':
-            GlobalOptions.decode_header_params = []
+            gopts.decode_header_params = []
         elif option == '-t':
-            GlobalOptions.totext_mask.append(value)
+            gopts.totext_mask.append(value)
         elif option == '-b':
-            GlobalOptions.binary_mask.append(value)
+            gopts.binary_mask.append(value)
         elif option == '-i':
-            GlobalOptions.ignore_mask.append(value)
+            gopts.ignore_mask.append(value)
         elif option == '-e':
-            GlobalOptions.error_mask.append(value)
+            gopts.error_mask.append(value)
         else:
             usage(1)
 
