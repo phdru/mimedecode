@@ -30,21 +30,21 @@ Broytman mimedecode.py version %s, %s
 def usage(code=0):
     version(0)
     sys.stdout.write("""\
-Usage: %s [-h|--help] [-V|--version] [-cCDP] [-f charset] [-d header] [-p header:param] [-beit mask] [filename]
+Usage: %s [-h|--help] [-V|--version] [-cCDP] [-f charset] [-d header] [-p header:param] [-beit mask] [input_file [output_file]]
 """ % me)
     sys.exit(code)
 
 
-def output(s, outfile=sys.stdout):
-    outfile.write(s)
+def output(s):
+    gopts.outfile.write(s)
 
-def output_headers(msg, outfile=sys.stdout):
+def output_headers(msg):
     unix_from = msg.get_unixfrom()
     if unix_from:
         output(unix_from + '\n')
     for key, value in msg.items():
-        output("%s: %s\n" % (key, value), outfile)
-    output("\n", outfile) # End of headers
+        output("%s: %s\n" % (key, value))
+    output("\n") # End of headers
 
 
 def recode(s, charset):
@@ -302,7 +302,7 @@ class GlobalOptions:
 gopts = GlobalOptions
 
 
-def init():
+def get_opt():
     from getopt import getopt, GetoptError
 
     try:
@@ -349,14 +349,28 @@ def init():
 
 
 if __name__ == "__main__":
-    arguments = init()
+    arguments = get_opt()
 
     la = len(arguments)
-    if la >= 2:
-        usage(1)
-    if (la == 0) or (arguments[0] == '-'):
+    if la == 0:
         infile = sys.stdin
+    elif la in (1, 2):
+        if (arguments[0] == '-'):
+            infile = sys.stdin
+        else:
+            infile = open(arguments[0], 'r')
+        if la == 1:
+            outfile = sys.stdout
+        elif la == 2:
+            if (arguments[1] == '-'):
+                outfile = sys.stdout
+            else:
+                outfile = open(arguments[1], 'w')
     else:
-        infile = open(arguments[0], 'r')
+        usage(1)
 
+    gopts.outfile = outfile
     decode_file(infile)
+
+    infile.close()
+    outfile.close()
