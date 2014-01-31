@@ -108,9 +108,9 @@ multipart/mixed, e.g) every part is recursively decoded. If it is not
 multipart, mailcap database is consulted to find a way to convert the body to
 plain text. (I have no idea how mailcap could be configured on said M$ Ophice
 GUI, please don't ask me; real OS users can consult my example at
-http://phdru.name/Software/dotfiles/mailcap.html). The decoding process uses
-first copiousoutput filter it can find. If there is no any filter the body just
-passed unconverted.
+<ulink url="http://phdru.name/Software/dotfiles/mailcap.html">http://phdru.name/Software/dotfiles/mailcap.html</ulink>).
+The decoding process uses first copiousoutput filter it can find. If there is
+no any filter the body just passed unconverted.
 </para>
 
 <para>
@@ -366,7 +366,8 @@ the program will recode the message to the wrong charset.
 <refsect1>
 <title>SEE ALSO</title>
 <para>
-   mimedecode.py home page: http://phdru.name/Software/Python/#mimedecode
+  mimedecode.py home page:
+  <ulink url="http://phdru.name/Software/Python/#mimedecode">http://phdru.name/Software/Python/#mimedecode</ulink>
 </para>
 </refsect1>
 
