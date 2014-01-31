@@ -325,7 +325,7 @@ correct MIME output. The incorrect parts are obvious - decoded Subject headers
 and filenames. Other than that output is correct MIME message. The program does
 not try to guess whether the headers are correct. For example, if a message
 header states that charset is iso8859-5, but the body is actually in koi8-r -
-the program will recode the message to the wrong charset.
+the program will recode the message with the wrong charset.
 </para>
 </refsect1>
 
