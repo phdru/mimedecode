@@ -254,7 +254,7 @@ cat input_file | mimedecode.py -o output_file</programlisting>
 </variablelist>
 
 <para>
-   The last 4 options (-beit) require more explanation. They allow a user
+   The 4 list options (-beit) require more explanation. They allow a user
 to control body decoding with great flexibility. Think about said mail
 archive; for example, its maintainer wants to put there only texts, convert
 Postscript/PDF to text, pass HTML and images as is, and ignore everything
