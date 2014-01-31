@@ -8,4 +8,4 @@ mimedecode.man: mimedecode.docbook Makefile.4xslt
 	mv mimedecode.py.1 $@
 
 mimedecode.txt: mimedecode.html Makefile.4xslt
-	elinks -dump $< >$@
+	elinks -dump -no-numbering -no-references $< >$@
