@@ -4,6 +4,21 @@
 
 <refentry id="mimedecode.py">
 
+<refentryinfo>
+  <title>mimedecode.py</title>
+  <productname>mimedecode.docbook</productname>
+  <author>
+    <firstname>Oleg</firstname>
+    <surname>Broytman</surname>
+    <email>phd@phdru.name</email>
+    <personblurb/>
+  </author>
+  <copyright>
+    <year>2001-2014</year>
+    <holder>PhiloSoft Design.</holder>
+  </copyright>
+</refentryinfo>
+
 <refmeta>
    <refentrytitle>mimedecode.py</refentrytitle>
    <manvolnum>1</manvolnum>
