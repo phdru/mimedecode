@@ -168,7 +168,7 @@ flushed to stdout.
       <listitem>
          <para>
             Force this charset to be the current default charset instead of
-            sys.getdefaultencoding().
+            the current locale.
          </para>
       </listitem>
    </varlistentry>
@@ -228,7 +228,7 @@ flushed to stdout.
       <listitem>
          <para>
             Append mask to the list of error content types; if the message to
-            decode has a part of this type the program will raise ValueError.
+            decode has a part of this type the program fails with ValueError.
          </para>
       </listitem>
    </varlistentry>
