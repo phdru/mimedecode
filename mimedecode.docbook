@@ -331,7 +331,9 @@ the program will recode the message to the wrong charset.
 <refsect1>
 <title>AUTHOR</title>
 <para>
-   Oleg Broytman &lt;phd@phdru.name&gt;
+  <firstname>Oleg</firstname>
+  <surname>Broytman</surname>
+  <email>phd@phdru.name</email>
 </para>
 </refsect1>
 
