@@ -24,6 +24,9 @@ are decoded. Decoding can be controlled by command-line options.
 WHAT'S NEW in version 2.3.0 (2014-01-30)
    Add option -o and output_file argument.
 
+   Forbid filtering from console to console. When the program runs
+   with no parameters and without any redirection it shows usage help.
+
 WHAT'S NEW in version 2.2.0 (2013-12-21)
    Rename __version__.py to mimedecode_version.py.
 
