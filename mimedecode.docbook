@@ -304,12 +304,14 @@ the program always uses the default decoding.
 
 <refsect1>
 <title>ENVIRONMENT</title>
+<variablelist>
+  <varlistentry><term>LANG</term></varlistentry>
+  <varlistentry><term>LC_ALL</term></varlistentry>
+  <varlistentry><term>LC_CTYPE</term></varlistentry>
+</variablelist>
 <para>
-   LANG
-   LC_ALL
-   LC_CTYPE
-      Define current locale settings. Used to determine current default
-      charset (if your Python is properly installed and configured).
+  Define current locale settings. Used to determine current default charset (if
+  your Python is properly installed and configured).
 </para>
 </refsect1>
 
