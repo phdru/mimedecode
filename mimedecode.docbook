@@ -262,7 +262,7 @@ else. Easy:
 </para>
 
 <para>
-<code language="shell">
+<code language="sh">
    mimedecode.py -t application/postscript -t application/pdf -b text/html
          -b 'image/*' -i '*/*'
 </code>
