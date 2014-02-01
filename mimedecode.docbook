@@ -42,6 +42,9 @@
          <option>-cCDP</option>
       </arg>
       <arg choice="opt">
+         <option>-H|--host=hostname</option>
+      </arg>
+      <arg choice="opt">
          <option>-f charset</option>
       </arg>
       <arg choice="opt">
@@ -159,6 +162,17 @@ flushed to stdout.
       <listitem>
          <para>
             Do not recode character sets in message body.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-H hostname</term>
+      <term>--host=hostname</term>
+      <listitem>
+         <para>
+           Use this hostname in X-MIME-Autoconverted headers instead of the
+           current hostname.
          </para>
       </listitem>
    </varlistentry>

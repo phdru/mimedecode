@@ -1,9 +1,7 @@
 #! /usr/bin/env python
 """Decode MIME message"""
 
-
 from mimedecode_version import __version__, __author__, __copyright__, __license__
-
 
 import sys, os
 import email
@@ -12,10 +10,6 @@ try:
     from cStringIO import StringIO
 except ImportError:
     from StringIO import StringIO
-
-
-import socket
-host_name = socket.gethostname()
 
 me = os.path.basename(sys.argv[0])
 
@@ -26,11 +20,10 @@ Broytman mimedecode.py version %s, %s
 """ % (__version__, __copyright__))
     if exit: sys.exit(0)
 
-
 def usage(code=0, errormsg=''):
     version(0)
     sys.stdout.write("""\
-Usage: %s [-h|--help] [-V|--version] [-cCDP] [-f charset] [-d header] [-p header:param] [-beit mask] [-o output_file] [input_file [output_file]]
+Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header] [-p header:param] [-beit mask] [-o output_file] [input_file [output_file]]
 """ % me)
     if errormsg:
         sys.stderr.write(errormsg + '\n')
@@ -179,7 +172,7 @@ def decode_body(msg, s):
     os.remove(filename)
 
     set_content_type(msg, "text/plain")
-    msg["X-MIME-Autoconverted"] = "from %s to text/plain by %s id %s" % (content_type, host_name, command.split()[0])
+    msg["X-MIME-Autoconverted"] = "from %s to text/plain by %s id %s" % (content_type, gopts.host_name, command.split()[0])
 
     return s
 
@@ -192,7 +185,7 @@ def recode_charset(msg, s):
         s = recode2(s, charset)
         content_type = msg.get_content_type()
         set_content_type(msg, content_type, gopts.default_encoding)
-        msg["X-MIME-Autoconverted"] = "from %s to %s by %s id %s" % (save_charset, gopts.default_encoding, host_name, me)
+        msg["X-MIME-Autoconverted"] = "from %s to %s by %s id %s" % (save_charset, gopts.default_encoding, gopts.host_name, me)
     return s
 
 
@@ -225,7 +218,7 @@ def decode_part(msg):
     else: # Decode from transfer ecoding to text or binary form
         outstring = str(msg.get_payload(decode=1))
         set_header(msg, "Content-Transfer-Encoding", "8bit")
-        msg["X-MIME-Autoconverted"] = "from %s to 8bit by %s id %s" % (encoding, host_name, me)
+        msg["X-MIME-Autoconverted"] = "from %s to 8bit by %s id %s" % (encoding, gopts.host_name, me)
 
     # Test all mask lists and find what to do with this content type
     masks = []
@@ -290,6 +283,8 @@ class GlobalOptions:
     from m_lib.defenc import default_encoding
     recode_charset = 1 # recode charset of message body
 
+    host_name = None
+
     decode_headers = ["From", "Subject"] # A list of headers to decode
     decode_header_params = [
         ("Content-Type", "name"),
@@ -311,24 +306,22 @@ def get_opt():
     from getopt import getopt, GetoptError
 
     try:
-        options, arguments = getopt(sys.argv[1:], 'hVcCDPf:d:p:b:e:i:t:o:',
-            ['help', 'version'])
+        options, arguments = getopt(sys.argv[1:], 'hVcCDPH:f:d:p:b:e:i:t:o:',
+            ['help', 'version', 'host'])
     except GetoptError:
         usage(1)
 
     for option, value in options:
-        if option == '-h':
+        if option in ('-h', '--help'):
             usage()
-        elif option == '--help':
-            usage()
-        elif option == '-V':
-            version()
-        elif option == '--version':
+        elif option in ('-V', '--version'):
             version()
         elif option == '-c':
             gopts.recode_charset = 1
         elif option == '-C':
             gopts.recode_charset = 0
+        elif option in ('-H', '--host'):
+            gopts.host_name = value
         elif option == '-f':
             gopts.default_encoding = value
         elif option == '-d':
@@ -392,6 +385,10 @@ if __name__ == "__main__":
     if (infile is sys.stdin) and (outfile is sys.stdout) and \
             sys.stdin.isatty() and sys.stdout.isatty():
         usage(1, 'Filtering from console to console is forbidden')
+
+    if not gopts.host_name:
+        import socket
+        gopts.host_name = socket.gethostname()
 
     gopts.outfile = outfile
     decode_file(infile)
