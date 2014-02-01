@@ -46,7 +46,7 @@ def recode(s, charset):
     return unicode(s, charset, "replace").encode(gopts.default_encoding, "replace")
 
 
-def recode2(s, charset):
+def recode_if_needed(s, charset):
     if charset and charset.lower() <> gopts.default_encoding:
         s = recode(s, charset)
     return s
@@ -69,7 +69,7 @@ def _decode_header(s):
         if charset is None:
             rtn.append(atom)
         else:
-            rtn.append(recode2(atom, charset))
+            rtn.append(recode_if_needed(atom, charset))
         rtn.append(' ')
     del rtn[-1] # remove the last space
 
@@ -89,7 +89,7 @@ def decode_header(msg, header):
 
 
 def _decode_header_param(s):
-    return recode2(s[2], s[0])
+    return recode_if_needed(s[2], s[0])
 
 
 def decode_header_param(msg, header, param):
@@ -182,7 +182,7 @@ def recode_charset(msg, s):
 
     save_charset = charset = msg.get_content_charset()
     if charset and charset.lower() <> gopts.default_encoding:
-        s = recode2(s, charset)
+        s = recode_if_needed(s, charset)
         content_type = msg.get_content_type()
         set_content_type(msg, content_type, gopts.default_encoding)
         msg["X-MIME-Autoconverted"] = "from %s to %s by %s id %s" % (save_charset, gopts.default_encoding, gopts.host_name, me)
