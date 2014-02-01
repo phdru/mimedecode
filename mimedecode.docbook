@@ -84,42 +84,42 @@ much desirable.
 </para>
 
 <para>
-   It is a program to decode MIME messages. The program expects one input file
-(either on the command line or on stdin) which is treated as an RFC822 message,
-and decoded to stdout. If the file is not an RFC822 message it is just piped to
-stdout as is. If the file is a simple RFC822 message it is just decoded as one
-part. If it is a MIME message with multiple parts ("attachments") all parts are
-decoded recursively. Decoding can be controlled by the command-line options.
+   This is a program to decode MIME messages. The program expects one input
+file (either on command line or on stdin) which is treated as an RFC822
+message, and decodes to stdout or an output file. If the file is not an RFC822
+message it is just copied to the output one-to-one. If the file is a simple
+RFC822 message it is decoded as one part. If it is a MIME message with multiple
+parts ("attachments") all parts are decoded. Decoding can be controlled by
+command-line options.
 </para>
 
 <para>
    First, Subject and Content-Disposition headers are examined. If any of those
-exists, it is decoded according to RFC2047. Content-Disposition header is not
-decoded - only its "filename" parameter. Encoded header parameters violate
-the RFC, but widely deployed anyway, especially in the M$ Ophice GUI (often
-referred as "Windoze") world, where programmers are often ignorant lamers who
-never even heard about RFCs. Correct parameter encoding specified by RFC2231.
-This program decodes RFC2231-encoded parameters, too.
+   exists, it is decoded according to RFC2047. Content-Disposition header is
+   not decoded - only its "filename" parameter. Encoded header parameters
+   violate the RFC, but widely deployed anyway by ignorant coders who never
+   even heard about RFCs. Correct parameter encoding specified by RFC2231. This
+   program decodes RFC2231-encoded parameters, too.
 </para>
 
 <para>
    Then the body of the message (or the current part) is decoded. Decoding
-starts with looking at header Content-Transfer-Encoding. If the header
-specifies non-8bit encoding (usually base64 or quoted-printable), the body
-converted to 8bit. Then, if its content type is multipart (multipart/related or
-multipart/mixed, e.g) every part is recursively decoded. If it is not
-multipart, mailcap database is consulted to find a way to convert the body to
-plain text. (I have no idea how mailcap could be configured on said M$ Ophice
-GUI, please don't ask me; real OS users can consult my example at
-<ulink url="http://phdru.name/Software/dotfiles/mailcap.html">http://phdru.name/Software/dotfiles/mailcap.html</ulink>).
-The decoding process uses first copiousoutput filter it can find. If there is
-no any filter the body just passed unconverted.
+   starts with looking at header Content-Transfer-Encoding. If the header
+   specifies non-8bit encoding (usually base64 or quoted-printable), the body
+   converted to 8bit. Then, if its content type is multipart (multipart/related
+   or multipart/mixed, e.g) every part is recursively decoded. If it is not
+   multipart, mailcap database is consulted to find a way to convert the body
+   to plain text. (I have no idea how mailcap can be configured on OSes other
+   than POSIX, please don't ask me; real OS users can consult my example at
+   <ulink url="http://phdru.name/Software/dotfiles/mailcap.html">http://phdru.name/Software/dotfiles/mailcap.html</ulink>).
+   The decoding process uses the first copiousoutput filter it can find. If
+   there is no any filter the body just passed as is.
 </para>
 
 <para>
-   Then Content-Type header consulted for charset. If it is not equal to
-current default charset the body text recoded. Finally message headers and body
-flushed to stdout.
+   Then Content-Type header is consulted for charset. If it is not equal to the
+   current locale charset the body text is recoded. Finally message headers and
+   the body are flushed to stdout.
 </para>
 </refsect1>
 
@@ -338,7 +338,7 @@ is to decode whatever it is possible to decode, not to produce absolutely
 correct MIME output. The incorrect parts are obvious - decoded Subject headers
 and filenames. Other than that output is correct MIME message. The program does
 not try to guess whether the headers are correct. For example, if a message
-header states that charset is iso8859-5, but the body is actually in koi8-r -
+header states that charset is iso8859-5, but the body is actually in utf-8
 the program will recode the message with the wrong charset.
 </para>
 </refsect1>

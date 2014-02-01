@@ -6,20 +6,21 @@ WHAT IS IT
    Mail users, especially in non-English countries, often find that mail
 messages arrived in different formats, with different content types, in
 different encodings and charsets. Usually this is good because it allows us to
-use apropriate format/encoding/whatever. Sometimes, though, some unification is
-desireable. For example, one may want to put mail messages into an archive,
-make HTML indicies, run search indexer, etc. In such situations converting
-messages to text in one character set and skipping some binary atachmetnts is
-much desireable.
+use appropriate format/encoding/whatever. Sometimes, though, some unification
+is desirable. For example, one may want to put mail messages into an archive,
+make HTML indices, run search indexer, etc. In such situations converting
+messages to text in one character set and skipping some binary attachments is
+much desirable.
 
    Here is the solution - mimedecode.py.
 
    This is a program to decode MIME messages. The program expects one input
-file (either on command line or on stdin) which is treated as an RFC822 mesage,
-and decoded to stdout. If the file is not an RFC822 message it is just piped to
-stdout one-to-one. If the file is a simple RFC822 message it is just decoded as
-one part. If it is a MIME message with multiple parts ("attachments") all parts
-are decoded. Decoding can be controlled by command-line options.
+file (either on command line or on stdin) which is treated as an RFC822
+message, and decodes to stdout or an output file. If the file is not an RFC822
+message it is just copied to the output one-to-one. If the file is a simple
+RFC822 message it is decoded as one part. If it is a MIME message with multiple
+parts ("attachments") all parts are decoded. Decoding can be controlled by
+command-line options.
 
 WHAT'S NEW in version 2.3.2 (2014-02-01)
    Fix a bug - do not generate 'From ' headers in subparts.
@@ -60,7 +61,7 @@ AUTHOR
    Oleg Broytman <phd@phdru.name>
 
 COPYRIGHT
-   Copyright (C) 2001-2014 PhiloSoft Design
+   Copyright (C) 2001-2014 PhiloSoft Design.
 
 LICENSE
    GPL
