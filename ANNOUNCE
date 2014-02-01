@@ -21,6 +21,13 @@ stdout one-to-one. If the file is a simple RFC822 message it is just decoded as
 one part. If it is a MIME message with multiple parts ("attachments") all parts
 are decoded. Decoding can be controlled by command-line options.
 
+WHAT'S NEW in version 2.3.2 (2014-02-01)
+   Fix a bug - do not generate 'From ' headers in subparts.
+
+   Add option --host.
+
+   Add tests.
+
 WHAT'S NEW in version 2.3.1 (2014-01-31)
    Update documentation.
 
