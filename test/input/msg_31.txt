@@ -1,0 +1,16 @@
+From test Sat Feb  1 00:00:00 2014
+From: aperson@dom.ain
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary=BOUNDARY_
+
+--BOUNDARY
+Content-Type: text/plain
+
+message 1
+
+--BOUNDARY
+Content-Type: text/plain
+
+message 2
+
+--BOUNDARY--

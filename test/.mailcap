@@ -1,0 +1,1 @@
+text/html; ./html2txt.py %s; copiousoutput; description="HTML to text"; test=test -x html2txt.py

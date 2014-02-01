@@ -1,0 +1,13 @@
+From test Sat Feb  1 00:00:00 2014
+MIME-Version: 1.0
+Content-Type: text/plain; boundary="--961284236552522269"
+X-MIME-Autoconverted: from text/html to text/plain by test id ./html2txt.py
+
+----961284236552522269
+Content-Type: text/html;
+Content-Transfer-Encoding: 7Bit
+
+
+
+----961284236552522269--
+

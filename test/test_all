@@ -1,0 +1,23 @@
+#! /bin/sh
+
+cd "`dirname \"$0\"`" &&
+MAILCAPS="`pwd`"/.mailcap &&
+export MAILCAPS &&
+
+rm -rf tmp &&
+mkdir tmp || exit 1
+
+RC=0
+
+for f in input/*.txt; do
+   f="`basename \"$f\"`"
+   ../mimedecode.py -H test -f utf-8 input/"$f" >tmp/"$f"
+   if cmp -s expected/"$f" tmp/"$f"; then
+      rm tmp/"$f"
+   else
+      RC=1
+      diff --text expected/"$f" tmp/"$f" >tmp/"$f".diff
+   fi
+done
+
+exit $RC

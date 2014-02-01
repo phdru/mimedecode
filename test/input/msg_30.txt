@@ -1,0 +1,24 @@
+From test Sat Feb  1 00:00:00 2014
+From: aperson@dom.ain
+MIME-Version: 1.0
+Content-Type: multipart/digest; boundary=BOUNDARY
+
+--BOUNDARY
+
+Content-Type: text/plain; charset=us-ascii
+To: aa@bb.org
+From: cc@dd.org
+Subject: ee
+
+message 1
+
+--BOUNDARY
+
+Content-Type: text/plain; charset=us-ascii
+To: aa@bb.org
+From: cc@dd.org
+Subject: ee
+
+message 2
+
+--BOUNDARY--

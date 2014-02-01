@@ -1,0 +1,9 @@
+From test Sat Feb  1 00:00:00 2014
+From: aperson@dom.ain
+Content-Type: multipart/mixed; boundary="BOUNDARY"
+
+--BOUNDARY
+Content-Type: text/plain
+
+A message part
+--BOUNDARY--
