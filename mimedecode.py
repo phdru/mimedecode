@@ -133,7 +133,6 @@ def set_content_type(msg, newtype, charset=None):
         msg.set_param("charset", charset, "Content-Type")
 
 
-
 caps = None # Globally stored mailcap database; initialized only if needed
 
 def decode_body(msg, s):
@@ -193,7 +192,7 @@ def totext(msg, instring):
     "Convert instring content to text"
 
     if msg.is_multipart(): # Recursively decode all parts of the multipart message
-        newfile = StringIO(str(msg))
+        newfile = StringIO(msg.as_string())
         newfile.seek(0)
         decode_file(newfile)
         return
@@ -276,7 +275,7 @@ def decode_file(infile):
             decode_part(msg)
 
         else: # Not a message, just text - copy it literally
-            output(str(msg))
+            output(msg.as_string())
 
 
 class GlobalOptions:
