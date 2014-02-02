@@ -350,9 +350,12 @@ if __name__ == "__main__":
     la = len(arguments)
     if la == 0:
         gopts.input_filename = '-'
-        gopts.output_filename = '-'
         infile = sys.stdin
-        outfile = sys.stdout
+        if gopts.output_filename:
+            outfile = open(gopts.output_filename, 'w')
+        else:
+            gopts.output_filename = '-'
+            outfile = sys.stdout
     elif la in (1, 2):
         if (arguments[0] == '-'):
             gopts.input_filename = '-'
