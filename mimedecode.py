@@ -45,7 +45,6 @@ def output_headers(msg):
 def recode(s, charset):
     return unicode(s, charset, "replace").encode(gopts.default_encoding, "replace")
 
-
 def recode_if_needed(s, charset):
     if charset and charset.lower() <> gopts.default_encoding:
         s = recode(s, charset)
@@ -77,7 +76,6 @@ def _decode_header(s):
     # together into the final string.
     return ''.join(rtn)
 
-
 def decode_header(msg, header):
     "Decode mail header (if exists) and put it back, if it was encoded"
 
@@ -90,7 +88,6 @@ def decode_header(msg, header):
 
 def _decode_header_param(s):
     return recode_if_needed(s[2], s[0])
-
 
 def decode_header_param(msg, header, param):
     "Decode mail header's parameter (if exists) and put it back, if it was encoded"
@@ -381,9 +378,10 @@ if __name__ == "__main__":
     else:
         usage(1, 'Too many arguments')
 
-    if (infile is sys.stdin) and (outfile is sys.stdout) and \
-            sys.stdin.isatty() and sys.stdout.isatty():
-        usage(1, 'Filtering from console to console is forbidden')
+    if (infile is sys.stdin) and sys.stdin.isatty():
+        if (outfile is sys.stdout) and sys.stdout.isatty():
+            usage()
+        usage(1, 'Filtering from console is forbidden')
 
     if not gopts.host_name:
         import socket
