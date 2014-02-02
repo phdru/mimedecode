@@ -22,6 +22,12 @@ RFC822 message it is decoded as one part. If it is a MIME message with multiple
 parts ("attachments") all parts are decoded. Decoding can be controlled by
 command-line options.
 
+WHAT'S NEW in version 2.3.3 (2014-02-02)
+   Forbid filtering from console. When the program runs with stdin
+   connected to the console it shows usage help.
+
+   Fix a bug - option -o and no parameters.
+
 WHAT'S NEW in version 2.3.2 (2014-02-01)
    Fix a bug - do not generate 'From ' headers in subparts.
 
@@ -34,9 +40,6 @@ WHAT'S NEW in version 2.3.1 (2014-01-31)
 
 WHAT'S NEW in version 2.3.0 (2014-01-30)
    Add option -o and output_file argument.
-
-   Forbid filtering from console to console. When the program runs
-   with no parameters and without any redirection it shows usage help.
 
 WHAT'S NEW in version 2.2.0 (2013-12-21)
    Rename __version__.py to mimedecode_version.py.
