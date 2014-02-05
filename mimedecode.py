@@ -185,12 +185,6 @@ def recode_charset(msg, s):
 def totext(msg, instring):
     "Convert instring content to text"
 
-    if msg.is_multipart(): # Recursively decode all parts of the multipart message
-        newfile = StringIO(msg.as_string())
-        newfile.seek(0)
-        decode_file(newfile)
-        return
-
     # Decode body and recode charset
     s = decode_body(msg, instring)
     if gopts.recode_charset:
@@ -258,7 +252,13 @@ def decode_file(infile):
 
         for subpart in msg.get_payload():
             output("\n--%s\n" % boundary)
-            decode_part(subpart)
+
+            if subpart.is_multipart(): # Recursively decode all parts of the subpart
+                newfile = StringIO(subpart.as_string())
+                newfile.seek(0)
+                decode_file(newfile)
+            else:
+                decode_part(subpart)
 
         output("\n--%s--\n" % boundary)
 
