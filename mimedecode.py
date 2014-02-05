@@ -30,9 +30,6 @@ Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [
     sys.exit(code)
 
 
-def output(s):
-    gopts.outfile.write(s)
-
 def output_headers(msg):
     unix_from = msg.get_unixfrom()
     if unix_from:
@@ -391,6 +388,8 @@ if __name__ == "__main__":
         gopts.host_name = socket.gethostname()
 
     gopts.outfile = outfile
+    output = outfile.write
+
     decode_file(infile)
 
     infile.close()
