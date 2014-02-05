@@ -298,15 +298,15 @@ else. Easy:
 </para>
 
 <para>
-   When the program decodes a message (or its part), it consults
-Content-Type header. The content type is searched in all 4 lists, in order
-"text-binary-ignore-error". If found, appropriate action performed. If not
-found, the program search the same lists for "type/*" mask (the type of
-"text/html" is just "text"). If found, appropriate action performed. If not
-found, the program search the same lists for "*/*" mask. If found,
-appropriate action performed. If not found, the program uses default
-action, which is to decode everything to text (if mailcap specifies
-a filter).
+   When the program decodes a message (non-MIME or a non-multipart subpart of a
+   MIME message), it consults Content-Type header. The content type is searched
+   in all 4 lists, in order "text-binary-ignore-error". If found, appropriate
+   action performed. If not found, the program search the same lists for
+   "type/*" mask (the type of "text/html" is just "text"). If found,
+   appropriate action performed. If not found, the program search the same
+   lists for "*/*" mask. If found, appropriate action performed. If not found,
+   the program uses default action, which is to decode everything to text (if
+   mailcap specifies a filter).
 </para>
 
 <para>
