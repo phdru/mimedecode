@@ -246,7 +246,6 @@ def decode_file(infile):
     "Decode the entire message"
 
     msg = email.message_from_file(infile)
-    boundary = msg.get_boundary()
 
     if msg.is_multipart():
         decode_headers(msg)
@@ -254,6 +253,8 @@ def decode_file(infile):
 
         if msg.preamble: # Preserve the first part, it is probably not a RFC822-message
             output(msg.preamble) # Usually it is just a few lines of text (MIME warning)
+
+        boundary = msg.get_boundary()
 
         for subpart in msg.get_payload():
             output("\n--%s\n" % boundary)
