@@ -390,7 +390,8 @@ if __name__ == "__main__":
     gopts.outfile = outfile
     output = outfile.write
 
-    decode_file(infile)
-
-    infile.close()
-    outfile.close()
+    try:
+        decode_file(infile)
+    finally:
+        infile.close()
+        outfile.close()
