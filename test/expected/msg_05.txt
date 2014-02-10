@@ -21,13 +21,9 @@ Yadda yadda yadda
 --D1690A7AC1.996856090/mail.example.com
 Content-Type: message/rfc822
 
-
---None
 From: nobody@python.org
 
 Yadda yadda yadda
-
---None--
 
 --D1690A7AC1.996856090/mail.example.com--
 

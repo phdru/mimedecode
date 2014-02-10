@@ -6,19 +6,23 @@ Content-Type: multipart/digest; boundary=BOUNDARY
 
 --BOUNDARY
 
-Content-Type: text/plain; charset=us-ascii
 To: aa@bb.org
 From: cc@dd.org
 Subject: ee
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
 
 message 1
 
 --BOUNDARY
 
-Content-Type: text/plain; charset=us-ascii
 To: aa@bb.org
 From: cc@dd.org
 Subject: ee
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
 
 message 2
 

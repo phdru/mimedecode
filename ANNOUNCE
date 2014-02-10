@@ -22,6 +22,12 @@ RFC822 message it is decoded as one part. If it is a MIME message with multiple
 parts ("attachments") all parts are decoded. Decoding can be controlled by
 command-line options.
 
+WHAT'S NEW in version 2.3.4 (2014-02-??)
+
+   Optimize recursive decoding.
+
+   Fix a bug - decode message/rfc822 subparts.
+
 WHAT'S NEW in version 2.3.3 (2014-02-02)
    Forbid filtering from console. When the program runs with stdin
    connected to the console it shows usage help.

@@ -16,8 +16,6 @@ X-Attribution: BAW
 X-Oblique-Strategy: Be dirty
 X-Url: http://barry.wooz.org
 
-
---None
 Return-Path: <barry@python.org>
 Delivered-To: barry@python.org
 Message-ID: <15265.9468.713530.98441@python.org>
@@ -35,5 +33,3 @@ Content-Type: text/plain; charset="utf-8"
 X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
 
 
-
---None--

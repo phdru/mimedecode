@@ -16,31 +16,26 @@ Content-Type: Multipart/Alternative; Boundary="OtherAccess"
 
 
 --OtherAccess
-Content-Type: Message/External-body; access-type="mail-server";
- server="mailserv@ietf.org"
+Content-Type: Message/External-body;
+	access-type="mail-server";
+	server="mailserv@ietf.org"
 
-
---None
 Content-Type: text/plain
 Content-ID: <19981222151406.I-D@ietf.org>
 
 ENCODING mime
 FILE /internet-drafts/draft-ietf-mboned-mix-00.txt
 
---None--
-
 --OtherAccess
-Content-Type: Message/External-body; name="draft-ietf-mboned-mix-00.txt";
- site="ftp.ietf.org"; access-type="anon-ftp";
- directory="internet-drafts"
+Content-Type: Message/External-body;
+	name="draft-ietf-mboned-mix-00.txt";
+	site="ftp.ietf.org";
+	access-type="anon-ftp";
+	directory="internet-drafts"
 
-
---None
 Content-Type: text/plain
 Content-ID: <19981222151406.I-D@ietf.org>
 
-
---None--
 
 --OtherAccess--
 

@@ -6,11 +6,6 @@ from mimedecode_version import __version__, __author__, __copyright__, __license
 import sys, os
 import email
 
-try:
-    from cStringIO import StringIO
-except ImportError:
-    from StringIO import StringIO
-
 me = os.path.basename(sys.argv[0])
 
 
@@ -236,10 +231,8 @@ def decode_part(msg):
     totext(msg, outstring)
 
 
-def decode_file(infile):
-    "Decode the entire message"
-
-    msg = email.message_from_file(infile)
+def decode_message(msg):
+    "Decode message"
 
     if msg.is_multipart():
         decode_headers(msg)
@@ -251,16 +244,16 @@ def decode_file(infile):
         boundary = msg.get_boundary()
 
         for subpart in msg.get_payload():
-            output("\n--%s\n" % boundary)
+            if boundary:
+                output("\n--%s\n" % boundary)
 
             if subpart.is_multipart(): # Recursively decode all parts of the subpart
-                newfile = StringIO(subpart.as_string())
-                newfile.seek(0)
-                decode_file(newfile)
+                decode_message(subpart)
             else:
                 decode_part(subpart)
 
-        output("\n--%s--\n" % boundary)
+        if boundary:
+            output("\n--%s--\n" % boundary)
 
         if msg.epilogue:
             output(msg.epilogue)
@@ -392,7 +385,7 @@ if __name__ == "__main__":
     output = outfile.write
 
     try:
-        decode_file(infile)
+        decode_message(email.message_from_file(infile))
     finally:
         infile.close()
         outfile.close()

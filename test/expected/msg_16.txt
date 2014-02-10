@@ -55,33 +55,25 @@ Your message cannot be delivered to the following recipients:
 --Boundary_(ID_PGS2F2a+z+/jL7hupKgRhA)
 Content-type: message/DELIVERY-STATUS
 
-
---None
 Original-envelope-id: 0GK500B4HD0888@cougar.noc.ucla.edu
 Reporting-MTA: dns; cougar.noc.ucla.edu
 
-
---None
 Action: failed
 Status: 5.0.0 (recipient reached disk quota)
 Original-recipient: rfc822;jangel1@cougar.noc.ucla.edu
 Final-recipient: rfc822;jangel1@cougar.noc.ucla.edu
 
 
---None--
-
 --Boundary_(ID_PGS2F2a+z+/jL7hupKgRhA)
 Content-type: MESSAGE/RFC822
 
-
---None
 Return-path: scr-admin@socal-raves.org
 Received: from sims-ms-daemon by cougar.noc.ucla.edu
  (Sun Internet Mail Server sims.3.5.2000.03.23.18.03.p10)
  id <0GK500B01D0B8X@cougar.noc.ucla.edu>; Sun, 23 Sep 2001 20:14:35 -0700 (PDT)
 Received: from panther.noc.ucla.edu by cougar.noc.ucla.edu
  (Sun Internet Mail Server sims.3.5.2000.03.23.18.03.p10)
- with ESMTP id <0GK500B4GD0888@cougar.noc.ucla.edu> for jangel1@sims-ms-daemon; 
+ with ESMTP id <0GK500B4GD0888@cougar.noc.ucla.edu> for jangel1@sims-ms-daemon;
  Sun, 23 Sep 2001 20:14:33 -0700 (PDT)
 Received: from babylon.socal-raves.org
  (ip-209-85-222-117.dreamhost.com [209.85.222.117])
@@ -131,8 +123,6 @@ _______________________________________________
 For event info, list questions, or to unsubscribe, see http://www.socal-raves.org/
 
 
-
---None--
 
 --Boundary_(ID_PGS2F2a+z+/jL7hupKgRhA)--
 

@@ -12,13 +12,9 @@ Stuff
 --AAA
 Content-Type: message/rfc822
 
-
---None
 From: webmaster@python.org
 To: zzz@example.com
 Content-Type: multipart/mixed; boundary="BBB"
 
-
---None--
 
 --AAA--

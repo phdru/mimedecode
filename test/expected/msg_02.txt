@@ -52,13 +52,15 @@ Content-Type: multipart/digest; boundary="__--__--"
 --__--__--
 
 Message: 1
-Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
 Date: Fri, 20 Apr 2001 20:16:13 -0400
 To: ppp@zzz.org
 From: barry@digicool.com (Barry A. Warsaw)
 Subject: [Ppp] testing #1
 Precedence: bulk
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
 
 
 hello
@@ -68,11 +70,13 @@ hello
 
 Message: 2
 Date: Fri, 20 Apr 2001 20:16:21 -0400
-Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
 To: ppp@zzz.org
 From: barry@digicool.com (Barry A. Warsaw)
 Precedence: bulk
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
 
 
 hello
@@ -82,12 +86,14 @@ hello
 
 Message: 3
 Date: Fri, 20 Apr 2001 20:16:25 -0400
-Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
 To: ppp@zzz.org
 From: barry@digicool.com (Barry A. Warsaw)
 Subject: [Ppp] testing #3
 Precedence: bulk
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
 
 
 hello
@@ -97,12 +103,14 @@ hello
 
 Message: 4
 Date: Fri, 20 Apr 2001 20:16:28 -0400
-Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
 To: ppp@zzz.org
 From: barry@digicool.com (Barry A. Warsaw)
 Subject: [Ppp] testing #4
 Precedence: bulk
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
 
 
 hello
@@ -112,12 +120,14 @@ hello
 
 Message: 5
 Date: Fri, 20 Apr 2001 20:16:32 -0400
-Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
 To: ppp@zzz.org
 From: barry@digicool.com (Barry A. Warsaw)
 Subject: [Ppp] testing #5
 Precedence: bulk
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
 
 
 hello
