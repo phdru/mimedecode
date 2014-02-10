@@ -258,12 +258,11 @@ def decode_message(msg):
         if msg.epilogue:
             output(msg.epilogue)
 
-    else:
-        if msg.has_key("Content-Type"): # Simple one-part message - decode it
-            decode_part(msg)
+    elif msg.has_key("Content-Type"): # Simple one-part message - decode it
+        decode_part(msg)
 
-        else: # Not a message, just text - copy it literally
-            output(msg.as_string())
+    else: # Not a message, just text - copy it literally
+        output(msg.as_string())
 
 
 class GlobalOptions:
