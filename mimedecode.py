@@ -234,27 +234,27 @@ def decode_part(msg):
 def decode_multipart(msg):
     "Decode multipart"
 
-    if msg.is_multipart():
-        decode_headers(msg)
-        output_headers(msg)
+    decode_headers(msg)
+    output_headers(msg)
 
-        if msg.preamble: # Preserve the first part, it is probably not a RFC822-message
-            output(msg.preamble) # Usually it is just a few lines of text (MIME warning)
+    if msg.preamble: # Preserve the first part, it is probably not a RFC822-message
+        output(msg.preamble) # Usually it is just a few lines of text (MIME warning)
 
-        boundary = msg.get_boundary()
+    boundary = msg.get_boundary()
 
-        for subpart in msg.get_payload():
-            if boundary:
-                output("\n--%s\n" % boundary)
-
-            # Recursively decode all parts of the subpart
-            decode_message(subpart)
-
+    for subpart in msg.get_payload():
         if boundary:
-            output("\n--%s--\n" % boundary)
+            output("\n--%s\n" % boundary)
 
-        if msg.epilogue:
-            output(msg.epilogue)
+        # Recursively decode all parts of the subpart
+        decode_message(subpart)
+
+    if boundary:
+        output("\n--%s--\n" % boundary)
+
+    if msg.epilogue:
+        output(msg.epilogue)
+
 
 def decode_message(msg):
     "Decode message"
