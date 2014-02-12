@@ -231,8 +231,8 @@ def decode_part(msg):
     totext(msg, outstring)
 
 
-def decode_message(msg):
-    "Decode message"
+def decode_multipart(msg):
+    "Decode multipart"
 
     if msg.is_multipart():
         decode_headers(msg)
@@ -247,10 +247,8 @@ def decode_message(msg):
             if boundary:
                 output("\n--%s\n" % boundary)
 
-            if subpart.is_multipart(): # Recursively decode all parts of the subpart
-                decode_message(subpart)
-            else:
-                decode_part(subpart)
+            # Recursively decode all parts of the subpart
+            decode_message(subpart)
 
         if boundary:
             output("\n--%s--\n" % boundary)
@@ -258,9 +256,13 @@ def decode_message(msg):
         if msg.epilogue:
             output(msg.epilogue)
 
+def decode_message(msg):
+    "Decode message"
+
+    if msg.is_multipart():
+        decode_multipart(msg)
     elif msg.has_key("Content-Type"): # Simple one-part message - decode it
         decode_part(msg)
-
     else: # Not a message, just text - copy it literally
         output(msg.as_string())
 
