@@ -20,4 +20,8 @@ for f in input/*.txt; do
    fi
 done
 
+if [ "$RC" -eq 0 ]; then
+   rmdir tmp
+fi
+
 exit $RC
