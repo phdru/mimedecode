@@ -9,18 +9,29 @@ mkdir tmp || exit 1
 
 RC=0
 
-for f in input/*.txt; do
-   f="`basename \"$f\"`"
-   ../mimedecode.py -H test -f utf-8 input/"$f" >tmp/"$f"
-   if cmp -s expected/"$f" tmp/"$f"; then
-      rm tmp/"$f"
+test1() {
+   ../mimedecode.py -H test -f utf-8 input/"$1" >tmp/"$1" || return 1
+   if cmp -s expected/"$1" tmp/"$1"; then
+      rm tmp/"$1" && return 0 || return 1
    else
+      diff --text expected/"$1" tmp/"$1" >tmp/"$1".diff
+      return 1
+   fi
+}
+
+for f in input/*.txt; do
+   n="`basename \"$f\"`"
+   echo -n "$n "
+   if test1 "$n"; then
+      echo "ok"
+   else
+      echo "fail"
       RC=1
-      diff --text expected/"$f" tmp/"$f" >tmp/"$f".diff
    fi
 done
 
 if [ "$RC" -eq 0 ]; then
+   echo "All tests passed!"
    rmdir tmp
 fi
 
