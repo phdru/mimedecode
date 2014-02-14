@@ -210,9 +210,10 @@ command-line options.
       <term>-p header:param</term>
       <listitem>
          <para>
-            Add the (header, param) pair to a list of headers' parameters to
-            decode; initially the list contains header "Content-Disposition",
-            parameter "filename".
+            Add the pair (header, param) to a list of headers' parameters to
+            decode; initially the list contains header "Content-Type",
+            parameter "name" and header "Content-Disposition", parameter
+            "filename".
          </para>
       </listitem>
    </varlistentry>
