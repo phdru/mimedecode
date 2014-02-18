@@ -192,7 +192,7 @@ command-line options.
       <listitem>
          <para>
             Add the header to a list of headers to decode; initially the list
-            contains headers "From" and "Subject".
+            contains headers "From", "To" and "Subject".
          </para>
       </listitem>
    </varlistentry>

@@ -275,7 +275,7 @@ class GlobalOptions:
 
     host_name = None
 
-    decode_headers = ["From", "Subject"] # A list of headers to decode
+    decode_headers = ["From", "To", "Subject"] # A list of headers to decode
     decode_header_params = [
         ("Content-Type", "name"),
         ("Content-Disposition", "filename"),
