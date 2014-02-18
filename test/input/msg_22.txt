@@ -26,10 +26,10 @@ qrbBQvms0mAMeYS/3iTV1dG0hHaRNK01XblnWxtVdjkHLMIgTyqnk9VB7CrP2KzIINpa
 4wQRj0wQCMdCAewpaKKK/9k=
 --============_-1208892523==_============
 Content-Id: <a05001902b7f1c33773e9@[134.84.183.138].0.1>
-Content-Type: image/jpeg; name="wibble2.JPG"
+Content-Type: image/jpeg; name*=iso-8859-1''wibble%BD%2EJPG
  ; x-mac-type="4A504547"
  ; x-mac-creator="474B4F4E"
-Content-Disposition: attachment; filename="wibble2.JPG"
+Content-Disposition: attachment; filename*=iso-8859-1''wibble%BD%2EJPG
 Content-Transfer-Encoding: base64
 
 /9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEB
