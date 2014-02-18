@@ -1,6 +1,6 @@
 
-.PHONY: run
-run:
+.PHONY: all
+all:
 	./test_all
 
 
