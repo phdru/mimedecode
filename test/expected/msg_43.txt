@@ -45,201 +45,151 @@ Arrival-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 Final-Recipient: rfc822; xxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxxxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxxxxxxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxxxxxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 Final-Recipient: rfc822; xxxxxxx@dot.ca.gov
 Action: failed
 Status: 5.7.1
-Diagnostic-Code: smtp;
- 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED:
- auto__mail.python.bat
+Diagnostic-Code: smtp; 550 5.7.1 Message content rejected, id=01956-02-2 - BANNED: auto__mail.python.bat
 Last-Attempt-Date: Fri, 26 Nov 2004 19:41:44 -0800 (PST)
 
 

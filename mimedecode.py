@@ -263,7 +263,7 @@ def decode_message(msg):
 
     if msg.is_multipart():
         decode_multipart(msg)
-    elif msg.has_key("Content-Type"): # Simple one-part message - decode it
+    elif len(msg): # Simple one-part message (there are headers) - decode it
         decode_part(msg)
     else: # Not a message, just text - copy it literally
         output(msg.as_string())
