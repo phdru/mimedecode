@@ -42,10 +42,10 @@
          <option>-cCDP</option>
       </arg>
       <arg choice="opt">
-         <option>-H|--host=hostname</option>
+         <option>-f charset</option>
       </arg>
       <arg choice="opt">
-         <option>-f charset</option>
+         <option>-H|--host=hostname</option>
       </arg>
       <arg choice="opt">
          <option>-d header</option>
@@ -113,13 +113,13 @@ command-line options.
    than POSIX, please don't ask me; real OS users can consult my example at
    <ulink url="http://phdru.name/Software/dotfiles/mailcap.html">http://phdru.name/Software/dotfiles/mailcap.html</ulink>).
    The decoding process uses the first copiousoutput filter it can find. If
-   there is no any filter the body just passed as is.
+   there are no filters the body just passed as is.
 </para>
 
 <para>
    Then Content-Type header is consulted for charset. If it is not equal to the
-   current locale charset the body text is recoded. Finally message headers and
-   the body are flushed to stdout.
+   current locale charset and recoding is allowed the body text is recoded.
+   Finally message headers and the body are flushed to stdout.
 </para>
 </refsect1>
 
@@ -151,8 +151,8 @@ command-line options.
       <term>-c</term>
       <listitem>
          <para>
-            Recode different character sets in message body to current default
-            charset; this is the default.
+            Recode different character sets in message bodies to the current
+            default charset; this is the default.
          </para>
       </listitem>
    </varlistentry>
@@ -161,7 +161,17 @@ command-line options.
       <term>-C</term>
       <listitem>
          <para>
-            Do not recode character sets in message body.
+            Do not recode character sets in message bodies.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-f charset</term>
+      <listitem>
+         <para>
+            Force this charset to be the current default charset instead of
+            the current locale.
          </para>
       </listitem>
    </varlistentry>
@@ -173,16 +183,6 @@ command-line options.
          <para>
            Use this hostname in X-MIME-Autoconverted headers instead of the
            current hostname.
-         </para>
-      </listitem>
-   </varlistentry>
-
-   <varlistentry>
-      <term>-f charset</term>
-      <listitem>
-         <para>
-            Force this charset to be the current default charset instead of
-            the current locale.
          </para>
       </listitem>
    </varlistentry>
@@ -335,12 +335,13 @@ the program always uses the default decoding.
 <title>BUGS</title>
 <para>
    The program may produce incorrect MIME message. The purpose of the program
-is to decode whatever it is possible to decode, not to produce absolutely
-correct MIME output. The incorrect parts are obvious - decoded Subject headers
-and filenames. Other than that output is correct MIME message. The program does
-not try to guess whether the headers are correct. For example, if a message
-header states that charset is iso8859-5, but the body is actually in utf-8
-the program will recode the message with the wrong charset.
+   is to decode whatever it is possible to decode, not to produce absolutely
+   correct MIME output. The incorrect parts are obvious - decoded
+   From/To/Subject headers and filenames. Other than that output is correct
+   MIME message. The program does not try to guess whether the headers are
+   correct. For example, if a message header states that charset is iso8859-5,
+   but the body is actually in utf-8 the program will recode the message with
+   the wrong charset.
 </para>
 </refsect1>
 
