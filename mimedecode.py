@@ -273,11 +273,14 @@ class GlobalOptions:
 
     host_name = None
 
-    decode_headers = ["From", "To", "Cc", "Subject"] # A list of headers to decode
+    # A list of headers to decode
+    decode_headers = ["From", "To", "Cc", "Reply-To", "Subject"]
+
+    # A list of headers' parameters to decode
     decode_header_params = [
         ("Content-Type", "name"),
         ("Content-Disposition", "filename"),
-    ] # A list of headers' parameters to decode
+    ]
 
     totext_mask = [] # A list of content-types to decode
     binary_mask = [] # A list to pass through
