@@ -11,23 +11,27 @@ RC=0
 
 test1() {
    ../mimedecode.py -H test -f utf-8 input/"$1" >tmp/"$1" || return 1
-   if cmp -s expected/"$1" tmp/"$1"; then
+   if cmp -s expected/"$2" tmp/"$1"; then
       rm tmp/"$1" && return 0 || return 1
    else
-      diff --text expected/"$1" tmp/"$1" >tmp/"$1".diff
+      diff --text expected/"$2" tmp/"$1" >tmp/"$1".diff
       return 1
    fi
 }
 
-for f in input/*.txt; do
-   n="`basename \"$f\"`"
-   echo -n "$n "
-   if test1 "$n"; then
+test_file() {
+   echo -n "$2 "
+   if test1 "$1" "$2"; then
       echo "ok"
    else
       echo "fail"
       RC=1
    fi
+}
+
+for f in input/*.txt; do
+   n="`basename \"$f\"`"
+   test_file "$n" "$n"
 done
 
 if [ "$RC" -eq 0 ]; then
