@@ -10,18 +10,23 @@ mkdir tmp || exit 1
 RC=0
 
 test1() {
-   ../mimedecode.py -H test -f utf-8 input/"$1" >tmp/"$1" || return 1
-   if cmp -s expected/"$2" tmp/"$1"; then
-      rm tmp/"$1" && return 0 || return 1
+   infile="$1"
+   shift
+   expfile="$1"
+   shift
+
+   ../mimedecode.py -H test -f utf-8 "$@" input/"$infile" >tmp/"$expfile" || return 1
+   if cmp -s expected/"$expfile" tmp/"$expfile"; then
+      rm tmp/"$expfile" && return 0 || return 1
    else
-      diff --text expected/"$2" tmp/"$1" >tmp/"$1".diff
+      diff --text expected/"$expfile" tmp/"$expfile" >tmp/"$expfile".diff
       return 1
    fi
 }
 
 test_file() {
    echo -n "$2 "
-   if test1 "$1" "$2"; then
+   if test1 "$@"; then
       echo "ok"
    else
       echo "fail"
@@ -33,6 +38,8 @@ for f in input/*.txt; do
    n="`basename \"$f\"`"
    test_file "$n" "$n"
 done
+
+test_file msg_15.txt msg_15-1.txt -b text/html
 
 if [ "$RC" -eq 0 ]; then
    echo "All tests passed!"
