@@ -192,7 +192,7 @@ command-line options.
       <listitem>
          <para>
             Add the header to a list of headers to decode; initially the list
-            contains headers "From", "To" and "Subject".
+            contains headers "From", "To", "Cc" and "Subject".
          </para>
       </listitem>
    </varlistentry>
@@ -337,7 +337,7 @@ the program always uses the default decoding.
    The program may produce incorrect MIME message. The purpose of the program
    is to decode whatever it is possible to decode, not to produce absolutely
    correct MIME output. The incorrect parts are obvious - decoded
-   From/To/Subject headers and filenames. Other than that output is correct
+   From/To/Cc/Subject headers and filenames. Other than that output is correct
    MIME message. The program does not try to guess whether the headers are
    correct. For example, if a message header states that charset is iso8859-5,
    but the body is actually in utf-8 the program will recode the message with
