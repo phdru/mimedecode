@@ -274,7 +274,8 @@ class GlobalOptions:
     host_name = None
 
     # A list of headers to decode
-    decode_headers = ["From", "To", "Cc", "Reply-To", "Subject"]
+    decode_headers = ["From", "To", "Cc", "Reply-To", "Mail-Followup-To",
+                      "Subject"]
 
     # A list of headers' parameters to decode
     decode_header_params = [
