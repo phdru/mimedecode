@@ -90,11 +90,9 @@ def decode_header_param(msg, header, param):
             from types import TupleType
             if isinstance(value, TupleType):
                 new_value = _decode_header_param(value)
-                changed = new_value <> value[2]
             else:
                 new_value = _decode_header(value)
-                changed = new_value <> value
-            if changed: # do not bother to touch msg if not changed
+            if new_value <> value: # do not bother to touch msg if not changed
                 msg.set_param(param, new_value, header)
 
 
