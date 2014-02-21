@@ -47,11 +47,10 @@ def _decode_header(s):
     """Return a decoded string according to RFC 2047.
     NOTE: This is almost the same as email.Utils.decode.
     """
-    from types import ListType
     import email.Header
 
     L = email.Header.decode_header(s)
-    if not isinstance(L, ListType):
+    if not isinstance(L, list):
         # s wasn't decoded
         return s
 
@@ -87,8 +86,7 @@ def decode_header_param(msg, header, param):
     if msg.has_key(header):
         value = msg.get_param(param, header=header)
         if value:
-            from types import TupleType
-            if isinstance(value, TupleType):
+            if isinstance(value, tuple):
                 new_value = _decode_header_param(value)
             else:
                 new_value = _decode_header(value)
