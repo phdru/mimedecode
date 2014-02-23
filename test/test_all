@@ -41,6 +41,7 @@ done
 
 test_file msg_15.txt msg_15-1.txt -b text/html
 test_file msg_15.txt msg_15-2.txt -i text/html
+test_file msg_22.txt msg_22-1.txt -r content-id
 
 if [ "$RC" -eq 0 ]; then
    echo "All tests passed!"

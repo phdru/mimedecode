@@ -54,6 +54,9 @@
          <option>-p header:param</option>
       </arg>
       <arg choice="opt">
+         <option>-r header</option>
+      </arg>
+      <arg choice="opt">
          <option>-beit mask</option>
       </arg>
       <arg choice="opt">
@@ -224,6 +227,16 @@ command-line options.
       <listitem>
          <para>
             Clear the list of headers' parameters to decode (make it empty).
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-r header</term>
+      <listitem>
+         <para>
+            Add the header to a list of headers to remove completely; initially
+            the list is empty.
          </para>
       </listitem>
    </varlistentry>
