@@ -76,13 +76,13 @@
 <title>DESCRIPTION</title>
 <para>
    Mail users, especially in non-English countries, often find that mail
-messages arrived in different formats, with different content types, in
-different encodings and charsets. Usually it is good because it allows to use
-an appropriate format/encoding/whatever. Sometimes, though, some unification is
-desirable. For example, one may want to put mail messages into an archive,
-make HTML indices, run search indexer, etc. In such situations converting
-messages to text in one character set and skipping some binary attachments is
-much desirable.
+   messages arrived in different formats, with different content types, in
+   different encodings and charsets. Usually it is good because it allows to
+   use an appropriate format/encoding/whatever. Sometimes, though, some
+   unification is desirable. For example, one may want to put mail messages
+   into an archive, make HTML indices, run search indexer, etc. In such
+   situations converting messages to text in one character set and skipping
+   some binary attachments is much desirable.
 </para>
 
 <para>
@@ -91,12 +91,12 @@ much desirable.
 
 <para>
    This is a program to decode MIME messages. The program expects one input
-file (either on command line or on stdin) which is treated as an RFC822
-message, and decodes to stdout or an output file. If the file is not an RFC822
-message it is just copied to the output one-to-one. If the file is a simple
-RFC822 message it is decoded as one part. If it is a MIME message with multiple
-parts ("attachments") all parts are decoded. Decoding can be controlled by
-command-line options.
+   file (either on command line or on stdin) which is treated as an RFC822
+   message, and decodes to stdout or an output file. If the file is not an
+   RFC822 message it is just copied to the output one-to-one. If the file is a
+   simple RFC822 message it is decoded as one part. If it is a MIME message
+   with multiple parts ("attachments") all parts are decoded. Decoding can be
+   controlled by command-line options.
 </para>
 
 <para>
@@ -311,11 +311,11 @@ cat input_file | mimedecode.py -o output_file</programlisting>
 </variablelist>
 
 <para>
-   The 4 list options (-beit) require more explanation. They allow a user
-to control body decoding with great flexibility. Think about said mail
-archive; for example, its maintainer wants to put there only texts, convert
-Postscript/PDF to text, pass HTML and images as is, and ignore everything
-else. Easy:
+   The 4 list options (-beit) require more explanation. They allow a user to
+   control body decoding with great flexibility. Think about said mail archive;
+   for example, its maintainer wants to put there only texts, convert
+   Postscript/PDF to text, pass HTML and images as is, and ignore everything
+   else. Easy:
 </para>
 
 <para>
