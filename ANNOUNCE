@@ -22,6 +22,10 @@ RFC822 message it is decoded as one part. If it is a MIME message with multiple
 parts ("attachments") all parts are decoded. Decoding can be controlled by
 command-line options.
 
+WHAT'S NEW in version 2.3.7 (2014-02-23)
+
+   Add option -r to remove headers and option -R to remove header's parameters.
+
 WHAT'S NEW in version 2.3.6 (2014-02-19)
 
    Decode "To", "Cc", "Reply-To" and "Mail-Followup-To" headers by default.
