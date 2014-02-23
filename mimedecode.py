@@ -106,6 +106,9 @@ def decode_headers(msg):
     for header in gopts.remove_headers:
         del msg[header]
 
+    for header, param in gopts.remove_header_params:
+        msg.del_param(param, header)
+
 
 def set_header(msg, header, value):
     "Replace header"
@@ -278,7 +281,7 @@ class GlobalOptions:
     decode_headers = ["From", "To", "Cc", "Reply-To", "Mail-Followup-To",
                       "Subject"]
 
-    # A list of headers' parameters to decode
+    # A list of headers parameters to decode
     decode_header_params = [
         ("Content-Type", "name"),
         ("Content-Disposition", "filename"),
@@ -286,6 +289,8 @@ class GlobalOptions:
 
     # A list of headers to remove
     remove_headers = []
+    # A list of headers parameters to remove
+    remove_header_params = []
 
     totext_mask = [] # A list of content-types to decode
     binary_mask = [] # A list to pass through
@@ -302,7 +307,8 @@ def get_opt():
     from getopt import getopt, GetoptError
 
     try:
-        options, arguments = getopt(sys.argv[1:], 'hVcCDPH:f:d:p:r:b:e:i:t:o:',
+        options, arguments = getopt(sys.argv[1:],
+            'hVcCDPH:f:d:p:r:R:b:e:i:t:o:',
             ['help', 'version', 'host'])
     except GetoptError:
         usage(1)
@@ -330,6 +336,8 @@ def get_opt():
             gopts.decode_header_params = []
         elif option == '-r':
             gopts.remove_headers.append(value)
+        elif option == '-R':
+            gopts.remove_header_params.append(value.split(':', 1))
         elif option == '-t':
             gopts.totext_mask.append(value)
         elif option == '-b':

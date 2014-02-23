@@ -57,6 +57,9 @@
          <option>-r header</option>
       </arg>
       <arg choice="opt">
+         <option>-R header:param</option>
+      </arg>
+      <arg choice="opt">
          <option>-beit mask</option>
       </arg>
       <arg choice="opt">
@@ -214,7 +217,7 @@ command-line options.
       <term>-p header:param</term>
       <listitem>
          <para>
-            Add the pair (header, param) to a list of headers' parameters to
+            Add the pair (header, param) to a list of headers parameters to
             decode; initially the list contains header "Content-Type",
             parameter "name" and header "Content-Disposition", parameter
             "filename".
@@ -226,7 +229,7 @@ command-line options.
       <term>-P</term>
       <listitem>
          <para>
-            Clear the list of headers' parameters to decode (make it empty).
+            Clear the list of headers parameters to decode (make it empty).
          </para>
       </listitem>
    </varlistentry>
@@ -237,6 +240,16 @@ command-line options.
          <para>
             Add the header to a list of headers to remove completely; initially
             the list is empty.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-R header:param</term>
+      <listitem>
+         <para>
+            Add the pair (header, param) to a list of headers parameters to
+            remove; initially the list is empty.
          </para>
       </listitem>
    </varlistentry>
