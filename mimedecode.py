@@ -97,17 +97,17 @@ def decode_header_param(msg, header, param):
 def decode_headers(msg):
     "Decode message headers according to global options"
 
-    for header in gopts.decode_headers:
-        decode_header(msg, header)
-
-    for header, param in gopts.decode_header_params:
-        decode_header_param(msg, header, param)
-
     for header in gopts.remove_headers:
         del msg[header]
 
     for header, param in gopts.remove_header_params:
         msg.del_param(param, header)
+
+    for header in gopts.decode_headers:
+        decode_header(msg, header)
+
+    for header, param in gopts.decode_header_params:
+        decode_header_param(msg, header, param)
 
 
 def set_header(msg, header, value):
