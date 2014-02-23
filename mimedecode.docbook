@@ -100,12 +100,14 @@
 </para>
 
 <para>
-   First, Subject and Content-Disposition headers are examined. If any of those
-   exists, it is decoded according to RFC2047. Content-Disposition header is
-   not decoded - only its "filename" parameter. Encoded header parameters
-   violate the RFC, but widely deployed anyway by ignorant coders who never
-   even heard about RFCs. Correct parameter encoding specified by RFC2231. This
-   program decodes RFC2231-encoded parameters, too.
+   First, for every part the program removes headers and parameters listed with
+   -r and -R options. Then, Subject and Content-Disposition headers (and all
+   headers listed with -d and -p options) are examined. If any of those exists,
+   they are decoded according to RFC2047. Content-Disposition header is not
+   decoded - only its "filename" parameter. Encoded header parameters violate
+   the RFC, but widely deployed anyway by ignorant coders who never even heard
+   about RFCs. Correct parameter encoding specified by RFC2231. This program
+   decodes RFC2231-encoded parameters, too.
 </para>
 
 <para>
