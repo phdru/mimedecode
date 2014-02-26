@@ -22,6 +22,10 @@ RFC822 message it is decoded as one part. If it is a MIME message with multiple
 parts ("attachments") all parts are decoded. Decoding can be controlled by
 command-line options.
 
+WHAT'S NEW in version 2.3.8 (2014-02-26)
+
+   Add option --remove-params=header to remove all parameters from the header.
+
 WHAT'S NEW in version 2.3.7 (2014-02-23)
 
    Add option -r to remove headers and option -R to remove header's parameters.
@@ -76,9 +80,8 @@ WHERE TO GET
 
    Recommends: configured mailcap database.
 
-   Documentation (also included in the package):
-           http://phdru.name/Software/Python/mimedecode.txt
-
+   Documentation: http://phdru.name/Software/Python/mimedecode.txt
+      (also included in the package in the html and man formats):
 
 AUTHOR
    Oleg Broytman <phd@phdru.name>

@@ -60,6 +60,9 @@
          <option>-R header:param</option>
       </arg>
       <arg choice="opt">
+         <option>--remove-params=header</option>
+      </arg>
+      <arg choice="opt">
          <option>-beit mask</option>
       </arg>
       <arg choice="opt">
@@ -252,6 +255,16 @@
          <para>
             Add the pair (header, param) to a list of headers parameters to
             remove; initially the list is empty.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>--remove-params=header</term>
+      <listitem>
+         <para>
+            Add the header to a list of headers from which all parameters will
+            be removed; initially the list is empty.
          </para>
       </listitem>
    </varlistentry>

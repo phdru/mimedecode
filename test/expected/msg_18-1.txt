@@ -1,0 +1,7 @@
+From test Sat Feb  1 00:00:00 2014
+Content-Transfer-Encoding: 7bit
+X-Foobar-Spoink-Defrobnit: wasnipoop
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+
