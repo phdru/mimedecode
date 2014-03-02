@@ -102,11 +102,12 @@ def decode_headers(msg):
 
     for header in gopts.remove_all_params:
         value = msg[header]
-        if value is None:
+        if value is None: # No such header
             continue
-        if ';' not in value:
+        if ';' not in value: # There are no parameters
             continue
-        del msg[header]
+        del msg[header] # Delete all such headers
+        # Get the value without parameters and set it back
         msg[header] = value.split(';')[0].strip()
 
     for header, param in gopts.remove_header_params:
