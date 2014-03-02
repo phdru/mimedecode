@@ -1,0 +1,37 @@
+Change option -d to accept a list of headers: -d h1,h2,h3,...
+
+
+Change option -d to decode all headers and accept a list of exceptions:
+-d *,-h1,-h2,...
+
+
+Change option -p to accept lists of headers and parameters:
+-p h1,h2,h3:p1,p2,p3
+Allow * and exceptions:
+-p h1,h2,h3:*,-p1,-p2,-p3
+-p *,-h1,-h2,-h3:p1,p2,p3
+-p *,-h1,-h2,-h3:*,-p1,-p2,-p3
+
+
+#Add option --params=header to decode all parameters for the header
+#(except -p).
+#
+#
+#Add options
+#--all-headers to decode all headers (except -d)
+#--all-params to decode all parameters for all headers (except -p)
+#--all-headers-params to decode all header values + decode all parameters
+#for all headers (except -d and -p).
+
+
+Add option -s to save decoded parts to files.
+
+Add option -O to set the destination directory.
+
+
+Add an option to skip content-decoding a binary attachement (leave it as
+base64 or such).
+
+
+Allow -d and -p accept shell-like patterns and/or regular expressions:
+-d content-*,-content-*-exncoding
