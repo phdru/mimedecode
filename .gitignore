@@ -1,4 +1,4 @@
-/*.py[co]
+*.py[co]
 /MANIFEST
 /mimedecode.html
 /mimedecode.man
