@@ -1,4 +1,4 @@
-include ANNOUNCE INSTALL.txt Makefile* MANIFEST.in
+include ANNOUNCE ChangeLog INSTALL.txt Makefile* MANIFEST.in
 include mimedecode.docbook mimedecode.man mimedecode.html mimedecode.txt
 include ez_setup.py mk-distr
 recursive-include test .mailcap Makefile README test_all *.py *.txt

@@ -1,0 +1,90 @@
+Version 2.3.8 (2014-02-26)
+
+   Add option --remove-params=header to remove all parameters from the header.
+
+Version 2.3.7 (2014-02-23)
+
+   Add option -r to remove headers and option -R to remove header's parameters.
+
+Version 2.3.6 (2014-02-19)
+
+   Decode "To", "Cc", "Reply-To" and "Mail-Followup-To" headers by default.
+
+   Report test progress and success.
+
+   Add tests for headers and parameters decoding.
+
+   Add tests for passing (-b) and skipping (-i) message bodies.
+
+Version 2.3.4 (2014-02-11)
+
+   Optimize recursive decoding.
+
+   Fix a bug - decode message/rfc822 subparts.
+
+Version 2.3.3 (2014-02-02)
+
+   Forbid filtering from console. When the program runs with stdin
+   connected to the console it shows usage help.
+
+   Fix a bug - option -o and no parameters.
+
+Version 2.3.2 (2014-02-01)
+
+   Fix a bug - do not generate 'From ' headers in subparts.
+
+   Add option --host.
+
+   Add tests.
+
+Version 2.3.1 (2014-01-31)
+
+   Update documentation.
+
+Version 2.3.0 (2014-01-30)
+
+   Add option -o and output_file argument.
+
+Version 2.2.2 (2014-01-23)
+
+   Upgrade docbook-xsl.
+
+Version 2.2.1 (2013-12-24)
+
+   Add mk-distr helper.
+
+Version 2.2.0 (2013-12-21)
+
+   Rename __version__.py to mimedecode_version.py.
+
+   Use setuptools.
+
+Version 2.1.5 (2013-12-18)
+
+   Move __version__ out of mimedecode.py to __version__.py
+   to allow installation without m_lib.
+
+Version 2.1.4 (2013-12-11)
+
+   Add installation instruction in INSTALL.txt.
+
+Version 2.1.3 (2013-12-10)
+
+   Minor bugfix.
+
+Version 2.1.2 (2013-07-26)
+
+   Minor fix in Makefile. Switched to git.
+
+Version 2.1.1 (2012-04-15)
+
+   Removed svn:keywords.
+
+Version 2.1.0 (2006-04-27)
+
+   A patch by Bogdan Maryniuk <bogdan.maryniuk@gmail.com>: portable way to get
+the default charset.
+
+Version 2.0.0
+
+   Major rewrite to use python email package.
