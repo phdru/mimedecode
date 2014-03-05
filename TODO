@@ -45,15 +45,15 @@ Add option -s to save decoded parts to files.
 Add option -O to set the destination directory.
 
 
-Add an option to skip content-decoding a binary attachement (leave it as
-base64 or such).
+Add an option to skip content-decoding a binary attachment (leave it as base64
+or such).
 
 
 Release 2.7.0.
 
 
 Allow -d and -p accept shell-like patterns and/or regular expressions:
--d content-*,-content-*-exncoding
+-d content-*,-content-*-encoding
 
 
 Never touch multipart/encrypted and multipart/signed.

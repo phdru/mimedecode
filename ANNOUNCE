@@ -46,7 +46,7 @@ WHERE TO GET
    Recommends: configured mailcap database.
 
    Documentation: http://phdru.name/Software/Python/mimedecode.txt
-      (also included in the package in the html and man formats):
+      (also included in the package in the html and man formats).
 
 AUTHOR
    Oleg Broytman <phd@phdru.name>
