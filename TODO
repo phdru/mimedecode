@@ -35,3 +35,6 @@ base64 or such).
 
 Allow -d and -p accept shell-like patterns and/or regular expressions:
 -d content-*,-content-*-exncoding
+
+
+Never touch multipart/encrypted and multipart/signed.
