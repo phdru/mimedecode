@@ -1,3 +1,7 @@
+Version 2.3.9 (2014-02-??)
+
+   Add ChangeLog.
+
 Version 2.3.8 (2014-02-26)
 
    Add option --remove-params=header to remove all parameters from the header.
