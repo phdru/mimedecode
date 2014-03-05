@@ -37,6 +37,9 @@ Allow * and exceptions:
 -R *,-h1,-h2,-h3:*,-p1,-p2,-p3
 
 
+Remove option --remove-params.
+
+
 Release 2.6.0.
 
 
