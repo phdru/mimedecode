@@ -43,13 +43,13 @@ Remove option --remove-params.
 Release 2.6.0.
 
 
-Add option -s to save decoded parts to files.
+Add option -s to save decoded headers/bodies/messages of parts to files.
 
 Add option -O to set the destination directory.
 
 
-Add an option to skip content-decoding a binary attachment (leave it as base64
-or such).
+Add an option -B to skip content-transfer-decoding binary attachments (leave it
+as base64 or such).
 
 
 Release 2.7.0.
@@ -59,7 +59,17 @@ Allow -d and -p accept shell-like patterns and/or regular expressions:
 -d content-*,-content-*-encoding
 
 
+Add an option -I to completely skip (remove) subparts -- no headers, no body,
+nothing.
+
+
 Never touch multipart/encrypted and multipart/signed.
 
 
 Release 2.8.0.
+
+
+Extend options -eIi to multipart subparts.
+
+
+Add an option to convert dates to the current locate and timezone.
