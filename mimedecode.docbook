@@ -57,6 +57,11 @@
         <option>-p header1[,header2,header3,...]:param1[,param2,param3,...]</option>
       </arg>
       <arg choice="opt">
+        <option>-p *[,-header1,-header2,-header3,...]:param1[,param2,param3,...]</option>
+        <option>-p header1[,header2,header3,...]:*[,-param1,-param2,-param3,...]</option>
+        <option>-p *[,-header1,-header2,-header3,...]:*[,-param1,-param2,-param3,...]</option>
+      </arg>
+      <arg choice="opt">
          <option>-r header</option>
       </arg>
       <arg choice="opt">
@@ -260,6 +265,24 @@
             Add the parameters(s) to a list of headers parameters to decode;
             the parameters will be decoded for all headers except the given
             ones.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-p header1[,header2,header3,...]:*[,-param1,-param2,-param3,...]</term>
+      <listitem>
+         <para>
+           Decode all parameters except listed for the given list of headers.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-p *[,-header1,-header2,-header3,...]:*[,-param1,-param2,-param3,...]</term>
+      <listitem>
+         <para>
+           Decode all parameters except listed for all headers (except listed).
          </para>
       </listitem>
    </varlistentry>

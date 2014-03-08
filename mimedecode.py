@@ -130,16 +130,33 @@ def decode_headers(msg):
     for header_list, param_list in gopts.decode_header_params:
         header_list = header_list.split(',')
         param_list = param_list.split(',')
+        decode_all_params = param_list[0] == '*' # Decode all params except listed
+        if decode_all_params:
+            param_list = _get_exceptions(param_list)
         if header_list[0] == '*': # Decode for all headers except listed
             header_list = _get_exceptions(header_list)
             for header in msg.keys():
                 if header.lower() not in header_list:
-                    for param in param_list:
-                        decode_header_param(msg, header, param)
+                    if decode_all_params:
+                        params = msg.get_params(header=header)
+                        if params:
+                            for param, value in params:
+                                if param not in param_list:
+                                    decode_header_param(msg, header, param)
+                    else:
+                        for param in param_list:
+                            decode_header_param(msg, header, param)
         else: # Decode for listed headers
             for header in header_list:
-                for param in param_list:
-                    decode_header_param(msg, header, param)
+                if decode_all_params:
+                    params = msg.get_params(header=header)
+                    if params:
+                        for param, value in params:
+                            if param not in param_list:
+                                decode_header_param(msg, header, param)
+                else:
+                    for param in param_list:
+                        decode_header_param(msg, header, param)
 
 
 def set_header(msg, header, value):
