@@ -23,7 +23,9 @@ parts ("attachments") all parts are decoded. Decoding can be controlled by
 command-line options.
 
 
-WHAT'S NEW in version 2.3.9 (2014-02-??)
+WHAT'S NEW in version 2.4.0 (2014-03-??)
+
+   Change option -d to accept a list of headers: -d h1,h2,h3,...
 
    Add ChangeLog.
 
