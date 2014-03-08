@@ -40,6 +40,8 @@ for f in input/*.txt; do
 done
 
 test_file msg_03.txt msg_03-1.txt -D -d From,To,Subject
+test_file msg_03.txt msg_03-1.txt -d '*,-cc'
+test_file msg_03.txt msg_03-1.txt -d \*,From,To,Subject,-cc
 test_file msg_15.txt msg_15-1.txt -b text/html
 test_file msg_15.txt msg_15-2.txt -i text/html
 test_file msg_22.txt msg_22-1.txt -r content-id

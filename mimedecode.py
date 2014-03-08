@@ -18,7 +18,7 @@ Broytman mimedecode.py version %s, %s
 def usage(code=0, errormsg=''):
     version(0)
     sys.stdout.write("""\
-Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,header2,header3...]] [-p header:param] [-r header] [-R header:param] [--remove-params=header] [-beit mask] [-o output_file] [input_file [output_file]]
+Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header:param] [-r header] [-R header:param] [--remove-params=header] [-beit mask] [-o output_file] [input_file [output_file]]
 """ % me)
     if errormsg:
         sys.stderr.write(errormsg + '\n')
@@ -114,8 +114,15 @@ def decode_headers(msg):
         msg.del_param(param, header)
 
     for header_list in gopts.decode_headers:
-        for header in header_list.split(','):
-            decode_header(msg, header)
+        header_list = header_list.split(',')
+        if header_list[0] == '*': # Decode all headers except listed
+            header_list = [h[1:].lower() for h in header_list[1:] if h[0]=='-']
+            for header in msg.keys():
+                if header.lower() not in header_list:
+                    decode_header(msg, header)
+        else: # Decode listed hiders
+            for header in header_list:
+                decode_header(msg, header)
 
     for header, param in gopts.decode_header_params:
         decode_header_param(msg, header, param)
@@ -340,6 +347,8 @@ def get_opt():
         elif option == '-f':
             gopts.default_encoding = value
         elif option == '-d':
+            if value.startswith('*'):
+                gopts.decode_headers = []
             gopts.decode_headers.append(value)
         elif option == '-D':
             gopts.decode_headers = []

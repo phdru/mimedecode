@@ -51,6 +51,9 @@
          <option>-d header1[,header2,header3...]</option>
       </arg>
       <arg choice="opt">
+         <option>-d *[,-header1,-header2,-header3...]</option>
+      </arg>
+      <arg choice="opt">
          <option>-p header:param</option>
       </arg>
       <arg choice="opt">
@@ -205,6 +208,25 @@
             Add the header(s) to a list of headers to decode; initially the
             list contains headers "From", "To", "Cc", "Reply-To",
             "Mail-Followup-To" and "Subject".
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-d *[,-header1,-header2,-header3...]</term>
+      <listitem>
+         <para>
+           This variant completely changes headers decoding. First, the list of
+           headers to decode is cleared. Then all the headers are decoded
+           except the given list of exceptions (headers listed with '-'). In
+           this mode it would be meaningless to give more than one -d options
+           but the program doesn't enforce it.
+         </para>
+
+         <para>
+           Please be warned that the asterisk is a shell metacharacter and
+           should be escaped or quoted. Either write -d \*,-h1,-h2 or -d
+           '*,-h1,-h2'.
          </para>
       </listitem>
    </varlistentry>

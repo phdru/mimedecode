@@ -28,6 +28,9 @@ WHAT'S NEW in version 2.4.0 (2014-03-??)
    Change option -d to accept a comma-separated list of headers:
 -d h1,h2,h3,...
 
+   Change option -d to decode all headers and accept a list of exceptions:
+-d *,-h1,-h2,...
+
    Add ChangeLog.
 
 WHAT'S NEW in version 2.3.8 (2014-02-26)
