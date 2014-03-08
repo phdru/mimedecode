@@ -6,16 +6,19 @@ Allow * and exceptions:
 -R *,-h1,-h2,-h3:*,-p1,-p2,-p3
 
 
-Remove option --remove-params.
-
-
 Publish docs in html format.
 
 
 Release 2.4.0.
 
 
-Add option -s to save decoded headers/bodies/messages of parts to files.
+Add option -s header:value to set header's value.
+
+Add option -S header:param=value to set header parameter's value.
+
+
+Add options --save-headers, --save-body and --save-message to save
+decoded headers/bodies/messages of parts to files.
 
 Add option -O to set the destination directory.
 
