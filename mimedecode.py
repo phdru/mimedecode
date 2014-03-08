@@ -97,6 +97,17 @@ def decode_header_param(msg, header, param):
 def _get_exceptions(list):
     return [x[1:].lower() for x in list[1:] if x[0]=='-']
 
+def _decode_headers_params(msg, header, decode_all_params, param_list):
+    if decode_all_params:
+        params = msg.get_params(header=header)
+        if params:
+            for param, value in params:
+                if param not in param_list:
+                    decode_header_param(msg, header, param)
+    else:
+        for param in param_list:
+            decode_header_param(msg, header, param)
+
 def decode_headers(msg):
     "Decode message headers according to global options"
 
@@ -137,26 +148,10 @@ def decode_headers(msg):
             header_list = _get_exceptions(header_list)
             for header in msg.keys():
                 if header.lower() not in header_list:
-                    if decode_all_params:
-                        params = msg.get_params(header=header)
-                        if params:
-                            for param, value in params:
-                                if param not in param_list:
-                                    decode_header_param(msg, header, param)
-                    else:
-                        for param in param_list:
-                            decode_header_param(msg, header, param)
+                    _decode_headers_params(msg, header, decode_all_params, param_list)
         else: # Decode for listed headers
             for header in header_list:
-                if decode_all_params:
-                    params = msg.get_params(header=header)
-                    if params:
-                        for param, value in params:
-                            if param not in param_list:
-                                decode_header_param(msg, header, param)
-                else:
-                    for param in param_list:
-                        decode_header_param(msg, header, param)
+                _decode_headers_params(msg, header, decode_all_params, param_list)
 
 
 def set_header(msg, header, value):
