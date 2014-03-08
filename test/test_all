@@ -47,6 +47,7 @@ test_file msg_15.txt msg_15-2.txt -i text/html
 test_file msg_22.txt msg_22-1.txt -r content-id
 test_file msg_29.txt msg_29-1.txt -R Content-Type:title
 test_file msg_18.txt msg_18-1.txt --remove-params=X-Foobar-Spoink-Defrobnit
+test_file msg_22.txt msg_22.txt -P -p Content-Type,Content-Disposition:name,filename
 
 if [ "$RC" -eq 0 ]; then
    echo "All tests passed!"

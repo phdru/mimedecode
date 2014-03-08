@@ -54,7 +54,7 @@
          <option>-d *[,-header1,-header2,-header3...]</option>
       </arg>
       <arg choice="opt">
-         <option>-p header:param</option>
+        <option>-p header1[,header2,header3,...]:param1[,param2,param3,...]</option>
       </arg>
       <arg choice="opt">
          <option>-r header</option>
@@ -137,6 +137,13 @@
 </para>
 </refsect1>
 
+<refsect1>
+  <para>
+    Please be warned that in the following options asterisk is a shell
+    metacharacter and should be escaped or quoted. Either write -d \*,-h1,-h2
+    or -d '*,-h1,-h2' or such.
+  </para>
+</refsect1>
 
 <refsect1>
 <title>OPTIONS</title>
@@ -222,12 +229,6 @@
            this mode it would be meaningless to give more than one -d options
            but the program doesn't enforce it.
          </para>
-
-         <para>
-           Please be warned that the asterisk is a shell metacharacter and
-           should be escaped or quoted. Either write -d \*,-h1,-h2 or -d
-           '*,-h1,-h2'.
-         </para>
       </listitem>
    </varlistentry>
 
@@ -241,13 +242,13 @@
    </varlistentry>
 
    <varlistentry>
-      <term>-p header:param</term>
+      <term>-p header1[,header2,header3,...]:param1[,param2,param3,...]</term>
       <listitem>
          <para>
-            Add the pair (header, param) to a list of headers parameters to
-            decode; initially the list contains header "Content-Type",
-            parameter "name" and header "Content-Disposition", parameter
-            "filename".
+            Add the parameters(s) to a list of headers parameters to decode;
+            the parameters will be decoded only for the given header(s).
+            Initially the list contains header "Content-Type", parameter "name";
+            and header "Content-Disposition", parameter "filename".
          </para>
       </listitem>
    </varlistentry>

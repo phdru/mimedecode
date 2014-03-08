@@ -18,7 +18,7 @@ Broytman mimedecode.py version %s, %s
 def usage(code=0, errormsg=''):
     version(0)
     sys.stdout.write("""\
-Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header:param] [-r header] [-R header:param] [--remove-params=header] [-beit mask] [-o output_file] [input_file [output_file]]
+Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header] [-R header:param] [--remove-params=header] [-beit mask] [-o output_file] [input_file [output_file]]
 """ % me)
     if errormsg:
         sys.stderr.write(errormsg + '\n')
@@ -124,8 +124,12 @@ def decode_headers(msg):
             for header in header_list:
                 decode_header(msg, header)
 
-    for header, param in gopts.decode_header_params:
-        decode_header_param(msg, header, param)
+    for header_list, param_list in gopts.decode_header_params:
+        header_list = header_list.split(',')
+        param_list = param_list.split(',')
+        for header in header_list:
+            for param in param_list:
+                decode_header_param(msg, header, param)
 
 
 def set_header(msg, header, value):
