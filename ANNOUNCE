@@ -23,7 +23,7 @@ parts ("attachments") all parts are decoded. Decoding can be controlled by
 command-line options.
 
 
-WHAT'S NEW in version 2.4.0 (2014-03-??)
+WHAT'S NEW in version 2.4.0 (2014-03-08)
 
    Change option -d to accept a comma-separated list of headers:
 -d h1,h2,h3,...
