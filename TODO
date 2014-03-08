@@ -37,3 +37,7 @@ Add an option to convert dates to the current locate and timezone.
 
 
 Release 2.7.0.
+
+
+Add option --save-as='%format' to generate names for --save-* files. Develop
+a DSL to conditionally use values from headers and parameters.
