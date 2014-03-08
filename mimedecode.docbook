@@ -58,7 +58,11 @@
       </arg>
       <arg choice="opt">
         <option>-p *[,-header1,-header2,-header3,...]:param1[,param2,param3,...]</option>
+      </arg>
+      <arg choice="opt">
         <option>-p header1[,header2,header3,...]:*[,-param1,-param2,-param3,...]</option>
+      </arg>
+      <arg choice="opt">
         <option>-p *[,-header1,-header2,-header3,...]:*[,-param1,-param2,-param3,...]</option>
       </arg>
       <arg choice="opt">
@@ -69,8 +73,14 @@
       </arg>
       <arg choice="opt">
         <option>-R header1[,header2,header3,...]:param1[,param2,param3,...]</option>
+      </arg>
+      <arg choice="opt">
         <option>-R *[,-header1,-header2,-header3,...]:param1[,param2,param3,...]</option>
+      </arg>
+      <arg choice="opt">
         <option>-R header1[,header2,header3,...]:*[,-param1,-param2,-param3,...]</option>
+      </arg>
+      <arg choice="opt">
         <option>-R *[,-header1,-header2,-header3,...]:*[,-param1,-param2,-param3,...]</option>
       </arg>
       <arg choice="opt">
