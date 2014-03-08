@@ -1,10 +1,3 @@
-Change option -r to accept a list of headers: -r h1,h2,h3,...
-
-
-Change option -r to remove all headers and accept a list of exceptions:
--r *,-h1,-h2,...
-
-
 Change option -R to accept lists of headers and parameters:
 -R h1,h2,h3:p1,p2,p3
 Allow * and exceptions:

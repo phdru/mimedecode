@@ -1,0 +1,47 @@
+From test Sat Feb  1 00:00:00 2014
+MIME-version: 1.0
+Content-Type: multipart/report; boundary="Boundary_(ID_PGS2F2a+z+/jL7hupKgRhA)"
+
+
+--Boundary_(ID_PGS2F2a+z+/jL7hupKgRhA)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode.py
+
+This report relates to a message you sent with the following header fields:
+
+  Message-id: <002001c144a6$8752e060$56104586@oxy.edu>
+  Date: Sun, 23 Sep 2001 20:10:55 -0700
+  From: "Ian T. Henry" <henryi@oxy.edu>
+  To: SoCal Raves <scr@socal-raves.org>
+  Subject: [scr] yeah for Ians!!
+
+Your message cannot be delivered to the following recipients:
+
+  Recipient address: jangel1@cougar.noc.ucla.edu
+  Reason: recipient reached disk quota
+
+
+--Boundary_(ID_PGS2F2a+z+/jL7hupKgRhA)
+Content-type: message/DELIVERY-STATUS
+
+
+
+
+--Boundary_(ID_PGS2F2a+z+/jL7hupKgRhA)
+Content-type: MESSAGE/RFC822
+
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+
+I always love to find more Ian's that are over 3 years old!!
+
+Ian
+_______________________________________________
+For event info, list questions, or to unsubscribe, see http://www.socal-raves.org/
+
+
+
+--Boundary_(ID_PGS2F2a+z+/jL7hupKgRhA)--
+

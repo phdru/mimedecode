@@ -62,7 +62,10 @@
         <option>-p *[,-header1,-header2,-header3,...]:*[,-param1,-param2,-param3,...]</option>
       </arg>
       <arg choice="opt">
-         <option>-r header</option>
+         <option>-r header1[,header2,header3...]</option>
+      </arg>
+      <arg choice="opt">
+         <option>-r *[,-header1,-header2,-header3...]</option>
       </arg>
       <arg choice="opt">
          <option>-R header:param</option>
@@ -297,11 +300,20 @@
    </varlistentry>
 
    <varlistentry>
-      <term>-r header</term>
+      <term>-r header1[,header2,header3...]</term>
       <listitem>
          <para>
-            Add the header to a list of headers to remove completely; initially
-            the list is empty.
+            Add the header(s) to a list of headers to remove completely;
+            initially the list is empty.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-r *[,-header1,-header2,-header3...]</term>
+      <listitem>
+         <para>
+           Remove all headers except listed.
          </para>
       </listitem>
    </varlistentry>

@@ -18,7 +18,7 @@ Broytman mimedecode.py version %s, %s
 def usage(code=0, errormsg=''):
     version(0)
     sys.stdout.write("""\
-Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header] [-R header:param] [--remove-params=header] [-beit mask] [-o output_file] [input_file [output_file]]
+Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header:param] [--remove-params=header] [-beit mask] [-o output_file] [input_file [output_file]]
 """ % me)
     if errormsg:
         sys.stderr.write(errormsg + '\n')
@@ -111,8 +111,16 @@ def _decode_headers_params(msg, header, decode_all_params, param_list):
 def decode_headers(msg):
     "Decode message headers according to global options"
 
-    for header in gopts.remove_headers:
-        del msg[header]
+    for header_list in gopts.remove_headers:
+        header_list = header_list.split(',')
+        if header_list[0] == '*': # Remove all headers except listed
+            header_list = _get_exceptions(header_list)
+            for header in msg.keys():
+                if header.lower() not in header_list:
+                    del msg[header]
+        else: # Remove listed headers
+            for header in header_list:
+                del msg[header]
 
     for header in gopts.remove_all_params:
         value = msg[header]

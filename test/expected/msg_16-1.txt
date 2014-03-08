@@ -1,0 +1,81 @@
+From test Sat Feb  1 00:00:00 2014
+Return-Path: <>
+Delivered-To: scr-admin@socal-raves.org
+Date: Sun, 23 Sep 2001 20:14:35 -0700 (PDT)
+From: Internet Mail Delivery <postmaster@ucla.edu>
+Subject: Delivery Notification: Delivery has failed
+To: scr-admin@socal-raves.org
+Message-id: <0GK500B04D0B8X@cougar.noc.ucla.edu>
+MIME-version: 1.0
+Sender: scr-owner@socal-raves.org
+Errors-To: scr-owner@socal-raves.org
+X-BeenThere: scr@socal-raves.org
+X-Mailman-Version: 2.1a3
+Precedence: bulk
+Content-Type: multipart/report; boundary="Boundary_(ID_PGS2F2a+z+/jL7hupKgRhA)"
+
+
+--Boundary_(ID_PGS2F2a+z+/jL7hupKgRhA)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode.py
+
+This report relates to a message you sent with the following header fields:
+
+  Message-id: <002001c144a6$8752e060$56104586@oxy.edu>
+  Date: Sun, 23 Sep 2001 20:10:55 -0700
+  From: "Ian T. Henry" <henryi@oxy.edu>
+  To: SoCal Raves <scr@socal-raves.org>
+  Subject: [scr] yeah for Ians!!
+
+Your message cannot be delivered to the following recipients:
+
+  Recipient address: jangel1@cougar.noc.ucla.edu
+  Reason: recipient reached disk quota
+
+
+--Boundary_(ID_PGS2F2a+z+/jL7hupKgRhA)
+Content-type: message/DELIVERY-STATUS
+
+Original-envelope-id: 0GK500B4HD0888@cougar.noc.ucla.edu
+Reporting-MTA: dns; cougar.noc.ucla.edu
+
+Action: failed
+Status: 5.0.0 (recipient reached disk quota)
+Original-recipient: rfc822;jangel1@cougar.noc.ucla.edu
+Final-recipient: rfc822;jangel1@cougar.noc.ucla.edu
+
+
+--Boundary_(ID_PGS2F2a+z+/jL7hupKgRhA)
+Content-type: MESSAGE/RFC822
+
+Return-path: scr-admin@socal-raves.org
+Date: Sun, 23 Sep 2001 20:10:55 -0700
+From: "Ian T. Henry" <henryi@oxy.edu>
+Subject: [scr] yeah for Ians!!
+Sender: scr-admin@socal-raves.org
+To: SoCal Raves <scr@socal-raves.org>
+Errors-to: scr-admin@socal-raves.org
+Message-id: <002001c144a6$8752e060$56104586@oxy.edu>
+X-Mailer: Microsoft Outlook Express 5.50.4522.1200
+Precedence: bulk
+Delivered-to: scr-post@babylon.socal-raves.org
+Delivered-to: scr@socal-raves.org
+X-Converted-To-Plain-Text: from multipart/alternative by demime 0.98e
+X-Converted-To-Plain-Text: Alternative section used was text/plain
+X-BeenThere: scr@socal-raves.org
+X-Mailman-Version: 2.1a3
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+
+I always love to find more Ian's that are over 3 years old!!
+
+Ian
+_______________________________________________
+For event info, list questions, or to unsubscribe, see http://www.socal-raves.org/
+
+
+
+--Boundary_(ID_PGS2F2a+z+/jL7hupKgRhA)--
+

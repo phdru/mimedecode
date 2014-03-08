@@ -51,6 +51,8 @@ test_file msg_22.txt msg_22.txt -P -p Content-Type,Content-Disposition:name,file
 test_file msg_22.txt msg_22.txt -P -p \*:name,filename
 test_file msg_22.txt msg_22.txt -P -p Content-Type,Content-Disposition:\*
 test_file msg_22.txt msg_22.txt -P -p '*,-Content-Id:*,-x-mac-type'
+test_file msg_16.txt msg_16-1.txt -r Received,List-Help,List-Post,List-Subscribe,List-Id,List-Unsubscribe,List-Archive
+test_file msg_16.txt msg_16-2.txt -r \*,-mime-version,-content-type
 
 if [ "$RC" -eq 0 ]; then
    echo "All tests passed!"
