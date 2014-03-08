@@ -18,7 +18,7 @@ Broytman mimedecode.py version %s, %s
 def usage(code=0, errormsg=''):
     version(0)
     sys.stdout.write("""\
-Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header:param] [--remove-params=header] [-beit mask] [-o output_file] [input_file [output_file]]
+Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header:param] [-beit mask] [-o output_file] [input_file [output_file]]
 """ % me)
     if errormsg:
         sys.stderr.write(errormsg + '\n')
@@ -122,15 +122,15 @@ def decode_headers(msg):
             for header in header_list:
                 del msg[header]
 
-    for header in gopts.remove_all_params:
-        value = msg[header]
-        if value is None: # No such header
-            continue
-        if ';' not in value: # There are no parameters
-            continue
-        del msg[header] # Delete all such headers
-        # Get the value without parameters and set it back
-        msg[header] = value.split(';')[0].strip()
+    #for header in gopts.remove_all_params:
+    #    value = msg[header]
+    #    if value is None: # No such header
+    #        continue
+    #    if ';' not in value: # There are no parameters
+    #        continue
+    #    del msg[header] # Delete all such headers
+    #    # Get the value without parameters and set it back
+    #    msg[header] = value.split(';')[0].strip()
 
     for header, param in gopts.remove_header_params:
         msg.del_param(param, header)
@@ -343,8 +343,6 @@ class GlobalOptions:
     remove_headers = []
     # A list of headers parameters to remove
     remove_header_params = []
-    # A list of headers to be stripped of all parameters
-    remove_all_params = []
 
     totext_mask = [] # A list of content-types to decode
     binary_mask = [] # A list to pass through
@@ -363,7 +361,7 @@ def get_opt():
     try:
         options, arguments = getopt(sys.argv[1:],
             'hVcCDPH:f:d:p:r:R:b:e:i:t:o:',
-            ['help', 'version', 'host=', 'remove-params='])
+            ['help', 'version', 'host='])
     except GetoptError:
         usage(1)
 
@@ -394,8 +392,6 @@ def get_opt():
             gopts.remove_headers.append(value)
         elif option == '-R':
             gopts.remove_header_params.append(value.split(':', 1))
-        elif option == '--remove-params':
-            gopts.remove_all_params.append(value)
         elif option == '-t':
             gopts.totext_mask.append(value)
         elif option == '-b':

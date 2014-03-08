@@ -47,10 +47,6 @@ WHAT'S NEW in version 2.4.0 (2014-03-??)
 
    Add ChangeLog.
 
-WHAT'S NEW in version 2.3.8 (2014-02-26)
-
-   Add option --remove-params=header to remove all parameters from the header.
-
 WHAT'S NEW in version 2.3.7 (2014-02-23)
 
    Add option -r to remove headers and option -R to remove headers parameters.
