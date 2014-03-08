@@ -18,7 +18,7 @@ Broytman mimedecode.py version %s, %s
 def usage(code=0, errormsg=''):
     version(0)
     sys.stdout.write("""\
-Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header:param] [-beit mask] [-o output_file] [input_file [output_file]]
+Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header1[,h2,h3,...]:param1[,p2,p3,...]] [-beit mask] [-o output_file] [input_file [output_file]]
 """ % me)
     if errormsg:
         sys.stderr.write(errormsg + '\n')
@@ -108,6 +108,27 @@ def _decode_headers_params(msg, header, decode_all_params, param_list):
         for param in param_list:
             decode_header_param(msg, header, param)
 
+def _remove_headers_params(msg, header, remove_all_params, param_list):
+    if remove_all_params:
+        params = msg.get_params(header=header)
+        if params:
+            if param_list:
+                for param, value in params:
+                    if param not in param_list:
+                        msg.del_param(param, header)
+            else:
+                value = msg[header]
+                if value is None: # No such header
+                    return
+                if ';' not in value: # There are no parameters
+                    return
+                del msg[header] # Delete all such headers
+                # Get the value without parameters and set it back
+                msg[header] = value.split(';')[0].strip()
+    else:
+        for param in param_list:
+            msg.del_param(param, header)
+
 def decode_headers(msg):
     "Decode message headers according to global options"
 
@@ -122,18 +143,20 @@ def decode_headers(msg):
             for header in header_list:
                 del msg[header]
 
-    #for header in gopts.remove_all_params:
-    #    value = msg[header]
-    #    if value is None: # No such header
-    #        continue
-    #    if ';' not in value: # There are no parameters
-    #        continue
-    #    del msg[header] # Delete all such headers
-    #    # Get the value without parameters and set it back
-    #    msg[header] = value.split(';')[0].strip()
-
-    for header, param in gopts.remove_header_params:
-        msg.del_param(param, header)
+    for header_list, param_list in gopts.remove_headers_params:
+        header_list = header_list.split(',')
+        param_list = param_list.split(',')
+        remove_all_params = param_list[0] == '*' # Remove all params except listed
+        if remove_all_params:
+            param_list = _get_exceptions(param_list)
+        if header_list[0] == '*': # Remove for all headers except listed
+            header_list = _get_exceptions(header_list)
+            for header in msg.keys():
+                if header.lower() not in header_list:
+                    _remove_headers_params(msg, header, remove_all_params, param_list)
+        else: # Decode for listed headers
+            for header in header_list:
+                _remove_headers_params(msg, header, remove_all_params, param_list)
 
     for header_list in gopts.decode_headers:
         header_list = header_list.split(',')
@@ -342,7 +365,7 @@ class GlobalOptions:
     # A list of headers to remove
     remove_headers = []
     # A list of headers parameters to remove
-    remove_header_params = []
+    remove_headers_params = []
 
     totext_mask = [] # A list of content-types to decode
     binary_mask = [] # A list to pass through
@@ -391,7 +414,7 @@ def get_opt():
         elif option == '-r':
             gopts.remove_headers.append(value)
         elif option == '-R':
-            gopts.remove_header_params.append(value.split(':', 1))
+            gopts.remove_headers_params.append(value.split(':', 1))
         elif option == '-t':
             gopts.totext_mask.append(value)
         elif option == '-b':

@@ -44,6 +44,11 @@ WHAT'S NEW in version 2.4.0 (2014-03-??)
    Change option -r to remove all headers and accept a list of exceptions:
 -r *,-h1,-h2,...
 
+   Change option -R to accept lists of headers and parameters:
+-R h1,h2,h3:p1,p2,p3
+-R h1,h2,h3:*,-p1,-p2,-p3
+-R *,-h1,-h2,-h3:p1,p2,p3
+-R *,-h1,-h2,-h3:*,-p1,-p2,-p3
 
    Add ChangeLog.
 

@@ -44,15 +44,15 @@ test_file msg_03.txt msg_03-1.txt -d '*,-cc'
 test_file msg_03.txt msg_03-1.txt -d \*,From,To,Subject,-cc
 test_file msg_15.txt msg_15-1.txt -b text/html
 test_file msg_15.txt msg_15-2.txt -i text/html
-test_file msg_22.txt msg_22-1.txt -r content-id
-test_file msg_29.txt msg_29-1.txt -R Content-Type:title
 test_file msg_22.txt msg_22.txt -P -p Content-Type,Content-Disposition:name,filename
 test_file msg_22.txt msg_22.txt -P -p \*:name,filename
 test_file msg_22.txt msg_22.txt -P -p Content-Type,Content-Disposition:\*
 test_file msg_22.txt msg_22.txt -P -p '*,-Content-Id:*,-x-mac-type'
+test_file msg_22.txt msg_22-1.txt -r content-id
 test_file msg_16.txt msg_16-1.txt -r Received,List-Help,List-Post,List-Subscribe,List-Id,List-Unsubscribe,List-Archive
 test_file msg_16.txt msg_16-2.txt -r \*,-mime-version,-content-type
-#test_file msg_18.txt msg_18-1.txt --remove-params=X-Foobar-Spoink-Defrobnit
+test_file msg_29.txt msg_29-1.txt -R Content-Type:title
+test_file msg_18.txt msg_18-1.txt -R X-Foobar-Spoink-Defrobnit:\*
 
 if [ "$RC" -eq 0 ]; then
    echo "All tests passed!"
