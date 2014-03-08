@@ -254,6 +254,17 @@
    </varlistentry>
 
    <varlistentry>
+      <term>-p *[,-header1,-header2,-header3,...]:param1[,param2,param3,...]</term>
+      <listitem>
+         <para>
+            Add the parameters(s) to a list of headers parameters to decode;
+            the parameters will be decoded for all headers except the given
+            ones.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
       <term>-P</term>
       <listitem>
          <para>

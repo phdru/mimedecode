@@ -94,6 +94,9 @@ def decode_header_param(msg, header, param):
                 msg.set_param(param, new_value, header)
 
 
+def _get_exceptions(list):
+    return [x[1:].lower() for x in list[1:] if x[0]=='-']
+
 def decode_headers(msg):
     "Decode message headers according to global options"
 
@@ -116,20 +119,27 @@ def decode_headers(msg):
     for header_list in gopts.decode_headers:
         header_list = header_list.split(',')
         if header_list[0] == '*': # Decode all headers except listed
-            header_list = [h[1:].lower() for h in header_list[1:] if h[0]=='-']
+            header_list = _get_exceptions(header_list)
             for header in msg.keys():
                 if header.lower() not in header_list:
                     decode_header(msg, header)
-        else: # Decode listed hiders
+        else: # Decode listed headers
             for header in header_list:
                 decode_header(msg, header)
 
     for header_list, param_list in gopts.decode_header_params:
         header_list = header_list.split(',')
         param_list = param_list.split(',')
-        for header in header_list:
-            for param in param_list:
-                decode_header_param(msg, header, param)
+        if header_list[0] == '*': # Decode for all headers except listed
+            header_list = _get_exceptions(header_list)
+            for header in msg.keys():
+                if header.lower() not in header_list:
+                    for param in param_list:
+                        decode_header_param(msg, header, param)
+        else: # Decode for listed headers
+            for header in header_list:
+                for param in param_list:
+                    decode_header_param(msg, header, param)
 
 
 def set_header(msg, header, value):

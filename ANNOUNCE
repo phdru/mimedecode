@@ -34,6 +34,9 @@ WHAT'S NEW in version 2.4.0 (2014-03-??)
    Change option -p to accept lists of headers and parameters:
 -p h1,h2,h3,..:p1,p2,p3,..
 
+   Allow * and exceptions for -p in the headers list:
+-p *,-h1,-h2,-h3:p1,p2,p3
+
    Add ChangeLog.
 
 WHAT'S NEW in version 2.3.8 (2014-02-26)
