@@ -48,7 +48,7 @@
          <option>-H|--host=hostname</option>
       </arg>
       <arg choice="opt">
-         <option>-d header</option>
+         <option>-d header1[,header2,header3...]</option>
       </arg>
       <arg choice="opt">
          <option>-p header:param</option>
@@ -199,12 +199,12 @@
    </varlistentry>
 
    <varlistentry>
-      <term>-d header</term>
+      <term>-d header1[,header2,header3...]</term>
       <listitem>
          <para>
-            Add the header to a list of headers to decode; initially the list
-            contains headers "From", "To", "Cc", "Reply-To", "Mail-Followup-To"
-            and "Subject".
+            Add the header(s) to a list of headers to decode; initially the
+            list contains headers "From", "To", "Cc", "Reply-To",
+            "Mail-Followup-To" and "Subject".
          </para>
       </listitem>
    </varlistentry>

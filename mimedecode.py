@@ -18,7 +18,7 @@ Broytman mimedecode.py version %s, %s
 def usage(code=0, errormsg=''):
     version(0)
     sys.stdout.write("""\
-Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header] [-p header:param] [-r header] [-R header:param] [--remove-params=header] [-beit mask] [-o output_file] [input_file [output_file]]
+Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,header2,header3...]] [-p header:param] [-r header] [-R header:param] [--remove-params=header] [-beit mask] [-o output_file] [input_file [output_file]]
 """ % me)
     if errormsg:
         sys.stderr.write(errormsg + '\n')
@@ -113,8 +113,9 @@ def decode_headers(msg):
     for header, param in gopts.remove_header_params:
         msg.del_param(param, header)
 
-    for header in gopts.decode_headers:
-        decode_header(msg, header)
+    for header_list in gopts.decode_headers:
+        for header in header_list.split(','):
+            decode_header(msg, header)
 
     for header, param in gopts.decode_header_params:
         decode_header_param(msg, header, param)
