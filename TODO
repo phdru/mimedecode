@@ -1,6 +1,5 @@
-Add option -s header:value to set header's value.
-
-Add option -S header:param=value to set header parameter's value.
+Add option --set-param=header:param=value to set header parameter's value (only
+at the top level).
 
 
 Add options --save-headers, --save-body and --save-message to save

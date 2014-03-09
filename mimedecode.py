@@ -18,7 +18,7 @@ Broytman mimedecode.py version %s, %s
 def usage(code=0, errormsg=''):
     version(0)
     sys.stdout.write("""\
-Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header1[,h2,h3,...]:param1[,p2,p3,...]] [-beit mask] [-o output_file] [input_file [output_file]]
+        Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header1[,h2,h3,...]:param1[,p2,p3,...]] [--set-header header:value] [-beit mask] [-o output_file] [input_file [output_file]]
 """ % me)
     if errormsg:
         sys.stderr.write(errormsg + '\n')
@@ -367,6 +367,11 @@ class GlobalOptions:
     # A list of headers parameters to remove
     remove_headers_params = []
 
+    # A list of header/value pairs to set
+    set_header_value = []
+    # A list of header/parameter/value triples to set
+    #set_header_param = []
+
     totext_mask = [] # A list of content-types to decode
     binary_mask = [] # A list to pass through
     ignore_mask = [] # Ignore (skip, do not decode and do not include into output)
@@ -384,7 +389,7 @@ def get_opt():
     try:
         options, arguments = getopt(sys.argv[1:],
             'hVcCDPH:f:d:p:r:R:b:e:i:t:o:',
-            ['help', 'version', 'host='])
+            ['help', 'version', 'host=', 'set-header='])
     except GetoptError:
         usage(1)
 
@@ -415,6 +420,8 @@ def get_opt():
             gopts.remove_headers.append(value)
         elif option == '-R':
             gopts.remove_headers_params.append(value.split(':', 1))
+        elif option == '--set-header':
+            gopts.set_header_value.append(value.split(':', 1))
         elif option == '-t':
             gopts.totext_mask.append(value)
         elif option == '-b':
@@ -480,8 +487,13 @@ if __name__ == "__main__":
     gopts.outfile = outfile
     output = outfile.write
 
+    msg = email.message_from_file(infile)
+
+    for header, value in gopts.set_header_value:
+        msg[header] = value
+
     try:
-        decode_message(email.message_from_file(infile))
+        decode_message(msg)
     finally:
         infile.close()
         outfile.close()

@@ -84,6 +84,9 @@
         <option>-R *[,-header1,-header2,-header3,...]:*[,-param1,-param2,-param3,...]</option>
       </arg>
       <arg choice="opt">
+         <option>--set-header header:value</option>
+      </arg>
+      <arg choice="opt">
          <option>-beit mask</option>
       </arg>
       <arg choice="opt">
@@ -353,6 +356,16 @@
          <para>
            Remove listed parameters (or all parameters except listed) frome
            these headers (or from all headers except listed).
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>--set-header header:value</term>
+      <listitem>
+         <para>
+           The program sets or changes value for the header to the given value
+           (only at the top-level message).
          </para>
       </listitem>
    </varlistentry>
