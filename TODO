@@ -1,7 +1,3 @@
-Add option --set-param=header:param=value to set header parameter's value (only
-at the top level).
-
-
 Add options --save-headers, --save-body and --save-message to save
 decoded headers/bodies/messages of parts to files.
 

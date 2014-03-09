@@ -18,7 +18,7 @@ Broytman mimedecode.py version %s, %s
 def usage(code=0, errormsg=''):
     version(0)
     sys.stdout.write("""\
-        Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header1[,h2,h3,...]:param1[,p2,p3,...]] [--set-header header:value] [-beit mask] [-o output_file] [input_file [output_file]]
+        Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header1[,h2,h3,...]:param1[,p2,p3,...]] [--set-header header:value] [--set-param header:param=value] [-beit mask] [-o output_file] [input_file [output_file]]
 """ % me)
     if errormsg:
         sys.stderr.write(errormsg + '\n')
@@ -370,7 +370,7 @@ class GlobalOptions:
     # A list of header/value pairs to set
     set_header_value = []
     # A list of header/parameter/value triples to set
-    #set_header_param = []
+    set_header_param = []
 
     totext_mask = [] # A list of content-types to decode
     binary_mask = [] # A list to pass through
@@ -389,7 +389,7 @@ def get_opt():
     try:
         options, arguments = getopt(sys.argv[1:],
             'hVcCDPH:f:d:p:r:R:b:e:i:t:o:',
-            ['help', 'version', 'host=', 'set-header='])
+            ['help', 'version', 'host=', 'set-header=', 'set-param='])
     except GetoptError:
         usage(1)
 
@@ -422,6 +422,13 @@ def get_opt():
             gopts.remove_headers_params.append(value.split(':', 1))
         elif option == '--set-header':
             gopts.set_header_value.append(value.split(':', 1))
+        elif option == '--set-param':
+            header, value = value.split(':', 1)
+            if '=' in value:
+                param, value = value.split('=', 1)
+            else:
+                param, value = value.split(':', 1)
+            gopts.set_header_param.append((header, param, value))
         elif option == '-t':
             gopts.totext_mask.append(value)
         elif option == '-b':
@@ -491,6 +498,9 @@ if __name__ == "__main__":
 
     for header, value in gopts.set_header_value:
         msg[header] = value
+
+    for header, param, value in gopts.set_header_param:
+        msg.set_param(param, value, header)
 
     try:
         decode_message(msg)

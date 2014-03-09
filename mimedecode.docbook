@@ -87,6 +87,9 @@
          <option>--set-header header:value</option>
       </arg>
       <arg choice="opt">
+         <option>--set-param header:param=value</option>
+      </arg>
+      <arg choice="opt">
          <option>-beit mask</option>
       </arg>
       <arg choice="opt">
@@ -366,6 +369,16 @@
          <para>
            The program sets or changes value for the header to the given value
            (only at the top-level message).
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>--set-param header:param=value</term>
+      <listitem>
+         <para>
+           The program sets or changes value for the header's parameter to the
+           given value (only at the top-level message). The header must exist.
          </para>
       </listitem>
    </varlistentry>
