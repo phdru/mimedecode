@@ -291,9 +291,9 @@ def decode_part(msg):
 
     encoding = msg["Content-Transfer-Encoding"]
     if left_binary or encoding in (None, '', '7bit', '8bit', 'binary'):
-        outstring = str(msg.get_payload())
+        outstring = msg.get_payload()
     else: # Decode from transfer ecoding to text or binary form
-        outstring = str(msg.get_payload(decode=1))
+        outstring = msg.get_payload(decode=1)
         set_header(msg, "Content-Transfer-Encoding", "8bit")
         msg["X-MIME-Autoconverted"] = "from %s to 8bit by %s id %s" % (encoding, gopts.host_name, me)
 
