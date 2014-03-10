@@ -398,7 +398,7 @@ class GlobalOptions:
 gopts = GlobalOptions
 
 
-def get_opt():
+def get_opts():
     from getopt import getopt, GetoptError
 
     try:
@@ -463,7 +463,7 @@ def get_opt():
 
 
 if __name__ == "__main__":
-    arguments = get_opt()
+    arguments = get_opts()
 
     la = len(arguments)
     if la == 0:
