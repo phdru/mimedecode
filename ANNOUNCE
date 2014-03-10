@@ -33,6 +33,8 @@ level).
 
    Add option -B to skip content-transfer-decoding binary attachments.
 
+   Add option -O to set the destination directory.
+
    Fix a minor bug: if a multipart message (or a subpart) lacks any textual
 content - avoid putting an excessive newline.
 

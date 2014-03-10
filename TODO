@@ -1,7 +1,5 @@
-Add option -O to set the destination directory.
-
 Add options --save-headers, --save-body and --save-message to save
-decoded headers/bodies/messages of parts to files.
+decoded headers/bodies/messages to files.
 
 
 Release 2.5.0.

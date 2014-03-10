@@ -18,7 +18,7 @@ Broytman mimedecode.py version %s, %s
 def usage(code=0, errormsg=''):
     version(0)
     sys.stdout.write("""\
-        Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header1[,h2,h3,...]:param1[,p2,p3,...]] [--set-header header:value] [--set-param header:param=value] [-Bbeit mask] [-o output_file] [input_file [output_file]]
+        Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header1[,h2,h3,...]:param1[,p2,p3,...]] [--set-header header:value] [--set-param header:param=value] [-Bbeit mask] [-O dest_dir] [-o output_file] [input_file [output_file]]
 """ % me)
     if errormsg:
         sys.stderr.write(errormsg + '\n')
@@ -394,6 +394,7 @@ class GlobalOptions:
 
     input_filename = None
     output_filename = None
+    destination_dir = os.curdir
 
 g = GlobalOptions
 
@@ -403,7 +404,7 @@ def get_opts():
 
     try:
         options, arguments = getopt(sys.argv[1:],
-            'hVcCDPH:f:d:p:r:R:b:B:e:i:t:o:',
+            'hVcCDPH:f:d:p:r:R:b:B:e:i:t:O:o:',
             ['help', 'version', 'host=', 'set-header=', 'set-param='])
     except GetoptError:
         usage(1)
@@ -454,6 +455,8 @@ def get_opts():
             g.ignore_mask.append(value)
         elif option == '-e':
             g.error_mask.append(value)
+        elif option == '-O':
+            g.destination_dir = value
         elif option == '-o':
             g.output_filename = value
         else:
@@ -470,7 +473,7 @@ if __name__ == "__main__":
         g.input_filename = '-'
         infile = sys.stdin
         if g.output_filename:
-            outfile = open(g.output_filename, 'w')
+            outfile = open(os.path.join(g.destination_dir, g.output_filename), 'w')
         else:
             g.output_filename = '-'
             outfile = sys.stdout
@@ -483,7 +486,7 @@ if __name__ == "__main__":
             infile = open(arguments[0], 'r')
         if la == 1:
             if g.output_filename:
-                outfile = open(g.output_filename, 'w')
+                outfile = open(os.path.join(g.destination_dir, g.output_filename), 'w')
             else:
                 g.output_filename = '-'
                 outfile = sys.stdout
@@ -495,7 +498,7 @@ if __name__ == "__main__":
                 outfile = sys.stdout
             else:
                 g.output_filename = arguments[1]
-                outfile = open(arguments[1], 'w')
+                outfile = open(os.path.join(g.destination_dir, g.output_filename), 'w')
     else:
         usage(1, 'Too many arguments')
 
