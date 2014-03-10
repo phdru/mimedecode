@@ -29,7 +29,7 @@ WHAT'S NEW in version 2.5.0 (2014-03-??)
 level).
 
    Add option --set-param=header:param=value to set header parameter's value
-(only at the top level).
+(only at the top level). The header must exist.
 
 WHAT'S NEW in version 2.4.0 (2014-03-08)
 

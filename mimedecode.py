@@ -500,7 +500,8 @@ if __name__ == "__main__":
         msg[header] = value
 
     for header, param, value in gopts.set_header_param:
-        msg.set_param(param, value, header)
+        if header in msg:
+            msg.set_param(param, value, header)
 
     try:
         decode_message(msg)

@@ -54,6 +54,8 @@ test_file msg_16.txt msg_16-2.txt -r \*,-mime-version,-content-type
 test_file msg_29.txt msg_29-1.txt -R Content-Type:title
 test_file msg_18.txt msg_18-1.txt -R X-Foobar-Spoink-Defrobnit:\*
 test_file msg_01.txt msg_01-1.txt --set-header=X-Test:set
+test_file msg_01.txt msg_01-2.txt --set-header=X-Test:set --set-param=X-Test:test:set
+test_file msg_02.txt msg_02.txt --set-param=X-Test:test:set
 test_file msg_02.txt msg_02-1.txt --set-param=X-Mailer:test=set
 test_file msg_02.txt msg_02-1.txt --set-param=X-Mailer:test:set
 
