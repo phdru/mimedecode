@@ -35,10 +35,10 @@ def output_headers(msg):
 
 
 def recode(s, charset):
-    return unicode(s, charset, "replace").encode(gopts.default_encoding, "replace")
+    return unicode(s, charset, "replace").encode(g.default_encoding, "replace")
 
 def recode_if_needed(s, charset):
-    if charset and charset.lower() <> gopts.default_encoding:
+    if charset and charset.lower() <> g.default_encoding:
         s = recode(s, charset)
     return s
 
@@ -132,7 +132,7 @@ def _remove_headers_params(msg, header, remove_all_params, param_list):
 def decode_headers(msg):
     "Decode message headers according to global options"
 
-    for header_list in gopts.remove_headers:
+    for header_list in g.remove_headers:
         header_list = header_list.split(',')
         if header_list[0] == '*': # Remove all headers except listed
             header_list = _get_exceptions(header_list)
@@ -143,7 +143,7 @@ def decode_headers(msg):
             for header in header_list:
                 del msg[header]
 
-    for header_list, param_list in gopts.remove_headers_params:
+    for header_list, param_list in g.remove_headers_params:
         header_list = header_list.split(',')
         param_list = param_list.split(',')
         remove_all_params = param_list[0] == '*' # Remove all params except listed
@@ -158,7 +158,7 @@ def decode_headers(msg):
             for header in header_list:
                 _remove_headers_params(msg, header, remove_all_params, param_list)
 
-    for header_list in gopts.decode_headers:
+    for header_list in g.decode_headers:
         header_list = header_list.split(',')
         if header_list[0] == '*': # Decode all headers except listed
             header_list = _get_exceptions(header_list)
@@ -169,7 +169,7 @@ def decode_headers(msg):
             for header in header_list:
                 decode_header(msg, header)
 
-    for header_list, param_list in gopts.decode_header_params:
+    for header_list, param_list in g.decode_header_params:
         header_list = header_list.split(',')
         param_list = param_list.split(',')
         decode_all_params = param_list[0] == '*' # Decode all params except listed
@@ -239,7 +239,7 @@ def decode_body(msg, s):
     os.remove(filename)
 
     set_content_type(msg, "text/plain")
-    msg["X-MIME-Autoconverted"] = "from %s to text/plain by %s id %s" % (content_type, gopts.host_name, command.split()[0])
+    msg["X-MIME-Autoconverted"] = "from %s to text/plain by %s id %s" % (content_type, g.host_name, command.split()[0])
 
     return s
 
@@ -248,11 +248,11 @@ def recode_charset(msg, s):
     "Recode charset of the message to the default charset"
 
     save_charset = charset = msg.get_content_charset()
-    if charset and charset.lower() <> gopts.default_encoding:
+    if charset and charset.lower() <> g.default_encoding:
         s = recode_if_needed(s, charset)
         content_type = msg.get_content_type()
-        set_content_type(msg, content_type, gopts.default_encoding)
-        msg["X-MIME-Autoconverted"] = "from %s to %s by %s id %s" % (save_charset, gopts.default_encoding, gopts.host_name, me)
+        set_content_type(msg, content_type, g.default_encoding)
+        msg["X-MIME-Autoconverted"] = "from %s to %s by %s id %s" % (save_charset, g.default_encoding, g.host_name, me)
     return s
 
 
@@ -261,7 +261,7 @@ def totext(msg, instring):
 
     # Decode body and recode charset
     s = decode_body(msg, instring)
-    if gopts.recode_charset:
+    if g.recode_charset:
         s = recode_charset(msg, s)
 
     output_headers(msg)
@@ -285,7 +285,7 @@ def decode_part(msg):
 
     left_binary = False
     for content_type in masks:
-        if content_type in gopts.binary_mask:
+        if content_type in g.binary_mask:
             left_binary = True
             break
 
@@ -295,22 +295,22 @@ def decode_part(msg):
     else: # Decode from transfer ecoding to text or binary form
         outstring = msg.get_payload(decode=1)
         set_header(msg, "Content-Transfer-Encoding", "8bit")
-        msg["X-MIME-Autoconverted"] = "from %s to 8bit by %s id %s" % (encoding, gopts.host_name, me)
+        msg["X-MIME-Autoconverted"] = "from %s to 8bit by %s id %s" % (encoding, g.host_name, me)
 
     for content_type in masks:
-        if content_type in gopts.totext_mask:
+        if content_type in g.totext_mask:
             totext(msg, outstring)
             return
-        elif content_type in gopts.binary_mask or \
-             content_type in gopts.decoded_binary_mask:
+        elif content_type in g.binary_mask or \
+             content_type in g.decoded_binary_mask:
             output_headers(msg)
             output(outstring)
             return
-        elif content_type in gopts.ignore_mask:
+        elif content_type in g.ignore_mask:
             output_headers(msg)
             output("\nMessage body of type `%s' skipped.\n" % content_type)
             return
-        elif content_type in gopts.error_mask:
+        elif content_type in g.error_mask:
             raise ValueError, "content type `%s' prohibited" % content_type
 
     # Neither content type nor masks were listed - decode by default
@@ -395,7 +395,7 @@ class GlobalOptions:
     input_filename = None
     output_filename = None
 
-gopts = GlobalOptions
+g = GlobalOptions
 
 
 def get_opts():
@@ -414,48 +414,48 @@ def get_opts():
         elif option in ('-V', '--version'):
             version()
         elif option == '-c':
-            gopts.recode_charset = 1
+            g.recode_charset = 1
         elif option == '-C':
-            gopts.recode_charset = 0
+            g.recode_charset = 0
         elif option in ('-H', '--host'):
-            gopts.host_name = value
+            g.host_name = value
         elif option == '-f':
-            gopts.default_encoding = value
+            g.default_encoding = value
         elif option == '-d':
             if value.startswith('*'):
-                gopts.decode_headers = []
-            gopts.decode_headers.append(value)
+                g.decode_headers = []
+            g.decode_headers.append(value)
         elif option == '-D':
-            gopts.decode_headers = []
+            g.decode_headers = []
         elif option == '-p':
-            gopts.decode_header_params.append(value.split(':', 1))
+            g.decode_header_params.append(value.split(':', 1))
         elif option == '-P':
-            gopts.decode_header_params = []
+            g.decode_header_params = []
         elif option == '-r':
-            gopts.remove_headers.append(value)
+            g.remove_headers.append(value)
         elif option == '-R':
-            gopts.remove_headers_params.append(value.split(':', 1))
+            g.remove_headers_params.append(value.split(':', 1))
         elif option == '--set-header':
-            gopts.set_header_value.append(value.split(':', 1))
+            g.set_header_value.append(value.split(':', 1))
         elif option == '--set-param':
             header, value = value.split(':', 1)
             if '=' in value:
                 param, value = value.split('=', 1)
             else:
                 param, value = value.split(':', 1)
-            gopts.set_header_param.append((header, param, value))
+            g.set_header_param.append((header, param, value))
         elif option == '-t':
-            gopts.totext_mask.append(value)
+            g.totext_mask.append(value)
         elif option == '-B':
-            gopts.binary_mask.append(value)
+            g.binary_mask.append(value)
         elif option == '-b':
-            gopts.decoded_binary_mask.append(value)
+            g.decoded_binary_mask.append(value)
         elif option == '-i':
-            gopts.ignore_mask.append(value)
+            g.ignore_mask.append(value)
         elif option == '-e':
-            gopts.error_mask.append(value)
+            g.error_mask.append(value)
         elif option == '-o':
-            gopts.output_filename = value
+            g.output_filename = value
         else:
             usage(1)
 
@@ -467,34 +467,34 @@ if __name__ == "__main__":
 
     la = len(arguments)
     if la == 0:
-        gopts.input_filename = '-'
+        g.input_filename = '-'
         infile = sys.stdin
-        if gopts.output_filename:
-            outfile = open(gopts.output_filename, 'w')
+        if g.output_filename:
+            outfile = open(g.output_filename, 'w')
         else:
-            gopts.output_filename = '-'
+            g.output_filename = '-'
             outfile = sys.stdout
     elif la in (1, 2):
         if (arguments[0] == '-'):
-            gopts.input_filename = '-'
+            g.input_filename = '-'
             infile = sys.stdin
         else:
-            gopts.input_filename = arguments[0]
+            g.input_filename = arguments[0]
             infile = open(arguments[0], 'r')
         if la == 1:
-            if gopts.output_filename:
-                outfile = open(gopts.output_filename, 'w')
+            if g.output_filename:
+                outfile = open(g.output_filename, 'w')
             else:
-                gopts.output_filename = '-'
+                g.output_filename = '-'
                 outfile = sys.stdout
         elif la == 2:
-            if gopts.output_filename:
+            if g.output_filename:
                 usage(1, 'Too many output filenames')
             if (arguments[1] == '-'):
-                gopts.output_filename = '-'
+                g.output_filename = '-'
                 outfile = sys.stdout
             else:
-                gopts.output_filename = arguments[1]
+                g.output_filename = arguments[1]
                 outfile = open(arguments[1], 'w')
     else:
         usage(1, 'Too many arguments')
@@ -504,19 +504,19 @@ if __name__ == "__main__":
             usage()
         usage(1, 'Filtering from console is forbidden')
 
-    if not gopts.host_name:
+    if not g.host_name:
         import socket
-        gopts.host_name = socket.gethostname()
+        g.host_name = socket.gethostname()
 
-    gopts.outfile = outfile
+    g.outfile = outfile
     output = outfile.write
 
     msg = email.message_from_file(infile)
 
-    for header, value in gopts.set_header_value:
+    for header, value in g.set_header_value:
         msg[header] = value
 
-    for header, param, value in gopts.set_header_param:
+    for header, param, value in g.set_header_param:
         if header in msg:
             msg.set_param(param, value, header)
 
