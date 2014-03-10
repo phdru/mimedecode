@@ -90,7 +90,7 @@
          <option>--set-param header:param=value</option>
       </arg>
       <arg choice="opt">
-         <option>-beit mask</option>
+         <option>-Bbeit mask</option>
       </arg>
       <arg choice="opt">
          <option>-o output_file</option>
@@ -395,6 +395,16 @@
    </varlistentry>
 
    <varlistentry>
+      <term>-B mask</term>
+      <listitem>
+         <para>
+           Append mask to the list of binary content types that will be not
+           content-transfer-decoded (will be left as base64 or such).
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
       <term>-e mask</term>
       <listitem>
          <para>
@@ -440,7 +450,7 @@ cat input_file | mimedecode.py -o output_file</programlisting>
 </variablelist>
 
 <para>
-   The 4 list options (-beit) require more explanation. They allow a user to
+   The 5 list options (-Bbeit) require more explanation. They allow a user to
    control body decoding with great flexibility. Think about said mail archive;
    for example, its maintainer wants to put there only texts, convert
    Postscript/PDF to text, pass HTML and images as is, and ignore everything

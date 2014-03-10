@@ -18,7 +18,7 @@ Broytman mimedecode.py version %s, %s
 def usage(code=0, errormsg=''):
     version(0)
     sys.stdout.write("""\
-        Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header1[,h2,h3,...]:param1[,p2,p3,...]] [--set-header header:value] [--set-param header:param=value] [-beit mask] [-o output_file] [input_file [output_file]]
+        Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header1[,h2,h3,...]:param1[,p2,p3,...]] [--set-header header:value] [--set-param header:param=value] [-Bbeit mask] [-o output_file] [input_file [output_file]]
 """ % me)
     if errormsg:
         sys.stderr.write(errormsg + '\n')
@@ -272,14 +272,6 @@ def decode_part(msg):
     "Decode one part of the message"
 
     decode_headers(msg)
-    encoding = msg["Content-Transfer-Encoding"]
-
-    if encoding in (None, '', '7bit', '8bit', 'binary'):
-        outstring = str(msg.get_payload())
-    else: # Decode from transfer ecoding to text or binary form
-        outstring = str(msg.get_payload(decode=1))
-        set_header(msg, "Content-Transfer-Encoding", "8bit")
-        msg["X-MIME-Autoconverted"] = "from %s to 8bit by %s id %s" % (encoding, gopts.host_name, me)
 
     # Test all mask lists and find what to do with this content type
     masks = []
@@ -291,11 +283,26 @@ def decode_part(msg):
         masks.append(mtype + '/*')
     masks.append('*/*')
 
+    left_binary = False
+    for content_type in masks:
+        if content_type in gopts.binary_mask:
+            left_binary = True
+            break
+
+    encoding = msg["Content-Transfer-Encoding"]
+    if left_binary or encoding in (None, '', '7bit', '8bit', 'binary'):
+        outstring = str(msg.get_payload())
+    else: # Decode from transfer ecoding to text or binary form
+        outstring = str(msg.get_payload(decode=1))
+        set_header(msg, "Content-Transfer-Encoding", "8bit")
+        msg["X-MIME-Autoconverted"] = "from %s to 8bit by %s id %s" % (encoding, gopts.host_name, me)
+
     for content_type in masks:
         if content_type in gopts.totext_mask:
             totext(msg, outstring)
             return
-        elif content_type in gopts.binary_mask:
+        elif content_type in gopts.binary_mask or \
+             content_type in gopts.decoded_binary_mask:
             output_headers(msg)
             output(outstring)
             return
@@ -373,7 +380,8 @@ class GlobalOptions:
     set_header_param = []
 
     totext_mask = [] # A list of content-types to decode
-    binary_mask = [] # A list to pass through
+    binary_mask = [] # A list of content-types to pass through
+    decoded_binary_mask = [] # A list of content-types to pass through (content-transfer-decoded)
     ignore_mask = [] # Ignore (skip, do not decode and do not include into output)
     error_mask = []  # Raise error if encounter one of these
 
@@ -388,7 +396,7 @@ def get_opt():
 
     try:
         options, arguments = getopt(sys.argv[1:],
-            'hVcCDPH:f:d:p:r:R:b:e:i:t:o:',
+            'hVcCDPH:f:d:p:r:R:b:B:e:i:t:o:',
             ['help', 'version', 'host=', 'set-header=', 'set-param='])
     except GetoptError:
         usage(1)
@@ -431,8 +439,10 @@ def get_opt():
             gopts.set_header_param.append((header, param, value))
         elif option == '-t':
             gopts.totext_mask.append(value)
-        elif option == '-b':
+        elif option == '-B':
             gopts.binary_mask.append(value)
+        elif option == '-b':
+            gopts.decoded_binary_mask.append(value)
         elif option == '-i':
             gopts.ignore_mask.append(value)
         elif option == '-e':

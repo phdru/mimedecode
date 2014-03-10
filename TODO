@@ -1,11 +1,7 @@
-Add options --save-headers, --save-body and --save-message to save
-decoded headers/bodies/messages of parts to files.
-
 Add option -O to set the destination directory.
 
-
-Add an option -B to skip content-transfer-decoding binary attachments (leave it
-as base64 or such).
+Add options --save-headers, --save-body and --save-message to save
+decoded headers/bodies/messages of parts to files.
 
 
 Release 2.5.0.
