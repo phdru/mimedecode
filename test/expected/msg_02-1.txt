@@ -9,7 +9,6 @@ X-Mailman-Version: 2.0.4
 Content-Type: multipart/mixed; boundary="192.168.1.2.889.32614.987812255.500.21814"
 X-Mailer: Mailman v2.0.4; test="set"
 
-
 --192.168.1.2.889.32614.987812255.500.21814
 Content-description: Masthead (Ppp digest, Vol 1 #2)
 MIME-Version: 1.0
@@ -47,7 +46,6 @@ Today's Topics:
 
 --192.168.1.2.889.32614.987812255.500.21814
 Content-Type: multipart/digest; boundary="__--__--"
-
 
 --__--__--
 

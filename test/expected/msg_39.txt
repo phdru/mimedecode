@@ -2,11 +2,9 @@ From test Sat Feb  1 00:00:00 2014
 MIME-Version: 1.0
 Content-Type: multipart/mixed; boundary="----- =_aaaaaaaaaa0"
 
-
 ------- =_aaaaaaaaaa0
 Content-Type: multipart/mixed; boundary="----- =_aaaaaaaaaa1"
 Content-ID: <20592.1022586929.1@example.com>
-
 
 ------- =_aaaaaaaaaa1
 Content-Type: multipart/alternative; boundary="----- =_aaaaaaaaaa1"

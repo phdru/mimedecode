@@ -6,7 +6,6 @@ Subject: Lyrics
 Date: Fri, 20 Apr 2001 19:35:02 -0400
 Content-Type: multipart/mixed; boundary="BOUNDARY"
 
-
 --BOUNDARY
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -23,7 +22,6 @@ X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode.py
 
 --BOUNDARY
 Content-Type: multipart/mixed; boundary="ANOTHER"
-
 
 --ANOTHER
 MIME-Version: 1.0

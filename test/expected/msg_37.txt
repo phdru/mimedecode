@@ -1,7 +1,6 @@
 From test Sat Feb  1 00:00:00 2014
 Content-Type: multipart/mixed; boundary=ABCDE
 
-
 --ABCDE
 Content-Type: text/x-one
 

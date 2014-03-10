@@ -33,6 +33,9 @@ level).
 
    Add option -B to skip content-transfer-decoding binary attachments.
 
+   Fix a minor bug: if a multipart message (or a subpart) lacks any textual
+content - avoid putting an excessive newline.
+
 WHAT'S NEW in version 2.4.0 (2014-03-08)
 
    Change option -d to accept a comma-separated list of headers:

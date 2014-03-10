@@ -6,7 +6,6 @@ Subject: Here is your dingus fish
 Date: Fri, 20 Apr 2001 19:35:02 -0400
 Content-Type: multipart/mixed; boundary="OUTER"
 
-
 --OUTER
 Content-Type: text/plain; charset="us-ascii"
 

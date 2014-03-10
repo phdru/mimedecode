@@ -3,7 +3,6 @@ From: aperson@dom.ain
 MIME-Version: 1.0
 Content-Type: multipart/digest; boundary=BOUNDARY
 
-
 --BOUNDARY
 
 To: aa@bb.org

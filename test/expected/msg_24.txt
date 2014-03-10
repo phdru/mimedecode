@@ -5,7 +5,6 @@ Subject: A subject
 To: aperson@dom.ain
 From: bperson@dom.ain
 
-
 --BOUNDARY
 
 

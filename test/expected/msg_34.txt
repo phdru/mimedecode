@@ -3,7 +3,6 @@ From: aperson@dom.ain
 To: bperson@dom.ain
 Content-Type: multipart/digest; boundary=XYZ
 
-
 --XYZ
 Content-Type: text/plain
 

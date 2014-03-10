@@ -325,12 +325,19 @@ def decode_multipart(msg):
 
     if msg.preamble: # Preserve the first part, it is probably not a RFC822-message
         output(msg.preamble) # Usually it is just a few lines of text (MIME warning)
+    if msg.preamble is not None:
+        output("\n")
 
+    first_subpart = True
     boundary = msg.get_boundary()
 
     for subpart in msg.get_payload():
         if boundary:
-            output("\n--%s\n" % boundary)
+            if first_subpart:
+                first_subpart = False
+            else:
+                output("\n")
+            output("--%s\n" % boundary)
 
         # Recursively decode all parts of the subpart
         decode_message(subpart)
