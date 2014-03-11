@@ -1,27 +1,21 @@
 Release 2.5.0.
 
 
-Allow -d and -p accept shell-like patterns and/or regular expressions:
--d content-*,-content-*-encoding
-
-
 Add an option -I to completely skip (remove) subparts -- no headers, no body,
 nothing.
-
-
-Never touch multipart/encrypted and multipart/signed.
-
-
-Release 2.6.0.
 
 
 Extend options -eIi to multipart subparts.
 
 
-Add an option to convert dates to the current locate and timezone.
+Never touch multipart/encrypted and multipart/signed.
 
 
-Release 2.7.0.
+Add an option to convert dates to the current locale and timezone.
+
+
+Allow -d and -p accept shell-like patterns and/or regular expressions:
+-d content-*,-content-*-encoding
 
 
 Add option --save-as='%format' to generate names for --save-* files. Develop
