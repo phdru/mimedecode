@@ -335,10 +335,10 @@ def decode_part(msg):
             break
         elif content_type in g.ignore_mask:
             output_headers(msg)
-            output("\nMessage body of type `%s' skipped.\n" % content_type)
+            output("\nMessage body of type %s skipped.\n" % ctype)
             break
         elif content_type in g.error_mask:
-            raise ValueError, "content type `%s' prohibited" % content_type
+            raise ValueError, "content type %s prohibited" % ctype
     else:
         # Neither content type nor masks were listed - decode by default
         outstring = totext(msg, outstring)

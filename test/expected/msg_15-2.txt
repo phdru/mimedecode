@@ -33,7 +33,7 @@ Content-transfer-encoding: 8bit
 X-MIME-Autoconverted: from quoted-printable to 8bit by test id mimedecode.py
 
 
-Message body of type `text/html' skipped.
+Message body of type text/html skipped.
 
 --MS_Mac_OE_3071477847_720252_MIME_Part--
 
