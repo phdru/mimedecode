@@ -467,8 +467,8 @@
       <term>-O dest_dir</term>
       <listitem>
          <para>
-           Set destination directory for the output files. Default is current
-           directory.
+           Set destination directory for the output files; the directory must
+           exist. Default is current directory.
           </para>
       </listitem>
    </varlistentry>
