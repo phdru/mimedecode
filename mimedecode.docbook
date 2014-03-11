@@ -454,8 +454,8 @@
       <term>-o output_file</term>
       <listitem>
          <para>
-            Set the output file. Uses destination directory from option -O.
-            Also useful in case of redirected stdin:
+            Save output to the file related to the destination directory from
+            option -O. Also useful in case of redirected stdin:
             <programlisting language="sh">mimedecode.py -o output_file &lt; input_file
 cat input_file | mimedecode.py -o output_file</programlisting>
          </para>
