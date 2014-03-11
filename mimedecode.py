@@ -18,7 +18,7 @@ Broytman mimedecode.py version %s, %s
 def usage(code=0, errormsg=''):
     version(0)
     sys.stdout.write("""\
-        Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header1[,h2,h3,...]:param1[,p2,p3,...]] [--set-header header:value] [--set-param header:param=value] [-Bbeit mask] [-O dest_dir] [-o output_file] [input_file [output_file]]
+        Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header1[,h2,h3,...]:param1[,p2,p3,...]] [--set-header header:value] [--set-param header:param=value] [-Bbeit mask] [--save-headers|body|message mask] [-O dest_dir] [-o output_file] [input_file [output_file]]
 """ % me)
     if errormsg:
         sys.stderr.write(errormsg + '\n')
@@ -266,6 +266,33 @@ def totext(msg, instring):
 
     output_headers(msg)
     output(s)
+    return s
+
+
+def _save_message(msg, outstring, save_headers=False, save_body=False):
+    for header, param in (
+        ("Content-Disposition", "filename"),
+        ("Content-Type", "name"),
+    ):
+        fname = msg.get_param(param, header=header)
+        if fname:
+            fname = '-' + fname
+            break
+    else:
+        fname = ''
+    g.save_counter += 1
+    fname = str(g.save_counter) + fname
+
+    global output
+    save_output = output
+    outfile = open(os.path.join(g.destination_dir, fname), 'w')
+    output = outfile.write
+    if save_headers:
+        output_headers(msg)
+    if save_body:
+        output(outstring)
+    outfile.close()
+    output = save_output
 
 
 def decode_part(msg):
@@ -299,23 +326,30 @@ def decode_part(msg):
 
     for content_type in masks:
         if content_type in g.totext_mask:
-            totext(msg, outstring)
-            return
+            outstring = totext(msg, outstring)
+            break
         elif content_type in g.binary_mask or \
              content_type in g.decoded_binary_mask:
             output_headers(msg)
             output(outstring)
-            return
+            break
         elif content_type in g.ignore_mask:
             output_headers(msg)
             output("\nMessage body of type `%s' skipped.\n" % content_type)
-            return
+            break
         elif content_type in g.error_mask:
             raise ValueError, "content type `%s' prohibited" % content_type
+    else:
+        # Neither content type nor masks were listed - decode by default
+        outstring = totext(msg, outstring)
 
-    # Neither content type nor masks were listed - decode by default
-    totext(msg, outstring)
-
+    for content_type in masks:
+        if content_type in g.save_headers_mask:
+            _save_message(msg, outstring, save_headers=True, save_body=False)
+        elif content_type in g.save_body_mask:
+            _save_message(msg, outstring, save_headers=False, save_body=True)
+        elif content_type in g.save_message_mask:
+            _save_message(msg, outstring, save_headers=True, save_body=True)
 
 def decode_multipart(msg):
     "Decode multipart"
@@ -392,6 +426,11 @@ class GlobalOptions:
     ignore_mask = [] # Ignore (skip, do not decode and do not include into output)
     error_mask = []  # Raise error if encounter one of these
 
+    save_counter = 0
+    save_headers_mask = []
+    save_body_mask = []
+    save_message_mask = []
+
     input_filename = None
     output_filename = None
     destination_dir = os.curdir
@@ -405,7 +444,9 @@ def get_opts():
     try:
         options, arguments = getopt(sys.argv[1:],
             'hVcCDPH:f:d:p:r:R:b:B:e:i:t:O:o:',
-            ['help', 'version', 'host=', 'set-header=', 'set-param='])
+            ['help', 'version', 'host=',
+             'save-headers=', 'save-body=', 'save-message=',
+             'set-header=', 'set-param='])
     except GetoptError:
         usage(1)
 
@@ -455,6 +496,12 @@ def get_opts():
             g.ignore_mask.append(value)
         elif option == '-e':
             g.error_mask.append(value)
+        elif option == '--save-headers':
+            g.save_headers_mask.append(value)
+        elif option == '--save-body':
+            g.save_body_mask.append(value)
+        elif option == '--save-message':
+            g.save_message_mask.append(value)
         elif option == '-O':
             g.destination_dir = value
         elif option == '-o':

@@ -93,6 +93,9 @@
          <option>-Bbeit mask</option>
       </arg>
       <arg choice="opt">
+         <option>--save-headers|body|message mask</option>
+      </arg>
+      <arg choice="opt">
          <option>-O dest_dir</option>
       </arg>
       <arg choice="opt">
@@ -441,6 +444,26 @@
    </varlistentry>
 
    <varlistentry>
+      <term>--save-headers mask</term>
+   </varlistentry>
+
+   <varlistentry>
+      <term>--save-body mask</term>
+   </varlistentry>
+
+   <varlistentry>
+      <term>--save-message mask</term>
+      <listitem>
+         <para>
+            Append mask to a list of content types to save to a file;
+            --save-headers saves only decoded headers of the message (or
+            subpart); --save-body saves only decoded body; --save-message saves
+            the entire message (or subpart).
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
       <term>-O dest_dir</term>
       <listitem>
          <para>
@@ -493,6 +516,19 @@ cat input_file | mimedecode.py -o output_file</programlisting>
 <para>
    Initially all 4 lists are empty, so without any additional parameters
 the program always uses the default decoding.
+</para>
+
+<para>
+  The 3 save list options (--save-headers/body/message) are similar. They make
+  the program to save every non-multipart subpart (only headers, or body, or
+  the entire subpart) that corresponds to the given mask to a file. Before
+  saving the message (or the subpart) is decoded according to all other options
+  and placed to the output stream as usual. Filename for the file is created
+  using "filename" parameter from the Content-Disposition header, or "name"
+  parameter from the Content-Type header if one of those exist; a serial
+  counter is prepended to the filename to avoid collisions; if there are no
+  name/filename parameters, the filename is just the serial counter. The file
+  is saved in the directory set with -O (default is the current directory).
 </para>
 </refsect1>
 
