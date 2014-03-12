@@ -459,7 +459,7 @@
             Append mask to a list of content types to save to a file;
             --save-headers saves only decoded headers of the message (or
             subpart); --save-body saves only decoded body; --save-message saves
-            the entire message (or subpart).
+            the entire message or subpart (headers + body).
          </para>
       </listitem>
    </varlistentry>
