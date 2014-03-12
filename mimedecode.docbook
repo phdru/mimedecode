@@ -491,21 +491,21 @@ cat input_file | mimedecode.py -o output_file</programlisting>
    The 5 list options (-Bbeit) require more explanation. They allow a user to
    control body decoding with great flexibility. Think about said mail archive;
    for example, its maintainer wants to put there only texts, convert
-   Postscript/PDF to text, pass HTML and images as is, and ignore everything
-   else. Easy:
+   PDF/Postscript to text, pass HTML and images as is (decoding base64 to html
+   but left images in base64), and ignore everything else. Easy:
 </para>
 
 <para>
 <code language="sh">
-   mimedecode.py -t application/postscript -t application/pdf -b text/html
-         -b 'image/*' -i '*/*'
+   mimedecode.py -t application/pdf -t application/postscript -b text/html
+         -B 'image/*' -i '*/*'
 </code>
 </para>
 
 <para>
    When the program decodes a message (non-MIME or a non-multipart subpart of a
    MIME message), it consults Content-Type header. The content type is searched
-   in all 4 lists, in order "text-binary-ignore-error". If found, appropriate
+   in all 5 lists, in order "text-binary-ignore-error". If found, appropriate
    action performed. If not found, the program search the same lists for
    "type/*" mask (the type of "text/html" is just "text"). If found,
    appropriate action performed. If not found, the program search the same
@@ -515,7 +515,7 @@ cat input_file | mimedecode.py -o output_file</programlisting>
 </para>
 
 <para>
-   Initially all 4 lists are empty, so without any additional parameters
+   Initially all 5 lists are empty, so without any additional parameters
 the program always uses the default decoding.
 </para>
 
