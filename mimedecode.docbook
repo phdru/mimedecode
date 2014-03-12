@@ -390,22 +390,23 @@
    </varlistentry>
 
    <varlistentry>
-      <term>-b mask</term>
-      <listitem>
-         <para>
-            Append mask to the list of binary content types; if the message to
-            decode has a part of this type the program will pass the part as is,
-            without any additional processing.
-         </para>
-      </listitem>
-   </varlistentry>
-
-   <varlistentry>
       <term>-B mask</term>
       <listitem>
          <para>
            Append mask to the list of binary content types that will be not
            content-transfer-decoded (will be left as base64 or such).
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
+      <term>-b mask</term>
+      <listitem>
+         <para>
+            Append mask to the list of binary content types; if the message to
+            decode has a part of this type the program will
+            content-transfer-decode (base64 or whatever to 8bit binary) it but
+            pass the part as is, without any further processing.
          </para>
       </listitem>
    </varlistentry>
