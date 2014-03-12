@@ -59,6 +59,7 @@ test_file msg_02.txt msg_02.txt --set-param=X-Test:test:set
 test_file msg_02.txt msg_02-1.txt --set-param=X-Mailer:test=set
 test_file msg_02.txt msg_02-1.txt --set-param=X-Mailer:test:set
 test_file msg_13.txt msg_13-1.txt -B '*/*'
+test_file msg_13.txt msg_13.txt -t 'text/*' -b 'image/*' -B '*/*'
 
 if [ "$RC" -eq 0 ]; then
    echo "All tests passed!"

@@ -312,7 +312,10 @@ def decode_part(msg):
 
     left_binary = False
     for content_type in masks:
-        if content_type in g.binary_mask:
+        if content_type in g.totext_mask or \
+           content_type in g.decoded_binary_mask:
+            break
+        elif content_type in g.binary_mask:
             left_binary = True
             break
 
