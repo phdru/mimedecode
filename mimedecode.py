@@ -341,7 +341,7 @@ def decode_part(msg):
             output("\nMessage body of type %s skipped.\n" % ctype)
             break
         elif content_type in g.error_mask:
-            raise ValueError, "content type %s prohibited" % ctype
+            break
     else:
         # Neither content type nor masks were listed - decode by default
         outstring = totext(msg, outstring)
@@ -353,6 +353,10 @@ def decode_part(msg):
             _save_message(msg, outstring, save_headers=False, save_body=True)
         elif content_type in g.save_message_mask:
             _save_message(msg, outstring, save_headers=True, save_body=True)
+
+    for content_type in masks:
+        if content_type in g.error_mask:
+            raise ValueError, "content type %s prohibited" % ctype
 
 def decode_multipart(msg):
     "Decode multipart"
