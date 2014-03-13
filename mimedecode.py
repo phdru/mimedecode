@@ -279,7 +279,7 @@ def _save_message(msg, outstring, save_headers=False, save_body=False):
 
     global output
     save_output = output
-    outfile = open(os.path.join(g.destination_dir, fname), 'w')
+    outfile = open_output_file(fname)
     output = outfile.write
     if save_headers:
         output_headers(msg)
@@ -393,6 +393,10 @@ def decode_message(msg):
         decode_part(msg)
     else: # Not a message, just text - copy it literally
         output(msg.as_string())
+
+
+def open_output_file(filename):
+    return open(os.path.join(g.destination_dir, filename), 'w')
 
 
 class GlobalOptions:
@@ -521,7 +525,7 @@ if __name__ == "__main__":
         g.input_filename = '-'
         infile = sys.stdin
         if g.output_filename:
-            outfile = open(os.path.join(g.destination_dir, g.output_filename), 'w')
+            outfile = open_output_file(g.output_filename)
         else:
             g.output_filename = '-'
             outfile = sys.stdout
@@ -534,7 +538,7 @@ if __name__ == "__main__":
             infile = open(arguments[0], 'r')
         if la == 1:
             if g.output_filename:
-                outfile = open(os.path.join(g.destination_dir, g.output_filename), 'w')
+                outfile = open_output_file(g.output_filename)
             else:
                 g.output_filename = '-'
                 outfile = sys.stdout
@@ -546,7 +550,7 @@ if __name__ == "__main__":
                 outfile = sys.stdout
             else:
                 g.output_filename = arguments[1]
-                outfile = open(os.path.join(g.destination_dir, g.output_filename), 'w')
+                outfile = open_output_file(g.output_filename)
     else:
         usage(1, 'Too many arguments')
 
