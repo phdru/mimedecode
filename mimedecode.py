@@ -565,7 +565,7 @@ if __name__ == "__main__":
     msg = email.message_from_file(infile)
 
     for header, value in g.set_header_value:
-        msg[header] = value
+        set_header(msg, header, value)
 
     for header, param, value in g.set_header_param:
         if header in msg:
