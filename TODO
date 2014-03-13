@@ -1,17 +1,26 @@
+Check filenames for --save-* for forbidden characters.
+
+
+Add tests for --save-*.
+
+
 Release 2.5.0.
 
 
-Add an option -I to completely skip (remove) subparts -- no headers, no body,
+Open all files in binary mode. Output os.linesep instead of '\n'.
+
+
+Add option -I to completely skip (remove) subparts -- no headers, no body,
 nothing.
 
 
 Extend options -eIi to multipart subparts.
 
 
-Never touch multipart/encrypted and multipart/signed.
+Never touch multipart/encrypted and multipart/signed (but allow -I).
 
 
-Add an option to convert dates to the current locale and timezone.
+Convert dates to the current locale and timezone (with an option?)
 
 
 Allow -d and -p accept shell-like patterns and/or regular expressions:
@@ -19,4 +28,4 @@ Allow -d and -p accept shell-like patterns and/or regular expressions:
 
 
 Add option --save-as='%format' to generate names for --save-* files. Develop
-a DSL to conditionally use values from headers and parameters.
+a DSL to conditionally use values of headers, parameters and the counter.
