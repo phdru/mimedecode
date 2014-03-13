@@ -34,12 +34,9 @@ def output_headers(msg):
     output("\n") # End of headers
 
 
-def recode(s, charset):
-    return unicode(s, charset, "replace").encode(g.default_encoding, "replace")
-
 def recode_if_needed(s, charset):
     if charset and charset.lower() <> g.default_encoding:
-        s = recode(s, charset)
+        s = unicode(s, charset, "replace").encode(g.default_encoding, "replace")
     return s
 
 
