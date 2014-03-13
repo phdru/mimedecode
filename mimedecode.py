@@ -396,7 +396,16 @@ def decode_message(msg):
 
 
 def open_output_file(filename):
-    return open(os.path.join(g.destination_dir, filename), 'w')
+    fullpath = os.path.abspath(os.path.join(g.destination_dir, filename))
+    full_dir = os.path.dirname(fullpath)
+    create = not os.path.isdir(full_dir)
+    if create:
+        os.makedirs(full_dir)
+    try:
+        return open(fullpath, 'w')
+    except:
+        if create:
+            os.removedirs(full_dir)
 
 
 class GlobalOptions:

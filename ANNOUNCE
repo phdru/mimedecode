@@ -38,6 +38,8 @@ headers/bodies/messages to files.
 
    Add option -O to set the destination directory for output files.
 
+   Create the directory for the output files (-O) if it doesn't exits.
+
    Fix a minor bug: if a multipart message (or a subpart) lacks any textual
 content - avoid putting an excessive newline.
 
