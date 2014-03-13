@@ -74,9 +74,6 @@ def decode_header(msg, header):
             set_header(msg, header, new_value)
 
 
-def _decode_header_param(s):
-    return recode_if_needed(s[2], s[0])
-
 def decode_header_param(msg, header, param):
     "Decode mail header's parameter (if exists) and put it back, if it was encoded"
 
@@ -84,7 +81,7 @@ def decode_header_param(msg, header, param):
         value = msg.get_param(param, header=header)
         if value:
             if isinstance(value, tuple):
-                new_value = _decode_header_param(value)
+                new_value = recode_if_needed(value[2], value[0])
             else:
                 new_value = _decode_header(value)
             if new_value <> value: # do not bother to touch msg if not changed
