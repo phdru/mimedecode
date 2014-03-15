@@ -4,7 +4,7 @@ cd "`dirname \"$0\"`" &&
 MAILCAPS="`pwd`"/.mailcap &&
 export MAILCAPS &&
 
-rm -rf tmp &&
+rm -rf save tmp &&
 mkdir tmp || exit 1
 
 RC=0
@@ -61,9 +61,42 @@ test_file msg_02.txt msg_02-1.txt --set-param=X-Mailer:test:set
 test_file msg_13.txt msg_13-1.txt -B '*/*'
 test_file msg_13.txt msg_13.txt -t 'text/*' -b 'image/*' -B '*/*'
 
+# Test --save-*
+test2() {
+   infile="$1"
+   shift
+   expfile="$1"
+   shift
+   savefile="$1"
+   shift
+   expsavefile="$1"
+   shift
+
+   test_file "$infile" "$expfile" -O save "$@"
+
+   if cmp -s expected-save/"$expsavefile" save/"$savefile"; then
+      rm save/"$savefile" && return 0 || return 1
+   else
+      return 1
+   fi
+}
+
+test_save() {
+   if test2 "$@"; then
+      echo "    save: ok"
+   else
+      echo "    save: fail"
+      RC=1
+   fi
+}
+
+test_save msg_07.txt msg_07.txt 1-dingusfish.gif msg_07-1.txt --save-headers image/gif
+test_save msg_07.txt msg_07.txt 1-dingusfish.gif msg_07-2.txt --save-body image/gif
+test_save msg_07.txt msg_07.txt 1-dingusfish.gif msg_07-3.txt --save-message image/gif
+
 if [ "$RC" -eq 0 ]; then
    echo "All tests passed!"
-   rmdir tmp
+   rmdir save tmp
 fi
 
 exit $RC
