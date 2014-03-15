@@ -8,7 +8,9 @@ umask 022 &&
 
 git archive --format=tar --prefix=mimedecode/ HEAD |
    (cd "$HOME/tmp" && exec tar xf -) &&
-cp -p mimedecode.man mimedecode.html mimedecode.txt "$HOME/tmp/mimedecode" &&
+
+cp -p mimedecode.docbook mimedecode.man mimedecode.html mimedecode.txt \
+   "$HOME/tmp/mimedecode" &&
 
 cd "$HOME/tmp/mimedecode" &&
 chmod a+r mimedecode.man mimedecode.html mimedecode.txt &&
