@@ -521,16 +521,18 @@ the program always uses the default decoding.
 </para>
 
 <para>
-  The 3 save list options (--save-headers/body/message) are similar. They make
-  the program to save every non-multipart subpart (only headers, or body, or
-  the entire subpart) that corresponds to the given mask to a file. Before
-  saving the message (or the subpart) is decoded according to all other options
-  and placed to the output stream as usual. Filename for the file is created
-  using "filename" parameter from the Content-Disposition header, or "name"
-  parameter from the Content-Type header if one of those exist; a serial
+  The 3 save options (--save-headers/body/message) are similar. They make the
+  program to save every non-multipart subpart (only headers, or body, or the
+  entire subpart: headers + body) that corresponds to the given mask to a file.
+  Before saving the message (or the subpart) is decoded according to all other
+  options and placed to the output stream as usual. Filename for the file is
+  created using "filename" parameter from the Content-Disposition header, or
+  "name" parameter from the Content-Type header if one of those exist; a serial
   counter is prepended to the filename to avoid collisions; if there are no
-  name/filename parameters, the filename is just the serial counter. The file
-  is saved in the directory set with -O (default is the current directory).
+  name/filename parameters, or the name/filename parameters contain forbidden
+  characters (null, slash, backslash) the filename is just the serial counter.
+  The file is saved in the directory set with -O (default is the current
+  directory).
 </para>
 </refsect1>
 

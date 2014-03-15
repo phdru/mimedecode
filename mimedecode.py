@@ -270,6 +270,12 @@ def _save_message(msg, outstring, save_headers=False, save_body=False):
     ):
         fname = msg.get_param(param, header=header)
         if fname:
+            try:
+                    for forbidden in chr(0), '/', '\\':
+                        if forbidden in fname:
+                            raise ValueError
+            except ValueError:
+                continue
             fname = '-' + fname
             break
     else:

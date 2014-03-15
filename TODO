@@ -1,6 +1,3 @@
-Check filenames for --save-* for forbidden characters.
-
-
 Add tests for --save-*.
 
 
