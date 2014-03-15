@@ -270,6 +270,8 @@ def _save_message(msg, outstring, save_headers=False, save_body=False):
     ):
         fname = msg.get_param(param, header=header)
         if fname:
+            if isinstance(fname, tuple):
+                fname = fname[2] # Do not recode if it isn't recoded yet
             try:
                     for forbidden in chr(0), '/', '\\':
                         if forbidden in fname:
