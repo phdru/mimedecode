@@ -321,8 +321,7 @@ def decode_part(msg):
     ctype = msg.get_content_type()
     if ctype:
         masks.append(ctype)
-    mtype = msg.get_content_maintype()
-    if mtype:
+        mtype = ctype.split('/')[0]
         masks.append(mtype + '/*')
     masks.append('*/*')
 
