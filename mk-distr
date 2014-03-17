@@ -9,6 +9,7 @@ umask 022 &&
 git archive --format=tar --prefix=mimedecode/ HEAD |
    (cd "$HOME/tmp" && exec tar xf -) &&
 
+# Copy mimedecode.docbook with timestamp to avoid rebuilding
 cp -p mimedecode.docbook mimedecode.man mimedecode.html mimedecode.txt \
    "$HOME/tmp/mimedecode" &&
 
