@@ -122,7 +122,7 @@
 </para>
 
 <para>
-   Here is the solution - mimedecode.py!
+   Here is a solution - mimedecode.py!
 </para>
 
 <para>
@@ -131,8 +131,8 @@
    message, and decodes to stdout or an output file. If the file is not an
    RFC822 message it is just copied to the output one-to-one. If the file is a
    simple RFC822 message it is decoded as one part. If it is a MIME message
-   with multiple parts ("attachments") all parts are decoded. Decoding can be
-   controlled by command-line options.
+   with multiple parts ("attachments") all non-multipart subparts are decoded.
+   Decoding can be controlled by the command-line options.
 </para>
 
 <para>
@@ -140,21 +140,22 @@
    -r and -R options. Then, Subject and Content-Disposition headers (and all
    headers listed with -d and -p options) are examined. If any of those exists,
    they are decoded according to RFC2047. Content-Disposition header is not
-   decoded - only its "filename" parameter. Encoded header parameters violate
-   the RFC, but widely deployed anyway by ignorant coders who never even heard
-   about RFCs. Correct parameter encoding specified by RFC2231. This program
-   decodes RFC2231-encoded parameters, too.
+   decoded (if it was not listed in option -d) - only its "filename" parameter.
+   Encoded header parameters violate the RFC, but widely deployed anyway by
+   ignorant coders who never even heard about RFCs. Correct parameter encoding
+   specified by RFC2231. This program decodes RFC2231-encoded parameters, too.
 </para>
 
 <para>
    Then the body of the message (or the current part) is decoded. Decoding
    starts with looking at header Content-Transfer-Encoding. If the header
    specifies non-8bit encoding (usually base64 or quoted-printable), the body
-   converted to 8bit. Then, if its content type is multipart (multipart/related
-   or multipart/mixed, e.g) every part is recursively decoded. If it is not
-   multipart, mailcap database is consulted to find a way to convert the body
-   to plain text. (I have no idea how mailcap can be configured on OSes other
-   than POSIX, please don't ask me; real OS users can consult my example at
+   is converted to 8bit (can be prevented with -B). Then if its content type
+   is multipart (multipart/related or multipart/mixed, e.g) every part is
+   recursively decoded. If it is not multipart, mailcap database is consulted
+   to find a way to convert the body to plain text (can be prevented with
+   options -Bbei). (The author has no idea how mailcap can be configured on
+   OSes other than POSIX, please don't ask; users can consult an example at
    <ulink url="http://phdru.name/Software/dotfiles/mailcap.html">http://phdru.name/Software/dotfiles/mailcap.html</ulink>).
    The decoding process uses the first copiousoutput filter it can find. If
    there are no filters the body just passed as is.
@@ -162,14 +163,14 @@
 
 <para>
    Then Content-Type header is consulted for charset. If it is not equal to the
-   current locale charset and recoding is allowed the body text is recoded.
-   Finally message headers and the body are flushed to stdout.
+   current locale charset and recoding is allowed (see options -Cc) the body
+   text is recoded. Finally message headers and the body are flushed to stdout.
 </para>
 </refsect1>
 
 <refsect1>
   <para>
-    Please be warned that in the following options asterisk is a shell
+    Please be reminded that in the following options asterisk is a shell
     metacharacter and should be escaped or quoted. Either write -d \*,-h1,-h2
     or -d '*,-h1,-h2' or such.
   </para>
@@ -221,7 +222,7 @@
       <term>-f charset</term>
       <listitem>
          <para>
-            Force this charset to be the current default charset instead of
+            Force this charset to be used for recoding instead of charset from
             the current locale.
          </para>
       </listitem>
@@ -254,10 +255,10 @@
       <listitem>
          <para>
            This variant completely changes headers decoding. First, the list of
-           headers to decode is cleared. Then all the headers are decoded
-           except the given list of exceptions (headers listed with '-'). In
-           this mode it would be meaningless to give more than one -d options
-           but the program doesn't enforce it.
+           headers to decode is cleared (as with -D). Then all the headers are
+           decoded except the given list of exceptions (headers listed with
+           '-'). In this mode it would be meaningless to give more than one -d
+           options but the program doesn't enforce the limitation.
          </para>
       </listitem>
    </varlistentry>
@@ -345,7 +346,7 @@
       <listitem>
          <para>
             Add the parameters(s) to a list of headers parameters to remove;
-            the parameters will be decoded only for the given header(s).
+            the parameters will be removed only for the given header(s).
             Initially the list is empty.
          </para>
       </listitem>
@@ -457,10 +458,11 @@
       <term>--save-message mask</term>
       <listitem>
          <para>
-            Append mask to a list of content types to save to a file;
+            Append mask to lists of content types to save to files;
             --save-headers saves only decoded headers of the message (or
-            subpart); --save-body saves only decoded body; --save-message saves
-            the entire message or subpart (headers + body).
+            the current subpart); --save-body saves only decoded body;
+            --save-message saves the entire message or subpart (headers +
+            body).
          </para>
       </listitem>
    </varlistentry>
@@ -492,14 +494,15 @@ cat input_file | mimedecode.py -o output_file</programlisting>
    The 5 list options (-Bbeit) require more explanation. They allow a user to
    control body decoding with great flexibility. Think about said mail archive;
    for example, its maintainer wants to put there only texts, convert
-   PDF/Postscript to text, pass HTML and images as is (decoding base64 to html
-   but left images in base64), and ignore everything else. Easy:
+   PDF/Postscript to text, pass HTML and images decoding base64 to html but
+   leaving images encoded, and ignore everything else. This is how it could be
+   done:
 </para>
 
 <para>
 <code language="sh">
-   mimedecode.py -t application/pdf -t application/postscript -b text/html
-         -B 'image/*' -i '*/*'
+  mimedecode.py -t application/pdf -t application/postscript -t text/plain
+      -b text/html -B 'image/*' -i '*/*'
 </code>
 </para>
 
@@ -507,17 +510,19 @@ cat input_file | mimedecode.py -o output_file</programlisting>
    When the program decodes a message (non-MIME or a non-multipart subpart of a
    MIME message), it consults Content-Type header. The content type is searched
    in all 5 lists, in order "text-binary-ignore-error". If found, appropriate
-   action performed. If not found, the program search the same lists for
+   action is performed. If not found, the program searches the same lists for
    "type/*" mask (the type of "text/html" is just "text"). If found,
-   appropriate action performed. If not found, the program search the same
-   lists for "*/*" mask. If found, appropriate action performed. If not found,
-   the program uses default action, which is to decode everything to text (if
-   mailcap specifies a filter).
+   appropriate action is performed. If not found, the program searches the same
+   lists for "*/*" mask. If found, appropriate action is performed. If not
+   found, the program uses the default action, which is to decode everything to
+   text (if mailcap specifies a filter). This algorithm allows more specific
+   content types to override less specific: -b image/* will be processed
+   earlier than -B */*.
 </para>
 
 <para>
    Initially all 5 lists are empty, so without any additional parameters
-the program always uses the default decoding.
+   the program always uses the default decoding (as -t */*).
 </para>
 
 <para>
@@ -525,14 +530,15 @@ the program always uses the default decoding.
   program to save every non-multipart subpart (only headers, or body, or the
   entire subpart: headers + body) that corresponds to the given mask to a file.
   Before saving the message (or the subpart) is decoded according to all other
-  options and placed to the output stream as usual. Filename for the file is
+  options and is placed to the output stream as usual. Filename for the file is
   created using "filename" parameter from the Content-Disposition header, or
   "name" parameter from the Content-Type header if one of those exist; a serial
   counter is prepended to the filename to avoid collisions; if there are no
   name/filename parameters, or the name/filename parameters contain forbidden
   characters (null, slash, backslash) the filename is just the serial counter.
   The file is saved in the directory set with -O (default is the current
-  directory).
+  directory). The save options are processed before option -e so the user can
+  save the message that causes the error.
 </para>
 </refsect1>
 
@@ -560,8 +566,8 @@ the program always uses the default decoding.
    From/To/Cc/Reply-To/Mail-Followup-To/Subject headers and filenames. Other
    than that output is correct MIME message. The program does not try to guess
    whether the headers are correct. For example, if a message header states
-   that charset is iso8859-5, but the body is actually in utf-8 the program
-   will recode the message with the wrong charset.
+   that charset is iso8859-1, but the body (HTML, for example) is actually in
+   utf-8 the program will recode the message with the wrong charset.
 </para>
 </refsect1>
 
