@@ -1,10 +1,9 @@
 #! /usr/bin/env python
 """Decode MIME message"""
 
-from mimedecode_version import __version__, __author__, __copyright__, __license__
-
 import sys, os
-import email
+from mimedecode_version import __version__, \
+    __author__, __copyright__, __license__
 
 me = os.path.basename(sys.argv[0])
 
@@ -263,6 +262,18 @@ def totext(msg, instring):
     return s
 
 
+mimetypes = None
+
+def _guess_extension(ctype):
+    global mimetypes
+    if mimetypes is None:
+        import mimetypes
+        mimetypes.init()
+        user_mime_type = os.path.expanduser('~/.mime.types')
+        if os.path.exists(user_mime_type):
+            mimetypes._db.read(user_mime_type)
+    return mimetypes.guess_extension(ctype)
+
 def _save_message(msg, outstring, save_headers=False, save_body=False):
     for header, param in (
         ("Content-Disposition", "filename"),
@@ -284,6 +295,9 @@ def _save_message(msg, outstring, save_headers=False, save_body=False):
         fname = ''
     g.save_counter += 1
     fname = str(g.save_counter) + fname
+    if '.' not in fname:
+        ext = _guess_extension(msg.get_content_type())
+        if ext: fname += ext
 
     global output
     save_output = output
@@ -583,6 +597,7 @@ if __name__ == "__main__":
     g.outfile = outfile
     output = outfile.write
 
+    import email
     msg = email.message_from_file(infile)
 
     for header, value in g.set_header_value:

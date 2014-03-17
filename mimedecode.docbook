@@ -536,9 +536,21 @@ cat input_file | mimedecode.py -o output_file</programlisting>
   counter is prepended to the filename to avoid collisions; if there are no
   name/filename parameters, or the name/filename parameters contain forbidden
   characters (null, slash, backslash) the filename is just the serial counter.
+</para>
+
+<para>
+  If the file doesn't have any extensions (no dots in the value of the
+  name/filename parameters, or the name is just the counter) the program tries
+  to guess an extension by looking up the content type in mime.types files
+  including .mime.types file in the user's home directory (if it exists). If
+  the file has an extension the program doesn't try to verify that it
+  corresponds to the content type.
+</para>
+
+<para>
   The file is saved in the directory set with -O (default is the current
-  directory). The save options are processed before option -e so the user can
-  save the message that causes the error.
+  directory). The save options are proceeded before -e options so the user can
+  save the message that causes an error.
 </para>
 </refsect1>
 

@@ -93,6 +93,7 @@ test_save() {
 test_save msg_07.txt msg_07.txt 1-dingusfish.gif msg_07-1.txt --save-headers image/gif
 test_save msg_07.txt msg_07.txt 1-dingusfish.gif msg_07-2.txt --save-body image/gif
 test_save msg_07.txt msg_07.txt 1-dingusfish.gif msg_07-3.txt --save-message image/gif
+test_save msg_07-1.txt msg_07-1.txt 1-dingusfish.gif msg_07-4.txt --save-message image/gif
 
 if [ "$RC" -eq 0 ]; then
    echo "All tests passed!"
