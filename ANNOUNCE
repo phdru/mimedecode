@@ -23,7 +23,7 @@ parts ("attachments") all parts are decoded. Decoding can be controlled by
 command-line options.
 
 
-WHAT'S NEW in version 2.5.0 (2014-03-??)
+WHAT'S NEW in version 2.5.0 (2014-03-18)
 
    Add option --set-header=header:value to set header's value (only at the top
 level).
@@ -37,8 +37,6 @@ level).
 headers/bodies/messages to files.
 
    Add option -O to set the destination directory for output files.
-
-   Create the directory for the output files (-O) if it doesn't exits.
 
    Fix a minor bug: if a multipart message (or a subpart) lacks any textual
 content - avoid putting an excessive newline.
