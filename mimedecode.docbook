@@ -364,7 +364,7 @@
       <term>-R *[,-header1,-header2,-header3,...]:*[,-param1,-param2,-param3,...]</term>
       <listitem>
          <para>
-           Remove listed parameters (or all parameters except listed) frome
+           Remove listed parameters (or all parameters except listed) from
            these headers (or from all headers except listed).
          </para>
       </listitem>
