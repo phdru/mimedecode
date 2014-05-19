@@ -1,0 +1,12 @@
+#! /bin/sh
+
+current="`git config --get remote.current.url`" &&
+
+git pull --ff-only current master && git push web &&
+
+# Copy mimedecode.docbook with timestamp to avoid rebuilding
+rsync -ahP "$current"/mimedecode.docbook "$current"/mimedecode.man \
+           "$current"/mimedecode.html "$current"/mimedecode.txt . &&
+
+cd "$current" &&
+exec git pull origin
