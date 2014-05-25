@@ -20,17 +20,17 @@ def usage(code=0, errormsg=''):
         Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header1[,h2,h3,...]:param1[,p2,p3,...]] [--set-header header:value] [--set-param header:param=value] [-Bbeit mask] [--save-headers|body|message mask] [-O dest_dir] [-o output_file] [input_file [output_file]]
 """ % me)
     if errormsg:
-        sys.stderr.write(errormsg + '\n')
+        sys.stderr.write(errormsg + os.linesep)
     sys.exit(code)
 
 
 def output_headers(msg):
     unix_from = msg.get_unixfrom()
     if unix_from:
-        output(unix_from + '\n')
+        output(unix_from + os.linesep)
     for key, value in msg.items():
-        output("%s: %s\n" % (key, value))
-    output("\n") # End of headers
+        output("%s: %s%s" % (key, value, os.linesep))
+    output(os.linesep) # End of headers
 
 
 def recode_if_needed(s, charset):
@@ -222,9 +222,9 @@ def decode_body(msg, s):
     if not command:
         return s
 
-    file = open(filename, 'w')
-    file.write(s)
-    file.close()
+    outfile = open(filename, 'wb')
+    outfile.write(s)
+    outfile.close()
 
     pipe = os.popen(command, 'r')
     s = pipe.read()
@@ -353,7 +353,7 @@ def decode_part(msg):
             break
         elif content_type in g.ignore_mask:
             output_headers(msg)
-            output("\nMessage body of type %s skipped.\n" % ctype)
+            output("%sMessage body of type %s skipped.%s" % (os.linesep, ctype, os.linesep))
             break
         elif content_type in g.error_mask:
             break
@@ -382,7 +382,7 @@ def decode_multipart(msg):
     if msg.preamble: # Preserve the first part, it is probably not a RFC822-message
         output(msg.preamble) # Usually it is just a few lines of text (MIME warning)
     if msg.preamble is not None:
-        output("\n")
+        output(os.linesep)
 
     first_subpart = True
     boundary = msg.get_boundary()
@@ -392,14 +392,14 @@ def decode_multipart(msg):
             if first_subpart:
                 first_subpart = False
             else:
-                output("\n")
-            output("--%s\n" % boundary)
+                output(os.linesep)
+            output("--%s%s" % (boundary, os.linesep))
 
         # Recursively decode all parts of the subpart
         decode_message(subpart)
 
     if boundary:
-        output("\n--%s--\n" % boundary)
+        output("%s--%s--%s" % (os.linesep, boundary, os.linesep))
 
     if msg.epilogue:
         output(msg.epilogue)
@@ -423,7 +423,7 @@ def open_output_file(filename):
     if create:
         os.makedirs(full_dir)
     try:
-        return open(fullpath, 'w')
+        return open(fullpath, 'wb')
     except:
         if create:
             os.removedirs(full_dir)

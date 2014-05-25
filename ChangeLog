@@ -1,3 +1,8 @@
+Version 2.5.1 (2014-04-??)
+
+   Open all files in binary mode. Output os.linesep instead of '\n'.
+
+
 Version 2.5.0 (2014-03-18)
 
    Add option --set-header=header:value to set header's value (only at the top

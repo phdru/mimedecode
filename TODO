@@ -1,6 +1,3 @@
-Open all files in binary mode. Output os.linesep instead of '\n'.
-
-
 Add option -I to completely skip (remove) subparts -- no headers, no body,
 no boundary, nothing.
 
