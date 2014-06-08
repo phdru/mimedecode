@@ -2,6 +2,8 @@ Version 2.5.1 (2014-04-??)
 
    Open all files in binary mode. Output os.linesep instead of '\n'.
 
+   Test --save-headers|body|message masks one after another to allow
+   saving a message or a subpart to more than one file.
 
 Version 2.5.0 (2014-03-18)
 

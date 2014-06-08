@@ -364,9 +364,9 @@ def decode_part(msg):
     for content_type in masks:
         if content_type in g.save_headers_mask:
             _save_message(msg, outstring, save_headers=True, save_body=False)
-        elif content_type in g.save_body_mask:
+        if content_type in g.save_body_mask:
             _save_message(msg, outstring, save_headers=False, save_body=True)
-        elif content_type in g.save_message_mask:
+        if content_type in g.save_message_mask:
             _save_message(msg, outstring, save_headers=True, save_body=True)
 
     for content_type in masks:
