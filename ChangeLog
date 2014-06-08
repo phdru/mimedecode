@@ -1,6 +1,6 @@
-Version 2.5.1 (2014-04-??)
+Version 2.6.0 (2014-06-18)
 
-   Make options -e/-i to work with multipart messages.
+   Make options -e/-i to work with multipart subparts.
 
    Add option -I to completely ignore a part - no headers, no body,
    no warning.

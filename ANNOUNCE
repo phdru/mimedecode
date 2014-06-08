@@ -23,6 +23,18 @@ parts ("attachments") all parts are decoded. Decoding can be controlled by
 command-line options.
 
 
+Version 2.6.0 (2014-06-18)
+
+   Make options -e/-i to work with multipart subparts.
+
+   Add option -I to completely ignore a part - no headers, no body,
+   no warning.
+
+   Open all output files in binary mode. Output os.linesep instead of '\n'.
+
+   Test --save-headers|body|message masks one after another to allow
+   saving a message or a subpart to more than one file.
+
 WHAT'S NEW in version 2.5.0 (2014-03-18)
 
    Add option --set-header=header:value to set header's value (only at the top
