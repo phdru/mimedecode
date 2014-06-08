@@ -1,7 +1,3 @@
-Add option -I to completely skip (remove) subparts -- no headers, no body,
-no boundary, nothing.
-
-
 Never touch multipart/encrypted and multipart/signed (but allow -I).
 
 

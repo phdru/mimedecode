@@ -333,6 +333,8 @@ def decode_part(msg):
         elif content_type in g.binary_mask:
             left_binary = True
             break
+        elif content_type in g.fully_ignore_mask:
+            return
 
     encoding = msg["Content-Transfer-Encoding"]
     if left_binary or encoding in (None, '', '7bit', '8bit', 'binary'):
@@ -388,7 +390,9 @@ def decode_multipart(msg):
     masks.append('*/*')
 
     for content_type in masks:
-        if content_type in g.ignore_mask:
+        if content_type in g.fully_ignore_mask:
+            return
+        elif content_type in g.ignore_mask:
             output_headers(msg)
             output("%sMessage body of type %s skipped.%s" % (os.linesep, ctype, os.linesep))
             if boundary:
@@ -476,7 +480,8 @@ class GlobalOptions:
     totext_mask = [] # A list of content-types to decode
     binary_mask = [] # A list of content-types to pass through
     decoded_binary_mask = [] # A list of content-types to pass through (content-transfer-decoded)
-    ignore_mask = [] # Ignore (skip, do not decode and do not include into output)
+    ignore_mask = [] # Ignore (do not decode and do not include into output) but output a warning instead of the body
+    fully_ignore_mask = [] # Completely ignore - no headers, no body, no warning
     error_mask = []  # Raise error if encounter one of these
 
     save_counter = 0
@@ -496,7 +501,7 @@ def get_opts():
 
     try:
         options, arguments = getopt(sys.argv[1:],
-            'hVcCDPH:f:d:p:r:R:b:B:e:i:t:O:o:',
+            'hVcCDPH:f:d:p:r:R:b:B:e:I:i:t:O:o:',
             ['help', 'version', 'host=',
              'save-headers=', 'save-body=', 'save-message=',
              'set-header=', 'set-param='])
@@ -545,6 +550,8 @@ def get_opts():
             g.binary_mask.append(value)
         elif option == '-b':
             g.decoded_binary_mask.append(value)
+        elif option == '-I':
+            g.fully_ignore_mask.append(value)
         elif option == '-i':
             g.ignore_mask.append(value)
         elif option == '-e':

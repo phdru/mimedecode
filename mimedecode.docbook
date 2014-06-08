@@ -90,7 +90,7 @@
          <option>--set-param header:param=value</option>
       </arg>
       <arg choice="opt">
-         <option>-Bbeit mask</option>
+         <option>-BbeIit mask</option>
       </arg>
       <arg choice="opt">
          <option>--save-headers|body|message mask</option>
@@ -423,6 +423,17 @@
    </varlistentry>
 
    <varlistentry>
+      <term>-I mask</term>
+      <listitem>
+         <para>
+            Append mask to the list of content types to completely ignore.
+            There will be no output - no headers, no body, no warning. For a
+            multipart part the entire subtree is removed.
+         </para>
+      </listitem>
+   </varlistentry>
+
+   <varlistentry>
       <term>-i mask</term>
       <listitem>
          <para>
@@ -521,9 +532,9 @@ cat input_file | mimedecode.py -o output_file</programlisting>
 </para>
 
 <para>
-  Options -e/-i can also work with multipart subparts of a MIME message. In
-  case of -i the entire subtree of that multipart is removed and replaced with
-  ignore warning.
+  Options -e/-I/-i can also work with multipart subparts of a MIME message. In
+  case of -I/-i the entire subtree of that multipart is removed; with -i it's
+  replaced with ignore warning.
 </para>
 
 <para>

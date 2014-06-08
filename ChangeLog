@@ -2,6 +2,9 @@ Version 2.5.1 (2014-04-??)
 
    Make options -e/-i to work with multipart messages.
 
+   Add option -I to completely ignore a part - no headers, no body,
+   no warning.
+
    Open all output files in binary mode. Output os.linesep instead of '\n'.
 
    Test --save-headers|body|message masks one after another to allow
