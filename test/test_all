@@ -60,6 +60,7 @@ test_file msg_02.txt msg_02-1.txt --set-param=X-Mailer:test=set
 test_file msg_02.txt msg_02-1.txt --set-param=X-Mailer:test:set
 test_file msg_13.txt msg_13-1.txt -B '*/*'
 test_file msg_13.txt msg_13.txt -t 'text/*' -b 'image/*' -B '*/*'
+test_file msg_36.txt msg_36-1.txt -i multipart/alternative
 
 # Test --save-*
 test2() {

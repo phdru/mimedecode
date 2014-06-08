@@ -1,5 +1,7 @@
 Version 2.5.1 (2014-04-??)
 
+   Make option -i to work with multipart messages.
+
    Open all files in binary mode. Output os.linesep instead of '\n'.
 
    Test --save-headers|body|message masks one after another to allow

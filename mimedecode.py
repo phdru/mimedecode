@@ -377,6 +377,24 @@ def decode_multipart(msg):
     "Decode multipart"
 
     decode_headers(msg)
+    boundary = msg.get_boundary()
+
+    masks = []
+    ctype = msg.get_content_type()
+    if ctype:
+        masks.append(ctype)
+        mtype = ctype.split('/')[0]
+        masks.append(mtype + '/*')
+    masks.append('*/*')
+
+    for content_type in masks:
+        if content_type in g.ignore_mask:
+            output_headers(msg)
+            output("%sMessage body of type %s skipped.%s" % (os.linesep, ctype, os.linesep))
+            if boundary:
+                output("%s--%s--%s" % (os.linesep, boundary, os.linesep))
+            return
+
     output_headers(msg)
 
     if msg.preamble: # Preserve the first part, it is probably not a RFC822-message
@@ -385,8 +403,6 @@ def decode_multipart(msg):
         output(os.linesep)
 
     first_subpart = True
-    boundary = msg.get_boundary()
-
     for subpart in msg.get_payload():
         if boundary:
             if first_subpart:
