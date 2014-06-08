@@ -276,8 +276,8 @@
       <term>-p header1[,header2,header3,...]:param1[,param2,param3,...]</term>
       <listitem>
          <para>
-            Add the parameters(s) to a list of headers parameters to decode;
-            the parameters will be decoded only for the given header(s).
+            Add the parameter(s) to a list of headers parameters to decode;
+            the parameter(s) will be decoded only for the given header(s).
             Initially the list contains header "Content-Type", parameter "name";
             and header "Content-Disposition", parameter "filename".
          </para>
@@ -288,8 +288,8 @@
       <term>-p *[,-header1,-header2,-header3,...]:param1[,param2,param3,...]</term>
       <listitem>
          <para>
-            Add the parameters(s) to a list of headers parameters to decode;
-            the parameters will be decoded for all headers except the given
+            Add the parameter(s) to a list of headers parameters to decode;
+            the parameter(s) will be decoded for all headers except the given
             ones.
          </para>
       </listitem>
@@ -345,8 +345,8 @@
       <term>-R header1[,header2,header3,...]:param1[,param2,param3,...]</term>
       <listitem>
          <para>
-            Add the parameters(s) to a list of headers parameters to remove;
-            the parameters will be removed only for the given header(s).
+            Add the parameter(s) to a list of headers parameters to remove;
+            the parameter(s) will be removed only for the given header(s).
             Initially the list is empty.
          </para>
       </listitem>
