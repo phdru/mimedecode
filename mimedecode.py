@@ -394,6 +394,8 @@ def decode_multipart(msg):
             if boundary:
                 output("%s--%s--%s" % (os.linesep, boundary, os.linesep))
             return
+        elif content_type in g.error_mask:
+            raise ValueError, "content type %s prohibited" % ctype
 
     output_headers(msg)
 

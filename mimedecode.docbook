@@ -521,9 +521,9 @@ cat input_file | mimedecode.py -o output_file</programlisting>
 </para>
 
 <para>
-  Option -i can also ignore a multipart subpart of a MIME message. In that case
-  the entire subtree of that multipart is removed and replaced with ignore
-  warning.
+  Options -e/-i can also work with multipart subparts of a MIME message. In
+  case of -i the entire subtree of that multipart is removed and replaced with
+  ignore warning.
 </para>
 
 <para>

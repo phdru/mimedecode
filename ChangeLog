@@ -1,6 +1,6 @@
 Version 2.5.1 (2014-04-??)
 
-   Make option -i to work with multipart messages.
+   Make options -e/-i to work with multipart messages.
 
    Open all files in binary mode. Output os.linesep instead of '\n'.
 
