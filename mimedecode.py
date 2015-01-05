@@ -398,7 +398,35 @@ def decode_multipart(msg):
             if boundary:
                 output("%s--%s--%s" % (os.linesep, boundary, os.linesep))
             return
-        elif content_type in g.error_mask:
+
+    for content_type in masks:
+        if content_type in g.save_body_mask or \
+                content_type in g.save_message_mask:
+            _out_l = []
+            first_subpart = True
+            for subpart in msg.get_payload():
+                if first_subpart:
+                    first_subpart = False
+                else:
+                    _out_l.append(os.linesep)
+                _out_l.append("--%s%s" % (boundary, os.linesep))
+                _out_l.append(subpart.as_string())
+            _out_l.append("%s--%s--%s" % (os.linesep, boundary, os.linesep))
+            outstring = ''.join(_out_l)
+            break
+    else:
+        outstring = None
+
+    for content_type in masks:
+        if content_type in g.save_headers_mask:
+            _save_message(msg, outstring, save_headers=True, save_body=False)
+        if content_type in g.save_body_mask:
+            _save_message(msg, outstring, save_headers=False, save_body=True)
+        if content_type in g.save_message_mask:
+            _save_message(msg, outstring, save_headers=True, save_body=True)
+
+    for content_type in masks:
+        if content_type in g.error_mask:
             raise ValueError, "content type %s prohibited" % ctype
 
     output_headers(msg)

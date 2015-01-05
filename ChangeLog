@@ -1,3 +1,7 @@
+Version 2.7.0 (2015-??-??)
+
+   Make options --save-headers|body|message to work with multipart subparts.
+
 Version 2.6.0 (2014-06-08)
 
    Make options -e/-i to work with multipart subparts.
