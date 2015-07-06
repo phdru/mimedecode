@@ -2,8 +2,10 @@
 
 "$HOME"/admin/prog/git-scripts/update || exit 1
 
-current="`git config --get --path remote.current.url`"
+current="`pwd`"
+origin="`git config --get --path remote.origin.url`"
 
 # Copy mimedecode.docbook with timestamp to avoid rebuilding
+cd "$origin"
 exec rsync -ahP "$current"/mimedecode.docbook "$current"/mimedecode.man \
                 "$current"/mimedecode.html "$current"/mimedecode.txt .
