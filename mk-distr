@@ -1,12 +1,8 @@
 #! /bin/sh
 
-if [ -n "$1" ]; then
-   git checkout "$1"
-fi &&
-
 umask 022 &&
 
-git archive --format=tar --prefix=mimedecode/ HEAD |
+git archive --format=tar --prefix=mimedecode/ "${1:-HEAD}" |
    (cd "$HOME/tmp" && exec tar xf -) &&
 
 # Copy mimedecode.docbook with timestamp to avoid rebuilding
