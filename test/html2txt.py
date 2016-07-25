@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+from __future__ import print_function
 
 import sys
 from m_lib.net.www.html import HTMLFilter
@@ -10,4 +11,4 @@ filter = HTMLFilter()
 filter.feed(html)
 filter.close()
 
-print filter.accumulator
+print(filter.accumulator)
