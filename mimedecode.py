@@ -34,7 +34,7 @@ def output_headers(msg):
 
 
 def recode_if_needed(s, charset):
-    if charset and charset.lower() <> g.default_encoding:
+    if charset and charset.lower() != g.default_encoding:
         s = unicode(s, charset, "replace").encode(g.default_encoding, "replace")
     return s
 
@@ -69,7 +69,7 @@ def decode_header(msg, header):
     if msg.has_key(header):
         value = msg[header]
         new_value = _decode_header(value)
-        if new_value <> value: # do not bother to touch msg if not changed
+        if new_value != value: # do not bother to touch msg if not changed
             set_header(msg, header, new_value)
 
 
@@ -83,7 +83,7 @@ def decode_header_param(msg, header, param):
                 new_value = recode_if_needed(value[2], value[0])
             else:
                 new_value = _decode_header(value)
-            if new_value <> value: # do not bother to touch msg if not changed
+            if new_value != value: # do not bother to touch msg if not changed
                 msg.set_param(param, new_value, header)
 
 
@@ -241,7 +241,7 @@ def recode_charset(msg, s):
     "Recode charset of the message to the default charset"
 
     save_charset = charset = msg.get_content_charset()
-    if charset and charset.lower() <> g.default_encoding:
+    if charset and charset.lower() != g.default_encoding:
         s = recode_if_needed(s, charset)
         content_type = msg.get_content_type()
         set_content_type(msg, content_type, g.default_encoding)
