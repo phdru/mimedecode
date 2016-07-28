@@ -35,7 +35,7 @@ def output_headers(msg):
 
 def recode_if_needed(s, charset):
     if charset and charset.lower() != g.default_encoding:
-        s = unicode(s, charset, "replace").encode(g.default_encoding, "replace")
+        s = s.decode(charset, "replace").encode(g.default_encoding, "replace")
     return s
 
 
