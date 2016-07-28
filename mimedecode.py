@@ -66,7 +66,7 @@ def _decode_header(s):
 def decode_header(msg, header):
     "Decode mail header (if exists) and put it back, if it was encoded"
 
-    if msg.has_key(header):
+    if header in msg:
         value = msg[header]
         new_value = _decode_header(value)
         if new_value != value: # do not bother to touch msg if not changed
@@ -76,7 +76,7 @@ def decode_header(msg, header):
 def decode_header_param(msg, header, param):
     "Decode mail header's parameter (if exists) and put it back, if it was encoded"
 
-    if msg.has_key(header):
+    if header in msg:
         value = msg.get_param(param, header=header)
         if value:
             if isinstance(value, tuple):
@@ -181,7 +181,7 @@ def decode_headers(msg):
 def set_header(msg, header, value):
     "Replace header"
 
-    if msg.has_key(header):
+    if header in msg:
         msg.replace_header(header, value)
     else:
         msg[header] = value
@@ -211,8 +211,8 @@ def decode_body(msg, s):
 
     entries = mailcap.lookup(caps, content_type, "view")
     for entry in entries:
-        if entry.has_key('copiousoutput'):
-            if entry.has_key('test'):
+        if 'copiousoutput' in entry:
+            if 'test' in entry:
                 test = mailcap.subst(entry['test'], content_type, filename)
                 if test and os.system(test) != 0:
                     continue
