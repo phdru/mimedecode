@@ -373,7 +373,7 @@ def decode_part(msg):
 
     for content_type in masks:
         if content_type in g.error_mask:
-            raise ValueError, "content type %s prohibited" % ctype
+            raise ValueError("content type %s prohibited" % ctype)
 
 def decode_multipart(msg):
     "Decode multipart"
@@ -427,7 +427,7 @@ def decode_multipart(msg):
 
     for content_type in masks:
         if content_type in g.error_mask:
-            raise ValueError, "content type %s prohibited" % ctype
+            raise ValueError("content type %s prohibited" % ctype)
 
     output_headers(msg)
 
