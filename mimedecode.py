@@ -43,9 +43,9 @@ def _decode_header(s):
     """Return a decoded string according to RFC 2047.
     NOTE: This is almost the same as email.Utils.decode.
     """
-    import email.Header
+    import email.header
 
-    L = email.Header.decode_header(s)
+    L = email.header.decode_header(s)
     if not isinstance(L, list):
         # s wasn't decoded
         return s
