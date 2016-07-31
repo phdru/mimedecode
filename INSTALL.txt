@@ -25,4 +25,4 @@ directory to your $PATH or move the script to a directory in your $PATH.
 
 Installation using pip:
 
-   pip install --find-links=http://phdru.name/Software/Python/ --no-index --install-option='-O2' [--user] mimedecode
+   [sudo] pip install --find-links=http://phdru.name/Software/Python/ --no-index --install-option='-O2' [--user] mimedecode
