@@ -17,7 +17,7 @@ Broytman mimedecode.py version %s, %s
 def usage(code=0, errormsg=''):
     version(0)
     sys.stdout.write("""\
-        Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header1[,h2,h3,...]:param1[,p2,p3,...]] [--set-header header:value] [--set-param header:param=value] [-Bbeit mask] [--save-headers|body|message mask] [-O dest_dir] [-o output_file] [input_file [output_file]]
+Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header1[,h2,h3,...]:param1[,p2,p3,...]] [--set-header header:value] [--set-param header:param=value] [-Bbeit mask] [--save-headers|body|message mask] [-O dest_dir] [-o output_file] [input_file [output_file]]
 """ % me)
     if errormsg:
         sys.stderr.write(errormsg + os.linesep)
