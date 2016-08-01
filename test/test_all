@@ -101,9 +101,13 @@ test_save msg_07.txt msg_07.txt 1.dig msg_07-5.txt --save-headers multipart/mixe
 test_save msg_07.txt msg_07.txt 1.dig msg_07-6.txt --save-body multipart/mixed
 test_save msg_07.txt msg_07.txt 1.dig msg_07-7.txt --save-message multipart/mixed
 
+echo
+
 if [ "$RC" -eq 0 ]; then
    echo "All tests passed!"
    rmdir save tmp
+else
+   echo "ERRORS!"
 fi
 
 exit $RC
