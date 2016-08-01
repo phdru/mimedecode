@@ -32,7 +32,11 @@ def output_headers(msg):
     for key, value in msg.items():
         output(key)
         output(": ")
-        output(value)
+        value = value.split(';', 1)
+        output(value[0])
+        if len(value) == 2:
+            output(";")
+            output(_decode_header(value[1], strip=False))
         output(os.linesep)
     output(os.linesep) # End of headers
 
