@@ -49,7 +49,7 @@ def recode_if_needed(s, charset):
     return s
 
 
-def _decode_header(s):
+def _decode_header(s, strip=True):
     """Return a decoded string according to RFC 2047.
     NOTE: This is almost the same as email.Utils.decode.
     """
@@ -62,15 +62,14 @@ def _decode_header(s):
 
     rtn = []
     for atom, charset in L:
-        if charset is None:
-            charset = g.default_encoding
-        rtn.append(recode_if_needed(atom, charset))
-        rtn.append(' ')
-    del rtn[-1] # remove the last space
+        atom = recode_if_needed(atom, charset or g.default_encoding)
+        if strip:
+            atom = atom.strip()
+        rtn.append(atom)
 
     # Now that we've decoded everything, we just need to join all the parts
     # together into the final string.
-    return ''.join(rtn)
+    return ' '.join(rtn)
 
 def decode_header(msg, header):
     "Decode mail header (if exists) and put it back, if it was encoded"
