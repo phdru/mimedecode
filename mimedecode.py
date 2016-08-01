@@ -27,15 +27,25 @@ Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [
 def output_headers(msg):
     unix_from = msg.get_unixfrom()
     if unix_from:
-        output(unix_from + os.linesep)
+        output(unix_from)
+        output(os.linesep)
     for key, value in msg.items():
-        output("%s: %s%s" % (key, value, os.linesep))
+        output(key)
+        output(": ")
+        output(value)
+        output(os.linesep)
     output(os.linesep) # End of headers
 
 
 def recode_if_needed(s, charset):
-    if charset and charset.lower() != g.default_encoding:
-        s = s.decode(charset, "replace").encode(g.default_encoding, "replace")
+    if bytes is str: # Python2
+        if isinstance(s, bytes) and \
+                charset and charset.lower() != g.default_encoding:
+            s = s.decode(charset, "replace").\
+                encode(g.default_encoding, "replace")
+    else: # Python3
+        if isinstance(s, bytes):
+            s = s.decode(charset, "replace")
     return s
 
 
@@ -53,9 +63,8 @@ def _decode_header(s):
     rtn = []
     for atom, charset in L:
         if charset is None:
-            rtn.append(atom)
-        else:
-            rtn.append(recode_if_needed(atom, charset))
+            charset = g.default_encoding
+        rtn.append(recode_if_needed(atom, charset))
         rtn.append(' ')
     del rtn[-1] # remove the last space
 
@@ -223,6 +232,8 @@ def decode_body(msg, s):
         return s
 
     outfile = open(filename, 'wb')
+    if not isinstance(s, bytes):
+        s = s.encode(g.default_encoding, "replace")
     outfile.write(s)
     outfile.close()
 
@@ -302,7 +313,11 @@ def _save_message(msg, outstring, save_headers=False, save_body=False):
     global output
     save_output = output
     outfile = open_output_file(fname)
-    output = outfile.write
+    def _output_bytes(s):
+        if not isinstance(s, bytes):
+            s = s.encode(g.default_encoding, "replace")
+        outfile.write(s)
+    output = _output_bytes
     if save_headers:
         output_headers(msg)
     if save_body:
@@ -647,7 +662,14 @@ if __name__ == "__main__":
         g.host_name = socket.gethostname()
 
     g.outfile = outfile
-    output = outfile.write
+    if hasattr(outfile, 'buffer'):
+        def output_bytes(s):
+            if not isinstance(s, bytes):
+                s = s.encode(g.default_encoding, "replace")
+            outfile.buffer.write(s)
+        output = output_bytes
+    else:
+        output = outfile.write
 
     import email
     msg = email.message_from_file(infile)
