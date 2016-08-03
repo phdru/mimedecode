@@ -247,12 +247,16 @@ def decode_body(msg, s):
     outfile.close()
 
     pipe = os.popen(command, 'r')
-    s = pipe.read()
-    pipe.close()
+    new_s = pipe.read()
+    if pipe.close() is None: # result=0, Ok
+        s = new_s
     os.remove(filename)
 
     set_content_type(msg, "text/plain")
-    msg["X-MIME-Autoconverted"] = "from %s to text/plain by %s id %s" % (content_type, g.host_name, command.split()[0])
+    if s is new_s:
+        msg["X-MIME-Autoconverted"] = "from %s to text/plain by %s id %s" % (content_type, g.host_name, command.split()[0])
+    else:
+        msg["X-MIME-Autoconverted"] = "failed conversion from %s to text/plain by %s id %s" % (content_type, g.host_name, command.split()[0])
 
     return s
 
