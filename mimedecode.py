@@ -218,6 +218,10 @@ def decode_body(msg, s):
         caps = mailcap.getcaps()
 
     content_type = msg.get_content_type()
+    if content_type.startswith('text/'):
+        charset = msg.get_content_charset()
+    else:
+        charset = None
     filename = tempfile.mktemp()
     command = None
 
@@ -235,6 +239,8 @@ def decode_body(msg, s):
         return s
 
     outfile = open(filename, 'wb')
+    if charset and isinstance(s, bytes):
+        s = s.decode(charset, "replace")
     if not isinstance(s, bytes):
         s = s.encode(g.default_encoding, "replace")
     outfile.write(s)
