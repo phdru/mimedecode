@@ -1,3 +1,6 @@
+Process message/delivery-status and text/rfc822-headers subparts.
+
+
 Python 3.
 
 
