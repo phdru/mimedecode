@@ -15,7 +15,7 @@ test1() {
    expfile="$1"
    shift
 
-   ../mimedecode.py -H test -f utf-8 "$@" input/"$infile" >tmp/"$expfile" || return 1
+   $PYTHON ../mimedecode.py -H test -f utf-8 "$@" input/"$infile" >tmp/"$expfile" || return 1
    if cmp -s expected/"$expfile" tmp/"$expfile"; then
       rm tmp/"$expfile" && return 0 || return 1
    else
