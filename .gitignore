@@ -1,4 +1,5 @@
 *.py[co]
+/mimedecode.egg-info/
 /MANIFEST
 /mimedecode.html
 /mimedecode.man
