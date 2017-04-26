@@ -10,11 +10,11 @@ Installation using pip:
 
     System-wide:
 
-    sudo pip install --find-links=http://phdru.name/Software/Python/ --no-index --install-option='-O2' mimedecode
+    sudo pip install --trusted-host phdru.name --find-links=http://phdru.name/Software/Python/ --install-option='-O2' mimedecode
 
     User mode:
 
-    pip install --find-links=http://phdru.name/Software/Python/ --no-index --install-option='-O2' --user mimedecode
+    pip install --trusted-host phdru.name --find-links=http://phdru.name/Software/Python/ --install-option='-O2' --user mimedecode
 
 Installation from sources:
 
