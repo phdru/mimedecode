@@ -9,7 +9,8 @@ except ImportError:
 
 kw = {}
 if is_setuptools:
-    kw['install_requires'] = ['m_lib>=2.0']
+    kw['install_requires'] = ['m_lib.defenc>=1.0']
+    kw['tests_require'] = ['m_lib>=3.1']
 
 from mimedecode_version import __version__, __copyright__, __license__
 

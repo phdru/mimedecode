@@ -1,5 +1,7 @@
 Version 2.7.0 (2015-??-??)
 
+   Use m_lib.defenc instead of m_lib; install it from PyPI.
+
    Make options --save-headers|body|message to work with multipart subparts.
 
 Version 2.6.0 (2014-06-08)

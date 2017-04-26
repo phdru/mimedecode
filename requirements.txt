@@ -1,6 +1,3 @@
---trusted-host phdru.name
---find-links=http://phdru.name/Software/Python/
 --install-option=-O2
 
-m_lib>=2.0; python_version >= '2.6' and python_version < '3.0'
-m_lib>=3.0.1; python_version >= '3.4'
+m_lib.defenc>=1.0
