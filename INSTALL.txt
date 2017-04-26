@@ -16,6 +16,10 @@ Installation using pip:
 
     pip install --trusted-host phdru.name --find-links=http://phdru.name/Software/Python/ --install-option='-O2' --user mimedecode
 
+    Virtual envs:
+
+    pip install --trusted-host phdru.name --find-links=http://phdru.name/Software/Python/ --install-option='-O2' mimedecode
+
 Installation from sources:
 
     To install the program from sources system-wide run run the following
