@@ -1,7 +1,10 @@
-Process message/delivery-status and text/rfc822-headers subparts.
+GitHub, Travis, AppVeyor, PyPI.
 
 
 Python 3.
+
+
+Process message/delivery-status and text/rfc822-headers subparts.
 
 
 Never decode subparts of multipart/encrypted and multipart/signed messages but
