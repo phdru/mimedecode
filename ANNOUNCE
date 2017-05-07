@@ -23,35 +23,10 @@ parts ("attachments") all parts are decoded. Decoding can be controlled by
 command-line options.
 
 
-Version 2.6.0 (2014-06-08)
+Version 2.8.0 (2017-05-??)
 
-   Make options -e/-i to work with multipart subparts.
+   Stop supporting Python 2.6.
 
-   Add option -I to completely ignore a part - no headers, no body,
-   no warning.
-
-   Open all output files in binary mode. Output os.linesep instead of '\n'.
-
-   Test --save-headers|body|message masks one after another to allow
-   saving a message or a subpart to more than one file.
-
-WHAT'S NEW in version 2.5.0 (2014-03-18)
-
-   Add option --set-header=header:value to set header's value (only at the top
-level).
-
-   Add option --set-param=header:param=value to set header parameter's value
-(only at the top level). The header must exist.
-
-   Add option -B to skip content-transfer-decoding binary attachments.
-
-   Add options --save-headers, --save-body and --save-message to save decoded
-headers/bodies/messages to files.
-
-   Add option -O to set the destination directory for output files.
-
-   Fix a minor bug: if a multipart message (or a subpart) lacks any textual
-content - avoid putting an excessive newline.
 
 
 WHERE TO GET
@@ -59,7 +34,7 @@ WHERE TO GET
     git clone http://git.phdru.name/mimedecode.git
     git clone  git://git.phdru.name/mimedecode.git
 
-   Requires: Python 2.6+, m_lib 3.1+, m_lib.defenc 1.0+.
+   Requires: Python 2.7+, m_lib 3.1+, m_lib.defenc 1.0+.
 
    Recommends: configured mailcap database.
 

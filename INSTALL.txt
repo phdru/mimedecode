@@ -1,4 +1,4 @@
-mimedecode requires Python2; preferred versions are 2.6 or 2.7.
+mimedecode requires Python2.7.
 
 Installation script setup.py requires setuptools. If you don't have it
 installed setup.py will try to download and install it.
