@@ -34,7 +34,7 @@ setup(name = "mimedecode",
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 2 :: Only',
     ],
-    py_modules = ['mimedecode_version'],
+    py_modules = ['formatparam_27', 'mimedecode_version'],
     scripts = ['mimedecode.py'],
     **kw
 )

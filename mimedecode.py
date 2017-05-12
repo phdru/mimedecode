@@ -4,6 +4,10 @@
 import sys, os
 from mimedecode_version import __version__, \
     __author__, __copyright__, __license__
+if sys.version_info[0] >= 3:
+    # Replace email.message._formatparam with _formatparam from Python 2.7
+    # to avoid re-encoding non-ascii params.
+    import formatparam_27
 
 me = os.path.basename(sys.argv[0])
 
