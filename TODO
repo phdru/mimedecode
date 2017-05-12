@@ -1,7 +1,10 @@
-GitHub, Travis, AppVeyor, PyPI.
-
-
 Python 3.
+
+
+flake8.
+
+
+GitHub, Travis, AppVeyor, PyPI.
 
 
 Process message/delivery-status and text/rfc822-headers subparts.
