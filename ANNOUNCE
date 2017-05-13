@@ -34,12 +34,14 @@ WHERE TO GET
     git clone http://git.phdru.name/mimedecode.git
     git clone  git://git.phdru.name/mimedecode.git
 
-   Requires: Python 2.7+, m_lib 3.1+, m_lib.defenc 1.0+.
+   Requires: Python 2.7+, m_lib.defenc 1.0+.
+   Tests require: m_lib 3.1+.
 
    Recommends: configured mailcap database.
 
    Documentation: http://phdru.name/Software/Python/mimedecode.html
       (also included in the package in html, man and txt formats).
+
 
 AUTHOR
    Oleg Broytman <phd@phdru.name>
