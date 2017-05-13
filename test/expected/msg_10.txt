@@ -22,7 +22,7 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode.py
 
-Â¡This is a Quoted Printable encoded message!
+¡This is a Quoted Printable encoded message!
 
 
 --BOUNDARY

@@ -243,7 +243,7 @@ def decode_body(msg, s):
         return s
 
     outfile = open(filename, 'wb')
-    if charset and isinstance(s, bytes):
+    if charset and bytes is not str and isinstance(s, bytes):  # Python3
         s = s.decode(charset, "replace")
     if not isinstance(s, bytes):
         s = s.encode(g.default_encoding, "replace")
