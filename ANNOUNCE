@@ -27,6 +27,11 @@ Version 2.8.0 (2017-05-??)
 
    Stop supporting Python 2.6.
 
+   Monkey-patch email.message._formatparam under Python 3:
+   replace it with _formatparam from Python 2.7
+   to avoid re-encoding non-ascii params.
+
+   Fix: do not decode bytes to unicode under Python 2.7.
 
 
 WHERE TO GET
