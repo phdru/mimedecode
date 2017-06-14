@@ -8,6 +8,8 @@ Version 2.8.0 (2017-05-??)
 
    Fix: do not decode bytes to unicode under Python 2.7.
 
+   Fixed last problems with Python 3.
+
 Version 2.7.0 (2017-04-26)
 
    Use m_lib.defenc instead of m_lib; install it from PyPI.

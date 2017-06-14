@@ -8,11 +8,19 @@ rm -rf save tmp &&
 mkdir tmp || exit 1
 
 RC=0
+if [ `$PYTHON -c "import sys; print(sys.version[0])"` -eq 2 ]; then
+   PY3=NO
+else
+   PY3=YES
+fi
 
 test1() {
    infile="$1"
    shift
    expfile="$1"
+   if [ $PY3 = YES -a -f expected/"$expfile"-py3 ]; then
+      expfile="$expfile"-py3
+   fi
    shift
 
    $PYTHON ../mimedecode.py -H test -f utf-8 "$@" input/"$infile" >tmp/"$expfile" || return 1
