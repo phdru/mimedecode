@@ -1,4 +1,5 @@
 global-include Makefile* *.py *.txt
 include ANNOUNCE ChangeLog MANIFEST.in TODO
-include mimedecode.docbook mimedecode.man mimedecode.html mk-distr
+include mimedecode.docbook mimedecode.man mimedecode.html
+include mk-distr tox.ini
 include test/.mailcap test/README test/test_all

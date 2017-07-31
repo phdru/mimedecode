@@ -1,13 +1,18 @@
 #! /bin/sh
 
 cd "`dirname \"$0\"`" &&
-MAILCAPS="`pwd`"/.mailcap &&
-export MAILCAPS &&
-
 rm -rf save tmp &&
 mkdir tmp || exit 1
 
+LC_CTYPE=c.UTF-8 &&
+export LC_CTYPE &&
+
+MAILCAPS="`pwd`"/.mailcap &&
+export MAILCAPS &&
+
+: ${PYTHON:=python}
 RC=0
+
 if [ `$PYTHON -c "import sys; print(sys.version[0])"` -eq 2 ]; then
    PY3=NO
 else
