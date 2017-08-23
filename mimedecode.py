@@ -2,6 +2,7 @@
 """Decode MIME message"""
 
 import sys, os
+import subprocess
 from mimedecode_version import __version__, \
     __author__, __copyright__, __license__
 if sys.version_info[0] >= 3:
@@ -250,9 +251,10 @@ def decode_body(msg, s):
     outfile.write(s)
     outfile.close()
 
-    pipe = os.popen(command, 'r')
-    new_s = pipe.read()
-    if pipe.close() is None: # result=0, Ok
+    pipe = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+    new_s = pipe.stdout.read()
+    pipe.stdout.close()
+    if pipe.wait() == 0: # result=0, Ok
         s = new_s
     os.remove(filename)
 
