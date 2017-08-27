@@ -23,7 +23,9 @@ parts ("attachments") all parts are decoded. Decoding can be controlled by
 command-line options.
 
 
-Version 2.8.0 (2017-05-??)
+Version 2.8.0 (2017-08-??)
+
+   Python 3.
 
    Stop supporting Python 2.6.
 
@@ -39,8 +41,8 @@ WHERE TO GET
     git clone http://git.phdru.name/mimedecode.git
     git clone  git://git.phdru.name/mimedecode.git
 
-   Requires: Python 2.7+, m_lib.defenc 1.0+.
-   Tests require: m_lib 3.1+.
+   Requires: Python 2.7 or Python 3.4+, m_lib.defenc 1.0+.
+   Tests require: tox, m_lib 3.1+.
 
    Recommends: configured mailcap database.
 

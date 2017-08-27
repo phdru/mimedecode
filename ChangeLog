@@ -1,4 +1,6 @@
-Version 2.8.0 (2017-05-??)
+Version 2.8.0 (2017-08-??)
+
+   Python 3.
 
    Stop supporting Python 2.6.
 
@@ -7,8 +9,6 @@ Version 2.8.0 (2017-05-??)
    to avoid re-encoding non-ascii params.
 
    Fix: do not decode bytes to unicode under Python 2.7.
-
-   Fixed last problems with Python 3.
 
 Version 2.7.0 (2017-04-26)
 
