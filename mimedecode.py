@@ -256,13 +256,15 @@ def decode_body(msg, s):
     pipe.stdout.close()
     if pipe.wait() == 0: # result=0, Ok
         s = new_s
-    os.remove(filename)
-
-    set_content_type(msg, "text/plain")
-    if s is new_s:
+        if bytes is not str and isinstance(s, bytes):  # Python3
+            s = s.decode(g.default_encoding, "replace")
+        if charset and not isinstance(s, bytes):
+            s = s.encode(charset, "replace")
+        set_content_type(msg, "text/plain")
         msg["X-MIME-Autoconverted"] = "from %s to text/plain by %s id %s" % (content_type, g.host_name, command.split()[0])
     else:
         msg["X-MIME-Autoconverted"] = "failed conversion from %s to text/plain by %s id %s" % (content_type, g.host_name, command.split()[0])
+    os.remove(filename)
 
     return s
 
