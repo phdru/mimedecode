@@ -105,7 +105,7 @@ def decode_header_param(msg, header, param):
 
 
 def _get_exceptions(list):
-    return [x[1:].lower() for x in list[1:] if x[0]=='-']
+    return [x[1:].lower() for x in list[1:] if x[0] == '-']
 
 def _decode_headers_params(msg, header, decode_all_params, param_list):
     if decode_all_params:
