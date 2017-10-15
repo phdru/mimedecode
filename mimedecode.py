@@ -342,10 +342,12 @@ def _save_message(msg, outstring, save_headers=False, save_body=False):
     global output
     save_output = output
     outfile = open_output_file(fname)
+
     def _output_bytes(s):
         if not isinstance(s, bytes):
             s = s.encode(g.default_encoding, "replace")
         outfile.write(s)
+
     output = _output_bytes
     if save_headers:
         output_headers(msg)
