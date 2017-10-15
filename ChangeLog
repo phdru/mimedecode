@@ -10,6 +10,8 @@ Version 2.8.0 (2017-10-??)
 
    Stop supporting Python 2.6.
 
+   Code cleanup: fixed flake8 errors and warnings.
+
 Version 2.7.0 (2017-04-26)
 
    Use m_lib.defenc instead of m_lib; install it from PyPI.

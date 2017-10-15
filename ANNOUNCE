@@ -35,6 +35,8 @@ Version 2.8.0 (2017-10-??)
 
    Stop supporting Python 2.6.
 
+   Code cleanup: fixed flake8 errors and warnings.
+
 
 WHERE TO GET
    Home page: http://phdru.name/Software/Python/#mimedecode
