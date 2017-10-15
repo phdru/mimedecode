@@ -566,6 +566,7 @@ class GlobalOptions:
     output_filename = None
     destination_dir = os.curdir
 
+
 g = GlobalOptions
 
 
