@@ -14,7 +14,8 @@ if is_setuptools:
 
 from mimedecode_version import __version__, __copyright__, __license__
 
-setup(name = "mimedecode",
+setup(
+    name = "mimedecode",
     version = __version__,
     description = "A program to decode MIME messages",
     long_description = "A program to decode MIME messages. " + __copyright__,

@@ -564,7 +564,8 @@ def get_opts():
     from getopt import getopt, GetoptError
 
     try:
-        options, arguments = getopt(sys.argv[1:],
+        options, arguments = getopt(
+            sys.argv[1:],
             'hVcCDPH:f:d:p:r:R:b:B:e:I:i:t:O:o:',
             ['help', 'version', 'host=',
              'save-headers=', 'save-body=', 'save-message=',
