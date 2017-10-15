@@ -27,7 +27,7 @@ def usage(code=0, errormsg=''):
     version(0)
     sys.stdout.write("""\
 Usage: %s [-h|--help] [-V|--version] [-cCDP] [-H|--host=hostname] [-f charset] [-d header1[,h2,...]|*[,-h1,...]] [-p header1[,h2,h3,...]:param1[,p2,p3,...]] [-r header1[,h2,...]|*[,-h1,...]] [-R header1[,h2,h3,...]:param1[,p2,p3,...]] [--set-header header:value] [--set-param header:param=value] [-Bbeit mask] [--save-headers|body|message mask] [-O dest_dir] [-o output_file] [input_file [output_file]]
-""" % me)
+""" % me)  # noqa: E501
     if errormsg:
         sys.stderr.write(errormsg + os.linesep)
     sys.exit(code)
@@ -96,8 +96,11 @@ def decode_header(msg, header):
 
 
 def decode_header_param(msg, header, param):
-    "Decode mail header's parameter (if exists) and put it back, if it was encoded"
+    """Decode mail header's parameter
 
+    Decode mail header's parameter (if exists)
+    and put it back if it was encoded.
+    """
     if header in msg:
         value = msg.get_param(param, header=header)
         if value:
@@ -164,17 +167,20 @@ def decode_headers(msg):
     for header_list, param_list in g.remove_headers_params:
         header_list = header_list.split(',')
         param_list = param_list.split(',')
-        remove_all_params = param_list[0] == '*'  # Remove all params except listed
+        # Remove all params except listed.
+        remove_all_params = param_list[0] == '*'
         if remove_all_params:
             param_list = _get_exceptions(param_list)
         if header_list[0] == '*':  # Remove for all headers except listed
             header_list = _get_exceptions(header_list)
             for header in msg.keys():
                 if header.lower() not in header_list:
-                    _remove_headers_params(msg, header, remove_all_params, param_list)
+                    _remove_headers_params(
+                        msg, header, remove_all_params, param_list)
         else:  # Decode for listed headers
             for header in header_list:
-                _remove_headers_params(msg, header, remove_all_params, param_list)
+                _remove_headers_params(
+                    msg, header, remove_all_params, param_list)
 
     for header_list in g.decode_headers:
         header_list = header_list.split(',')
@@ -190,17 +196,20 @@ def decode_headers(msg):
     for header_list, param_list in g.decode_header_params:
         header_list = header_list.split(',')
         param_list = param_list.split(',')
-        decode_all_params = param_list[0] == '*'  # Decode all params except listed
+        # Decode all params except listed.
+        decode_all_params = param_list[0] == '*'
         if decode_all_params:
             param_list = _get_exceptions(param_list)
         if header_list[0] == '*':  # Decode for all headers except listed
             header_list = _get_exceptions(header_list)
             for header in msg.keys():
                 if header.lower() not in header_list:
-                    _decode_headers_params(msg, header, decode_all_params, param_list)
+                    _decode_headers_params(
+                        msg, header, decode_all_params, param_list)
         else:  # Decode for listed headers
             for header in header_list:
-                _decode_headers_params(msg, header, decode_all_params, param_list)
+                _decode_headers_params(
+                    msg, header, decode_all_params, param_list)
 
 
 def set_header(msg, header, value):
@@ -271,9 +280,13 @@ def decode_body(msg, s):
         if charset and not isinstance(s, bytes):
             s = s.encode(charset, "replace")
         set_content_type(msg, "text/plain")
-        msg["X-MIME-Autoconverted"] = "from %s to text/plain by %s id %s" % (content_type, g.host_name, command.split()[0])
+        msg["X-MIME-Autoconverted"] = \
+            "from %s to text/plain by %s id %s" \
+            % (content_type, g.host_name, command.split()[0])
     else:
-        msg["X-MIME-Autoconverted"] = "failed conversion from %s to text/plain by %s id %s" % (content_type, g.host_name, command.split()[0])
+        msg["X-MIME-Autoconverted"] = \
+            "failed conversion from %s to text/plain by %s id %s" \
+            % (content_type, g.host_name, command.split()[0])
     os.remove(filename)
 
     return s
@@ -287,7 +300,9 @@ def recode_charset(msg, s):
         s = recode_if_needed(s, charset)
         content_type = msg.get_content_type()
         set_content_type(msg, content_type, g.default_encoding)
-        msg["X-MIME-Autoconverted"] = "from %s to %s by %s id %s" % (save_charset, g.default_encoding, g.host_name, me)
+        msg["X-MIME-Autoconverted"] = \
+            "from %s to %s by %s id %s" \
+            % (save_charset, g.default_encoding, g.host_name, me)
     return s
 
 
@@ -392,7 +407,8 @@ def decode_part(msg):
     else:  # Decode from transfer ecoding to text or binary form
         outstring = msg.get_payload(decode=1)
         set_header(msg, "Content-Transfer-Encoding", "8bit")
-        msg["X-MIME-Autoconverted"] = "from %s to 8bit by %s id %s" % (encoding, g.host_name, me)
+        msg["X-MIME-Autoconverted"] = \
+            "from %s to 8bit by %s id %s" % (encoding, g.host_name, me)
 
     for content_type in masks:
         if content_type in g.totext_mask:
@@ -405,7 +421,8 @@ def decode_part(msg):
             break
         elif content_type in g.ignore_mask:
             output_headers(msg)
-            output("%sMessage body of type %s skipped.%s" % (os.linesep, ctype, os.linesep))
+            output("%sMessage body of type %s skipped.%s"
+                   % (os.linesep, ctype, os.linesep))
             break
         elif content_type in g.error_mask:
             break
@@ -445,7 +462,8 @@ def decode_multipart(msg):
             return
         elif content_type in g.ignore_mask:
             output_headers(msg)
-            output("%sMessage body of type %s skipped.%s" % (os.linesep, ctype, os.linesep))
+            output("%sMessage body of type %s skipped.%s"
+                   % (os.linesep, ctype, os.linesep))
             if boundary:
                 output("%s--%s--%s" % (os.linesep, boundary, os.linesep))
             return
@@ -482,8 +500,10 @@ def decode_multipart(msg):
 
     output_headers(msg)
 
-    if msg.preamble:  # Preserve the first part, it is probably not a RFC822-message
-        output(msg.preamble)  # Usually it is just a few lines of text (MIME warning)
+    # Preserve the first part, it is probably not a RFC822-message.
+    if msg.preamble:
+        # Usually it is just a few lines of text (MIME warning).
+        output(msg.preamble)
     if msg.preamble is not None:
         output(os.linesep)
 
@@ -558,9 +578,13 @@ class GlobalOptions:
 
     totext_mask = []  # A list of content-types to decode
     binary_mask = []  # A list of content-types to pass through
-    decoded_binary_mask = []  # A list of content-types to pass through (content-transfer-decoded)
-    ignore_mask = []  # Ignore (do not decode and do not include into output) but output a warning instead of the body
-    fully_ignore_mask = []  # Completely ignore - no headers, no body, no warning
+    # A list of content-types to pass through (content-transfer-decoded).
+    decoded_binary_mask = []
+    # Ignore (do not decode and do not include into output)
+    # but output a warning instead of the body.
+    ignore_mask = []
+    # Completely ignore - no headers, no body, no warning.
+    fully_ignore_mask = []
     error_mask = []  # Raise error if encounter one of these
 
     save_counter = 0
