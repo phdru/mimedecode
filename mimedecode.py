@@ -20,7 +20,8 @@ def version(exit=1):
     sys.stdout.write("""\
 Broytman mimedecode.py version %s, %s
 """ % (__version__, __copyright__))
-    if exit: sys.exit(0)
+    if exit:
+        sys.exit(0)
 
 
 def usage(code=0, errormsg=''):
@@ -356,7 +357,8 @@ def _save_message(msg, outstring, save_headers=False, save_body=False):
     fname = str(g.save_counter) + fname
     if '.' not in fname:
         ext = _guess_extension(msg.get_content_type())
-        if ext: fname += ext
+        if ext:
+            fname += ext
 
     global output
     save_output = output
