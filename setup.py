@@ -7,12 +7,12 @@ except ImportError:
     from distutils.core import setup
     is_setuptools = False
 
+from mimedecode_version import __version__, __copyright__, __license__
+
 kw = {}
 if is_setuptools:
     kw['install_requires'] = ['m_lib.defenc>=1.0']
     kw['tests_require'] = ['m_lib>=3.1']
-
-from mimedecode_version import __version__, __copyright__, __license__
 
 setup(
     name="mimedecode",
