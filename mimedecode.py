@@ -43,16 +43,16 @@ def output_headers(msg):
             output(";")
             output(_decode_header(value[1], strip=False))
         output(os.linesep)
-    output(os.linesep) # End of headers
+    output(os.linesep)  # End of headers
 
 
 def recode_if_needed(s, charset):
-    if bytes is str: # Python2
+    if bytes is str:  # Python2
         if isinstance(s, bytes) and \
                 charset and charset.lower() != g.default_encoding:
             s = s.decode(charset, "replace").\
                 encode(g.default_encoding, "replace")
-    else: # Python3
+    else:  # Python3
         if isinstance(s, bytes):
             s = s.decode(charset, "replace")
     return s
@@ -86,7 +86,7 @@ def decode_header(msg, header):
     if header in msg:
         value = msg[header]
         new_value = _decode_header(value)
-        if new_value != value: # do not bother to touch msg if not changed
+        if new_value != value:  # do not bother to touch msg if not changed
             set_header(msg, header, new_value)
 
 
@@ -100,7 +100,7 @@ def decode_header_param(msg, header, param):
                 new_value = recode_if_needed(value[2], value[0])
             else:
                 new_value = _decode_header(value)
-            if new_value != value: # do not bother to touch msg if not changed
+            if new_value != value:  # do not bother to touch msg if not changed
                 msg.set_param(param, new_value, header)
 
 
@@ -128,11 +128,11 @@ def _remove_headers_params(msg, header, remove_all_params, param_list):
                         msg.del_param(param, header)
             else:
                 value = msg[header]
-                if value is None: # No such header
+                if value is None:  # No such header
                     return
-                if ';' not in value: # There are no parameters
+                if ';' not in value:  # There are no parameters
                     return
-                del msg[header] # Delete all such headers
+                del msg[header]  # Delete all such headers
                 # Get the value without parameters and set it back
                 msg[header] = value.split(';')[0].strip()
     else:
@@ -144,53 +144,53 @@ def decode_headers(msg):
 
     for header_list in g.remove_headers:
         header_list = header_list.split(',')
-        if header_list[0] == '*': # Remove all headers except listed
+        if header_list[0] == '*':  # Remove all headers except listed
             header_list = _get_exceptions(header_list)
             for header in msg.keys():
                 if header.lower() not in header_list:
                     del msg[header]
-        else: # Remove listed headers
+        else:  # Remove listed headers
             for header in header_list:
                 del msg[header]
 
     for header_list, param_list in g.remove_headers_params:
         header_list = header_list.split(',')
         param_list = param_list.split(',')
-        remove_all_params = param_list[0] == '*' # Remove all params except listed
+        remove_all_params = param_list[0] == '*'  # Remove all params except listed
         if remove_all_params:
             param_list = _get_exceptions(param_list)
-        if header_list[0] == '*': # Remove for all headers except listed
+        if header_list[0] == '*':  # Remove for all headers except listed
             header_list = _get_exceptions(header_list)
             for header in msg.keys():
                 if header.lower() not in header_list:
                     _remove_headers_params(msg, header, remove_all_params, param_list)
-        else: # Decode for listed headers
+        else:  # Decode for listed headers
             for header in header_list:
                 _remove_headers_params(msg, header, remove_all_params, param_list)
 
     for header_list in g.decode_headers:
         header_list = header_list.split(',')
-        if header_list[0] == '*': # Decode all headers except listed
+        if header_list[0] == '*':  # Decode all headers except listed
             header_list = _get_exceptions(header_list)
             for header in msg.keys():
                 if header.lower() not in header_list:
                     decode_header(msg, header)
-        else: # Decode listed headers
+        else:  # Decode listed headers
             for header in header_list:
                 decode_header(msg, header)
 
     for header_list, param_list in g.decode_header_params:
         header_list = header_list.split(',')
         param_list = param_list.split(',')
-        decode_all_params = param_list[0] == '*' # Decode all params except listed
+        decode_all_params = param_list[0] == '*'  # Decode all params except listed
         if decode_all_params:
             param_list = _get_exceptions(param_list)
-        if header_list[0] == '*': # Decode for all headers except listed
+        if header_list[0] == '*':  # Decode for all headers except listed
             header_list = _get_exceptions(header_list)
             for header in msg.keys():
                 if header.lower() not in header_list:
                     _decode_headers_params(msg, header, decode_all_params, param_list)
-        else: # Decode for listed headers
+        else:  # Decode for listed headers
             for header in header_list:
                 _decode_headers_params(msg, header, decode_all_params, param_list)
 
@@ -211,7 +211,7 @@ def set_content_type(msg, newtype, charset=None):
         msg.set_param("charset", charset, "Content-Type")
 
 
-caps = None # Globally stored mailcap database; initialized only if needed
+caps = None  # Globally stored mailcap database; initialized only if needed
 
 def decode_body(msg, s):
     "Decode body to plain text using first copiousoutput filter from mailcap"
@@ -254,7 +254,7 @@ def decode_body(msg, s):
     pipe = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
     new_s = pipe.stdout.read()
     pipe.stdout.close()
-    if pipe.wait() == 0: # result=0, Ok
+    if pipe.wait() == 0:  # result=0, Ok
         s = new_s
         if bytes is not str and isinstance(s, bytes):  # Python3
             s = s.decode(g.default_encoding, "replace")
@@ -314,7 +314,7 @@ def _save_message(msg, outstring, save_headers=False, save_body=False):
         fname = msg.get_param(param, header=header)
         if fname:
             if isinstance(fname, tuple):
-                fname = fname[2] # Do not recode if it isn't recoded yet
+                fname = fname[2]  # Do not recode if it isn't recoded yet
             try:
                     for forbidden in chr(0), '/', '\\':
                         if forbidden in fname:
@@ -375,7 +375,7 @@ def decode_part(msg):
     encoding = msg["Content-Transfer-Encoding"]
     if left_binary or encoding in (None, '', '7bit', '8bit', 'binary'):
         outstring = msg.get_payload()
-    else: # Decode from transfer ecoding to text or binary form
+    else:  # Decode from transfer ecoding to text or binary form
         outstring = msg.get_payload(decode=1)
         set_header(msg, "Content-Transfer-Encoding", "8bit")
         msg["X-MIME-Autoconverted"] = "from %s to 8bit by %s id %s" % (encoding, g.host_name, me)
@@ -467,8 +467,8 @@ def decode_multipart(msg):
 
     output_headers(msg)
 
-    if msg.preamble: # Preserve the first part, it is probably not a RFC822-message
-        output(msg.preamble) # Usually it is just a few lines of text (MIME warning)
+    if msg.preamble:  # Preserve the first part, it is probably not a RFC822-message
+        output(msg.preamble)  # Usually it is just a few lines of text (MIME warning)
     if msg.preamble is not None:
         output(os.linesep)
 
@@ -496,9 +496,9 @@ def decode_message(msg):
 
     if msg.is_multipart():
         decode_multipart(msg)
-    elif len(msg): # Simple one-part message (there are headers) - decode it
+    elif len(msg):  # Simple one-part message (there are headers) - decode it
         decode_part(msg)
-    else: # Not a message, just text - copy it literally
+    else:  # Not a message, just text - copy it literally
         output(msg.as_string())
 
 
@@ -517,7 +517,7 @@ def open_output_file(filename):
 
 class GlobalOptions:
     from m_lib.defenc import default_encoding
-    recode_charset = 1 # recode charset of message body
+    recode_charset = 1  # recode charset of message body
 
     host_name = None
 
@@ -541,11 +541,11 @@ class GlobalOptions:
     # A list of header/parameter/value triples to set
     set_header_param = []
 
-    totext_mask = [] # A list of content-types to decode
-    binary_mask = [] # A list of content-types to pass through
-    decoded_binary_mask = [] # A list of content-types to pass through (content-transfer-decoded)
-    ignore_mask = [] # Ignore (do not decode and do not include into output) but output a warning instead of the body
-    fully_ignore_mask = [] # Completely ignore - no headers, no body, no warning
+    totext_mask = []  # A list of content-types to decode
+    binary_mask = []  # A list of content-types to pass through
+    decoded_binary_mask = []  # A list of content-types to pass through (content-transfer-decoded)
+    ignore_mask = []  # Ignore (do not decode and do not include into output) but output a warning instead of the body
+    fully_ignore_mask = []  # Completely ignore - no headers, no body, no warning
     error_mask = []  # Raise error if encounter one of these
 
     save_counter = 0
