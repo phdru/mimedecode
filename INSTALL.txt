@@ -1,7 +1,7 @@
-mimedecode requires Python2.7.
+mimedecode requires Python2.7 or 3.4+.
 
-Installation script setup.py requires setuptools. If you don't have it
-installed setup.py will try to download and install it.
+Docs: setup.py doesn't try to download setuptools
+Installation script setup.py requires setuptools.
 
 mimedecode requires m_lib library. If you don't have it installed
 setup.py will try to download and install it after installing mimedecode.
