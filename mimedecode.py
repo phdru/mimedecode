@@ -385,7 +385,7 @@ def decode_part(msg):
             outstring = totext(msg, outstring)
             break
         elif content_type in g.binary_mask or \
-             content_type in g.decoded_binary_mask:
+                content_type in g.decoded_binary_mask:
             output_headers(msg)
             output(outstring)
             break
