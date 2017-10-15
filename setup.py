@@ -15,16 +15,16 @@ if is_setuptools:
 from mimedecode_version import __version__, __copyright__, __license__
 
 setup(
-    name = "mimedecode",
-    version = __version__,
-    description = "A program to decode MIME messages",
-    long_description = "A program to decode MIME messages. " + __copyright__,
-    author = "Oleg Broytman",
-    author_email = "phd@phdru.name",
-    url = "http://phdru.name/Software/Python/#mimedecode",
-    license = __license__,
+    name="mimedecode",
+    version=__version__,
+    description="A program to decode MIME messages",
+    long_description="A program to decode MIME messages. " + __copyright__,
+    author="Oleg Broytman",
+    author_email="phd@phdru.name",
+    url="http://phdru.name/Software/Python/#mimedecode",
+    license=__license__,
     keywords=['email', 'MIME'],
-    platforms = "Any",
+    platforms="Any",
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
@@ -40,7 +40,7 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
-    py_modules = ['formatparam_27', 'mimedecode_version'],
-    scripts = ['mimedecode.py'],
+    py_modules=['formatparam_27', 'mimedecode_version'],
+    scripts=['mimedecode.py'],
     **kw
 )
