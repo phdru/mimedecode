@@ -19,6 +19,7 @@ Broytman mimedecode.py version %s, %s
 """ % (__version__, __copyright__))
     if exit: sys.exit(0)
 
+
 def usage(code=0, errormsg=''):
     version(0)
     sys.stdout.write("""\
@@ -80,6 +81,7 @@ def _decode_header(s, strip=True):
     # together into the final string.
     return ' '.join(rtn)
 
+
 def decode_header(msg, header):
     "Decode mail header (if exists) and put it back, if it was encoded"
 
@@ -107,6 +109,7 @@ def decode_header_param(msg, header, param):
 def _get_exceptions(list):
     return [x[1:].lower() for x in list[1:] if x[0] == '-']
 
+
 def _decode_headers_params(msg, header, decode_all_params, param_list):
     if decode_all_params:
         params = msg.get_params(header=header)
@@ -117,6 +120,7 @@ def _decode_headers_params(msg, header, decode_all_params, param_list):
     else:
         for param in param_list:
             decode_header_param(msg, header, param)
+
 
 def _remove_headers_params(msg, header, remove_all_params, param_list):
     if remove_all_params:
@@ -138,6 +142,7 @@ def _remove_headers_params(msg, header, remove_all_params, param_list):
     else:
         for param in param_list:
             msg.del_param(param, header)
+
 
 def decode_headers(msg):
     "Decode message headers according to global options"
@@ -212,6 +217,7 @@ def set_content_type(msg, newtype, charset=None):
 
 
 caps = None  # Globally stored mailcap database; initialized only if needed
+
 
 def decode_body(msg, s):
     "Decode body to plain text using first copiousoutput filter from mailcap"
@@ -296,6 +302,7 @@ def totext(msg, instring):
 
 mimetypes = None
 
+
 def _guess_extension(ctype):
     global mimetypes
     if mimetypes is None:
@@ -305,6 +312,7 @@ def _guess_extension(ctype):
         if os.path.exists(user_mime_type):
             mimetypes._db.read(user_mime_type)
     return mimetypes.guess_extension(ctype)
+
 
 def _save_message(msg, outstring, save_headers=False, save_body=False):
     for header, param in (
@@ -410,6 +418,7 @@ def decode_part(msg):
     for content_type in masks:
         if content_type in g.error_mask:
             raise ValueError("content type %s prohibited" % ctype)
+
 
 def decode_multipart(msg):
     "Decode multipart"
