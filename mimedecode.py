@@ -1,10 +1,13 @@
 #! /usr/bin/env python
 """Decode MIME message"""
 
-import sys, os
+import os
 import subprocess
+import sys
+
 from mimedecode_version import __version__, \
     __author__, __copyright__, __license__
+
 if sys.version_info[0] >= 3:
     # Replace email.message._formatparam with _formatparam from Python 2.7
     # to avoid re-encoding non-ascii params.
@@ -222,7 +225,8 @@ caps = None  # Globally stored mailcap database; initialized only if needed
 def decode_body(msg, s):
     "Decode body to plain text using first copiousoutput filter from mailcap"
 
-    import mailcap, tempfile
+    import mailcap
+    import tempfile
 
     global caps
     if caps is None:
