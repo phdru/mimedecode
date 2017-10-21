@@ -1,0 +1,4 @@
+# File extension -> MIME type map.
+# MIME type                                              Extension
+
+multipart/mixed                                          dig

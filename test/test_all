@@ -10,6 +10,8 @@ export LC_CTYPE &&
 MAILCAPS="`pwd`"/.mailcap &&
 export MAILCAPS &&
 
+test -r "$HOME"/.mime.types || cp -p .mime.types "$HOME"/.mime.types &&
+
 : ${PYTHON:=python}
 RC=0
 
