@@ -37,6 +37,8 @@ Version 2.8.0 (2017-10-??)
 
    Code cleanup: fixed flake8 errors and warnings.
 
+   Pushed to GitHub. Tests at Travis.
+
 
 WHERE TO GET
    Home page: http://phdru.name/Software/Python/#mimedecode
