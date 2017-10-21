@@ -34,7 +34,7 @@ test1() {
    if cmp -s expected/"$expfile" tmp/"$expfile"; then
       rm tmp/"$expfile" && return 0 || return 1
    else
-      diff --text expected/"$expfile" tmp/"$expfile" >tmp/"$expfile".diff
+      diff --text expected/"$expfile" tmp/"$expfile" | tee tmp/"$expfile".diff
       return 1
    fi
 }
@@ -94,6 +94,8 @@ test2() {
    if cmp -s expected-save/"$expsavefile" save/"$savefile"; then
       rm save/"$savefile" && return 0 || return 1
    else
+      ls -lAF save/
+      diff --text expected-save/"$expsavefile" save/"$savefile" | tee save/"$expsavefile".diff
       return 1
    fi
 }
