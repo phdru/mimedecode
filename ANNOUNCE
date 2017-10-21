@@ -40,6 +40,7 @@ Version 2.8.0 (2017-10-??)
 
 WHERE TO GET
    Home page: http://phdru.name/Software/Python/#mimedecode
+    git clone https://github.com/phdru/mimedecode.git
     git clone http://git.phdru.name/mimedecode.git
     git clone  git://git.phdru.name/mimedecode.git
 
