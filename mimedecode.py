@@ -546,7 +546,7 @@ def open_output_file(filename):
         os.makedirs(full_dir)
     try:
         return open(fullpath, 'wb')
-    except:
+    except Exception:
         if create:
             os.removedirs(full_dir)
 
