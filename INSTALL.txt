@@ -2,8 +2,8 @@ mimedecode requires Python2.7 or 3.4+.
 
 Installation script setup.py requires setuptools.
 
-mimedecode requires m_lib library. If you don't have it installed
-setup.py will try to download and install it after installing mimedecode.
+mimedecode requires m_lib.defenc library. If you don't have it installed
+setup.py will try to download and install it before installing mimedecode.
 
 Installation using pip:
 
@@ -30,6 +30,10 @@ Installation from sources:
     home directory; run run the following command:
 
     python setup.py install -O2 --user
+
+    Virtual envs:
+
+    python setup.py install -O2
 
 Option '--user' installs library parts into
 $HOME/.local/lib/python2.$VERSION/site-packages/. It also installs
