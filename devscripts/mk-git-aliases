@@ -5,5 +5,5 @@ git config --local alias.commit-with-message \
    exec git commit -v"
 
 exec git config --local alias.tag-with-message \
-   "!GIT_EDITOR='vim -c \"source gdevscripts/et-commit-message.vim\"' \
+   "!GIT_EDITOR='vim -c \"source devscripts/get-commit-message.vim\"' \
    exec git tag -s \`python setup.py --version\`"
