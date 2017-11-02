@@ -23,7 +23,7 @@ parts ("attachments") all parts are decoded. Decoding can be controlled by
 command-line options.
 
 
-Version 2.8.0 (2017-10-??)
+Version 2.8.0 (2017-11-03)
 
    Python 3.
 
