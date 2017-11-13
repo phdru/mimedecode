@@ -5,22 +5,29 @@ WHAT IS IT
 
    Mail users, especially in non-English countries, often find that mail
 messages arrived in different formats, with different content types, in
-different encodings and charsets. Usually this is good because it allows us to
-use appropriate format/encoding/whatever. Sometimes, though, some unification
-is desirable. For example, one may want to put mail messages into an archive,
-make HTML indices, run search indexer, etc. In such situations converting
-messages to text in one character set and skipping some binary attachments is
-much desirable.
+different encodings and charsets. Usually this is good because it allows
+us to use appropriate format/encoding/whatever. Sometimes, though, some
+unification is desirable. For example, one may want to put mail messages
+into an archive, make HTML indices, run search indexer, etc. In such
+situations converting messages to text in one character set and skipping
+some binary attachments is much desirable.
 
    Here is the solution - mimedecode.py.
 
-   This is a program to decode MIME messages. The program expects one input
-file (either on command line or on stdin) which is treated as an RFC822
-message, and decodes to stdout or an output file. If the file is not an RFC822
-message it is just copied to the output one-to-one. If the file is a simple
-RFC822 message it is decoded as one part. If it is a MIME message with multiple
-parts ("attachments") all parts are decoded. Decoding can be controlled by
-command-line options.
+   This is a program to decode MIME messages. The program expects one
+input file (either on command line or on stdin) which is treated as an
+RFC822 message, and decodes to stdout or an output file. If the file is
+not an RFC822 message it is just copied to the output one-to-one. If the
+file is a simple RFC822 message it is decoded as one part. If it is a
+MIME message with multiple parts ("attachments") all parts are decoded.
+Decoding can be controlled by command-line options.
+
+   Think about said mail archive; for example, its maintainer wants to
+put there only texts, convert PDF/Postscript to text, pass HTML and
+images decoding base64 to html but leaving images encoded, and ignore
+everything else. This is how it could be done:
+
+   mimedecode.py -t application/pdf -t application/postscript -t text/plain -b text/html -B 'image/*' -i '*/*'
 
 
 Version 2.8.0 (2017-11-03)
