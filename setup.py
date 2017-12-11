@@ -13,6 +13,8 @@ kw = {}
 if is_setuptools:
     kw['install_requires'] = ['m_lib.defenc>=1.0']
     kw['tests_require'] = ['m_lib>=3.1']
+    kw['python_requires'] = '>=2.7, !=3.0.*, !=3.1.*, !=3.2.*'
+
 
 setup(
     name="mimedecode",
