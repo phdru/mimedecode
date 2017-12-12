@@ -1,4 +1,4 @@
-Version 2.9.0 (2017-12-??)
+Version 2.9.0 (2017-12-12)
 
    Split mimedecode.py into a mimedecode library and a small script.
 
