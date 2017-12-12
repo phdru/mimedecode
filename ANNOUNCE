@@ -49,7 +49,7 @@ WHERE TO GET
     git clone http://git.phdru.name/mimedecode.git
     git clone  git://git.phdru.name/mimedecode.git
 
-   Requires: Python 2.7 or Python 3.4+, m_lib.defenc 1.0+.
+   Requires: Python 2.7 or Python 3.3+, m_lib.defenc 1.0+.
    Tests require: tox, m_lib 3.1+.
 
    Recommends: configured mailcap database.
