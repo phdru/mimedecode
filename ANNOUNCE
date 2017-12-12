@@ -1,5 +1,5 @@
 
-                                mimedecode.py
+                                  mimedecode
 
 WHAT IS IT
 
@@ -12,7 +12,7 @@ into an archive, make HTML indices, run search indexer, etc. In such
 situations converting messages to text in one character set and skipping
 some binary attachments is much desirable.
 
-   Here is the solution - mimedecode.py.
+   Here is the solution - mimedecode.
 
    This is a program to decode MIME messages. The program expects one
 input file (either on command line or on stdin) which is treated as an
@@ -27,12 +27,12 @@ put there only texts, convert PDF/Postscript to text, pass HTML and
 images decoding base64 to html but leaving images encoded, and ignore
 everything else. This is how it could be done:
 
-   mimedecode.py -t application/pdf -t application/postscript -t text/plain -b text/html -B 'image/*' -i '*/*'
+   mimedecode -t application/pdf -t application/postscript -t text/plain -b text/html -B 'image/*' -i '*/*'
 
 
 Version 2.9.0 (2017-12-??)
 
-   Split mimedecode.py into a mimedecode library and a small script.
+   Split mimedecode.py into mimedecode library and a small script.
 
    Made the library executable via ``python -m mimedecode``.
 
