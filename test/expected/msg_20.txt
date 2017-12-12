@@ -14,7 +14,7 @@ Subject: This is a test message
 Date: Fri, 4 May 2001 14:05:44 -0400
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode
 
 
 Hi,

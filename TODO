@@ -1,11 +1,3 @@
-Split mimedecode.py into a library and a small script.
-Move formatparam_27.py and mimedecode_version.py to the library.
-Rename mimedecode_version.py to __version__.py.
-
-
-Release 2.9.
-
-
 Convert mimedecode.py library from global functions to a class.
 
 

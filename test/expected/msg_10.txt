@@ -10,42 +10,42 @@ Content-Type: multipart/mixed; boundary="BOUNDARY"
 Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode
 
 This is a 7bit encoded message.
 
 --BOUNDARY
 Content-Transfer-Encoding: 8bit
-X-MIME-Autoconverted: from Quoted-Printable to 8bit by test id mimedecode.py
+X-MIME-Autoconverted: from Quoted-Printable to 8bit by test id mimedecode
 X-MIME-Autoconverted: from text/html to text/plain by test id ./html2txt.py
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode
 
 ¡This is a Quoted Printable encoded message!
 
 
 --BOUNDARY
 Content-Transfer-Encoding: 8bit
-X-MIME-Autoconverted: from Base64 to 8bit by test id mimedecode.py
+X-MIME-Autoconverted: from Base64 to 8bit by test id mimedecode
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode
 
 This is a Base64 encoded message.
 --BOUNDARY
 Content-Transfer-Encoding: 8bit
-X-MIME-Autoconverted: from Base64 to 8bit by test id mimedecode.py
+X-MIME-Autoconverted: from Base64 to 8bit by test id mimedecode
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode
 
 This is a Base64 encoded message.
 
 --BOUNDARY
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode
 
 This has no Content-Transfer-Encoding: header.
 

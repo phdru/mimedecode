@@ -16,7 +16,7 @@ Content-Type: application/octet-stream
 Content-ID: <20592.1022586929.3@example.com>
 Content-Description: patch1
 Content-Transfer-Encoding: 8bit
-X-MIME-Autoconverted: from base64 to 8bit by test id mimedecode.py
+X-MIME-Autoconverted: from base64 to 8bit by test id mimedecode
 
 ]u
 ------- =_aaaaaaaaaa1
@@ -24,7 +24,7 @@ Content-Type: application/octet-stream
 Content-ID: <20592.1022586929.4@example.com>
 Content-Description: patch2
 Content-Transfer-Encoding: 8bit
-X-MIME-Autoconverted: from base64 to 8bit by test id mimedecode.py
+X-MIME-Autoconverted: from base64 to 8bit by test id mimedecode
 
 ]u
 ------- =_aaaaaaaaaa1--
@@ -79,7 +79,7 @@ XXX
 Content-ID: <20592.1022586929.15@example.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode
 
 --
 It's never too late to have a happy childhood.

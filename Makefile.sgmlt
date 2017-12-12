@@ -1,6 +1,6 @@
 mimedecode.html: mimedecode.docbook Makefile.sgmlt
 	sgmltools -b html $<
-	mv mimedecode/mimedecode.py.html mimedecode.html
+	mv mimedecode/mimedecode.html mimedecode.html
 	rmdir mimedecode
 
 mimedecode.man: mimedecode.docbook Makefile.sgmlt

@@ -1,3 +1,13 @@
+Version 2.9.0 (2017-12-??)
+
+   Split mimedecode.py into a mimedecode library and a small script.
+
+   Moved formatparam_27.py and mimedecode_version.py to the library.
+
+   Made the library executable via ``python -m mimedecode``.
+
+   Renamed mimedecode_version.py to __version__.py.
+
 Version 2.8.0 (2017-11-03)
 
    Python 3.

@@ -1,5 +1,8 @@
 #! /usr/bin/env python
 
+from imp import load_source
+from os.path import abspath, dirname, join
+
 try:
     from setuptools import setup
     is_setuptools = True
@@ -7,7 +10,9 @@ except ImportError:
     from distutils.core import setup
     is_setuptools = False
 
-from mimedecode_version import __version__, __copyright__, __license__
+versionpath = join(abspath(dirname(__file__)), "mimedecode", "__version__.py")
+load_source("mimedecode_version", versionpath)
+from mimedecode_version import __version__, __copyright__, __license__ # noqa: ignore flake8 E402
 
 kw = {}
 if is_setuptools:
@@ -43,7 +48,11 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
-    py_modules=['formatparam_27', 'mimedecode_version'],
-    scripts=['mimedecode.py'],
+    packages=['mimedecode'],
+    entry_points={
+        'console_scripts': [
+            'mimedecode = mimedecode.__main__:main'
+        ]
+    },
     **kw
 )

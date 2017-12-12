@@ -17,10 +17,10 @@ X-Loop: FreeBSD.org
 --EeQfGwPcQSOJBaQU
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-MIME-Autoconverted: from quoted-printable to 8bit by test id mimedecode.py
+X-MIME-Autoconverted: from quoted-printable to 8bit by test id mimedecode
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode
 
 part 1
 

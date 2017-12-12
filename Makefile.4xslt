@@ -5,7 +5,7 @@ mimedecode.html: mimedecode.docbook Makefile.4xslt
 
 mimedecode.man: mimedecode.docbook Makefile.4xslt
 	4xslt $< $(DOCBOOK_XSL)/manpages/docbook.xsl
-	mv mimedecode.py.1 $@
+	mv mimedecode.1 $@
 
 mimedecode.txt: mimedecode.html Makefile.4xslt
 	elinks -dump -no-numbering -no-references $< >$@

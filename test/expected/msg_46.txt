@@ -20,6 +20,6 @@ Subject: GroupwiseForwardingTest
 Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from iso-8859-15 to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from iso-8859-15 to utf-8 by test id mimedecode
 
 Testing email forwarding with Groupwise 1.2.2010

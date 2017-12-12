@@ -13,7 +13,7 @@ Content-Type: multipart/mixed; boundary="192.168.1.2.889.32614.987812255.500.218
 Content-description: Masthead (Ppp digest, Vol 1 #2)
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode
 
 Send Ppp mailing list submissions to
 	ppp@zzz.org
@@ -34,7 +34,7 @@ than "Re: Contents of Ppp digest..."
 Content-description: Today's Topics (5 msgs)
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode
 
 Today's Topics:
 
@@ -58,7 +58,7 @@ Subject: [Ppp] testing #1
 Precedence: bulk
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode
 
 
 hello
@@ -74,7 +74,7 @@ From: barry@digicool.com (Barry A. Warsaw)
 Precedence: bulk
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode
 
 
 hello
@@ -91,7 +91,7 @@ Subject: [Ppp] testing #3
 Precedence: bulk
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode
 
 
 hello
@@ -108,7 +108,7 @@ Subject: [Ppp] testing #4
 Precedence: bulk
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode
 
 
 hello
@@ -125,7 +125,7 @@ Subject: [Ppp] testing #5
 Precedence: bulk
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode
 
 
 hello
@@ -139,7 +139,7 @@ hello
 Content-description: Digest Footer
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode
 
 _______________________________________________
 Ppp mailing list

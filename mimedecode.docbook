@@ -2,10 +2,10 @@
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "file:///usr/share/xml/docbook/schema/dtd/4.5/docbookx.dtd">
 
-<refentry id="mimedecode.py">
+<refentry id="mimedecode">
 
 <refentryinfo>
-  <title>mimedecode.py</title>
+  <title>mimedecode</title>
   <productname>mimedecode.docbook</productname>
   <author>
     <firstname>Oleg</firstname>
@@ -20,18 +20,18 @@
 </refentryinfo>
 
 <refmeta>
-   <refentrytitle>mimedecode.py</refentrytitle>
+   <refentrytitle>mimedecode</refentrytitle>
    <manvolnum>1</manvolnum>
 </refmeta>
 
 <refnamediv>
-   <refname>mimedecode.py</refname>
+   <refname>mimedecode</refname>
    <refpurpose>decode MIME message</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
    <cmdsynopsis>
-      <command>mimedecode.py</command>
+      <command>mimedecode</command>
       <arg choice="opt">
          <option>-h|--help</option>
       </arg>
@@ -122,7 +122,7 @@
 </para>
 
 <para>
-   Here is a solution - mimedecode.py!
+   Here is a solution - mimedecode!
 </para>
 
 <para>
@@ -494,8 +494,8 @@
          <para>
             Save output to the file related to the destination directory from
             option -O. Also useful in case of redirected stdin:
-            <programlisting language="sh">mimedecode.py -o output_file &lt; input_file
-cat input_file | mimedecode.py -o output_file</programlisting>
+            <programlisting language="sh">mimedecode -o output_file &lt; input_file
+cat input_file | mimedecode -o output_file</programlisting>
          </para>
       </listitem>
    </varlistentry>
@@ -512,7 +512,7 @@ cat input_file | mimedecode.py -o output_file</programlisting>
 
 <para>
 <code language="sh">
-  mimedecode.py -t application/pdf -t application/postscript -t text/plain
+  mimedecode -t application/pdf -t application/postscript -t text/plain
       -b text/html -B 'image/*' -i '*/*'
 </code>
 </para>
@@ -641,7 +641,7 @@ cat input_file | mimedecode.py -o output_file</programlisting>
 <refsect1>
 <title>SEE ALSO</title>
 <para>
-  mimedecode.py home page:
+  mimedecode home page:
   <ulink url="http://phdru.name/Software/Python/#mimedecode">http://phdru.name/Software/Python/#mimedecode</ulink>
 </para>
 </refsect1>

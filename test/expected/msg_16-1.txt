@@ -18,7 +18,7 @@ Content-Type: multipart/report; boundary="Boundary_(ID_PGS2F2a+z+/jL7hupKgRhA)"
 --Boundary_(ID_PGS2F2a+z+/jL7hupKgRhA)
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode
 
 This report relates to a message you sent with the following header fields:
 
@@ -67,7 +67,7 @@ X-BeenThere: scr@socal-raves.org
 X-Mailman-Version: 2.1a3
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode
 
 I always love to find more Ian's that are over 3 years old!!
 

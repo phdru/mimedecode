@@ -20,20 +20,20 @@ Content-type: multipart/alternative;
 
 --MS_Mac_OE_3071477847_720252_MIME_Part
 Content-transfer-encoding: 8bit
-X-MIME-Autoconverted: from quoted-printable to 8bit by test id mimedecode.py
+X-MIME-Autoconverted: from quoted-printable to 8bit by test id mimedecode
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode
 
 Some removed test. 
 
 --MS_Mac_OE_3071477847_720252_MIME_Part
 Content-transfer-encoding: 8bit
-X-MIME-Autoconverted: from quoted-printable to 8bit by test id mimedecode.py
+X-MIME-Autoconverted: from quoted-printable to 8bit by test id mimedecode
 X-MIME-Autoconverted: from text/html to text/plain by test id ./html2txt.py
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode
 
 
 

@@ -9,14 +9,14 @@ Content-Type: multipart/mixed; boundary="BOUNDARY"
 --BOUNDARY
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode
 
 
 --BOUNDARY
 X-MIME-Autoconverted: from text/html to text/plain by test id ./html2txt.py
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from iso-8859-1 to utf-8 by test id mimedecode
 
 
 
@@ -26,13 +26,13 @@ Content-Type: multipart/mixed; boundary="ANOTHER"
 --ANOTHER
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from iso-8859-2 to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from iso-8859-2 to utf-8 by test id mimedecode
 
 
 --ANOTHER
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from iso-8859-3 to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from iso-8859-3 to utf-8 by test id mimedecode
 
 
 --ANOTHER--
@@ -40,13 +40,13 @@ X-MIME-Autoconverted: from iso-8859-3 to utf-8 by test id mimedecode.py
 --BOUNDARY
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from us-ascii to utf-8 by test id mimedecode
 
 
 --BOUNDARY
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-MIME-Autoconverted: from koi8-r to utf-8 by test id mimedecode.py
+X-MIME-Autoconverted: from koi8-r to utf-8 by test id mimedecode
 
 
 --BOUNDARY--

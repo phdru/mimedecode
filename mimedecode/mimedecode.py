@@ -5,12 +5,12 @@ import os
 import subprocess
 import sys
 
-from mimedecode_version import __version__, __copyright__
+from .__version__ import __version__, __copyright__
 
 if sys.version_info[0] >= 3:
     # Replace email.message._formatparam with _formatparam from Python 2.7
     # to avoid re-encoding non-ascii params.
-    import formatparam_27  # noqa: F401: Imported for its side effect
+    from mimedecode import formatparam_27  # noqa: F401: Imported for its side effect
 
 me = os.path.basename(sys.argv[0])
 
@@ -678,7 +678,7 @@ def get_opts():
     return arguments
 
 
-if __name__ == "__main__":
+def main():
     arguments = get_opts()
 
     la = len(arguments)
@@ -725,6 +725,7 @@ if __name__ == "__main__":
         g.host_name = socket.gethostname()
 
     g.outfile = outfile
+    global output
     if hasattr(outfile, 'buffer'):
         def output_bytes(s):
             if not isinstance(s, bytes):
@@ -749,3 +750,7 @@ if __name__ == "__main__":
     finally:
         infile.close()
         outfile.close()
+
+
+if __name__ == "__main__":
+    main()

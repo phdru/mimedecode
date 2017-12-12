@@ -1,5 +1,5 @@
 Content-Type: image/gif; name="dingusfish.gif"
 Content-Transfer-Encoding: 8bit
 content-disposition: attachment; filename="dingusfish.gif"
-X-MIME-Autoconverted: from base64 to 8bit by test id mimedecode.py
+X-MIME-Autoconverted: from base64 to 8bit by test id mimedecode
 
