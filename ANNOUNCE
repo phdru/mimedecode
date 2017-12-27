@@ -34,7 +34,7 @@ Version 2.9.0 (2017-12-12)
 
    Split mimedecode.py into mimedecode library and a small script.
 
-   Made the library executable via ``python -m mimedecode``.
+   Make the library executable via ``python -m mimedecode``.
 
 Version 2.8.0 (2017-11-03)
 
