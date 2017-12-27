@@ -1,16 +1,22 @@
 Convert mimedecode.py library from global functions to a class.
 
 
-Release 3.0.
-
-
 flake8.
 
 
 PyPI.
 
 
+Release 3.0.
+
+
+Replace getopt with argparse.
+
+
 Move mimedecode to http://phdru.name/Software/Python/mimedecode/ .
+
+
+Release 3.1.
 
 
 Installers.
