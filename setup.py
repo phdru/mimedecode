@@ -11,8 +11,7 @@ except ImportError:
     is_setuptools = False
 
 versionpath = join(abspath(dirname(__file__)), "mimedecode", "__version__.py")
-load_source("mimedecode_version", versionpath)
-from mimedecode_version import __version__, __copyright__, __license__ # noqa: ignore flake8 E402
+mimedecode_version = load_source("mimedecode_version", versionpath)
 
 kw = {}
 if is_setuptools:
@@ -23,13 +22,14 @@ if is_setuptools:
 
 setup(
     name="mimedecode",
-    version=__version__,
+    version=mimedecode_version.__version__,
     description="A program to decode MIME messages",
-    long_description="A program to decode MIME messages. " + __copyright__,
+    long_description="A program to decode MIME messages. " +
+    mimedecode_version.__copyright__,
     author="Oleg Broytman",
     author_email="phd@phdru.name",
     url="http://phdru.name/Software/Python/#mimedecode",
-    license=__license__,
+    license=mimedecode_version.__license__,
     keywords=['email', 'MIME'],
     platforms="Any",
     classifiers=[
