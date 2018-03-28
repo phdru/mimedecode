@@ -14,7 +14,7 @@
     <personblurb/>
   </author>
   <copyright>
-    <year>2001-2017</year>
+    <year>2001-2018</year>
     <holder>PhiloSoft Design.</holder>
   </copyright>
 </refentryinfo>
@@ -614,7 +614,7 @@ cat input_file | mimedecode -o output_file</programlisting>
 <refsect1>
 <title>COPYRIGHT</title>
 <para>
-  Copyright (C) 2001-2017 PhiloSoft Design.
+  Copyright (C) 2001-2018 PhiloSoft Design.
 </para>
 </refsect1>
 
