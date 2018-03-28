@@ -2,23 +2,10 @@
 
 from imp import load_source
 from os.path import abspath, dirname, join
-
-try:
-    from setuptools import setup
-    is_setuptools = True
-except ImportError:
-    from distutils.core import setup
-    is_setuptools = False
+from setuptools import setup
 
 versionpath = join(abspath(dirname(__file__)), "mimedecode", "__version__.py")
 mimedecode_version = load_source("mimedecode_version", versionpath)
-
-kw = {}
-if is_setuptools:
-    kw['install_requires'] = ['m_lib.defenc>=1.0']
-    kw['tests_require'] = ['m_lib>=3.1']
-    kw['python_requires'] = '>=2.7, !=3.0.*, !=3.1.*, !=3.2.*'
-
 
 setup(
     name="mimedecode",
@@ -54,5 +41,7 @@ setup(
             'mimedecode = mimedecode.__main__:main'
         ]
     },
-    **kw
+    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*',
+    install_requires=['m_lib.defenc>=1.0'],
+    tests_require=['m_lib>=3.1'],
 )
