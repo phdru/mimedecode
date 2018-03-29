@@ -16,6 +16,16 @@ setup(
     author="Oleg Broytman",
     author_email="phd@phdru.name",
     url="http://phdru.name/Software/Python/#mimedecode",
+    project_urls={
+        'Homepage': 'http://phdru.name/Software/Python/#mimedecode',
+        'Documentation': 'http://phdru.name/Software/Python/mimedecode.html',
+        'Download':
+            'http://phdru.name/Software/Python/'
+            'mimedecode-%s.tar.bz2' % mimedecode_version.__version__,
+        'Git repo': 'http://git.phdru.name/mimedecode.git',
+        'Github repo': 'https://github.com/phdru/mimedecode',
+        'Issue tracker': 'https://github.com/phdru/mimedecode/issues',
+    },
     license=mimedecode_version.__license__,
     keywords=['email', 'MIME'],
     platforms="Any",
