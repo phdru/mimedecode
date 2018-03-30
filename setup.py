@@ -13,6 +13,7 @@ setup(
     description="A program to decode MIME messages",
     long_description="A program to decode MIME messages. " +
     mimedecode_version.__copyright__,
+    long_description_content_type="text/plain",
     author="Oleg Broytman",
     author_email="phd@phdru.name",
     url="http://phdru.name/Software/Python/#mimedecode",
