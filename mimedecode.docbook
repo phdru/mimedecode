@@ -156,7 +156,7 @@
    to find a way to convert the body to plain text (can be prevented with
    options -Bbei). (The author has no idea how mailcap can be configured on
    OSes other than POSIX, please don't ask; users can consult an example at
-   <ulink url="http://phdru.name/Software/dotfiles/mailcap.html">http://phdru.name/Software/dotfiles/mailcap.html</ulink>).
+   <ulink url="https://phdru.name/Software/dotfiles/mailcap.html">https://phdru.name/Software/dotfiles/mailcap.html</ulink>).
    The decoding process uses the first copiousoutput filter it can find. If
    there are no filters the body just passed as is.
 </para>
@@ -642,7 +642,7 @@ cat input_file | mimedecode -o output_file</programlisting>
 <title>SEE ALSO</title>
 <para>
   mimedecode home page:
-  <ulink url="http://phdru.name/Software/Python/#mimedecode">http://phdru.name/Software/Python/#mimedecode</ulink>
+  <ulink url="https://phdru.name/Software/Python/#mimedecode">https://phdru.name/Software/Python/#mimedecode</ulink>
 </para>
 </refsect1>
 

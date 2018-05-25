@@ -13,7 +13,7 @@ Release 3.0.
 Replace getopt with argparse.
 
 
-Move mimedecode to http://phdru.name/Software/Python/mimedecode/ .
+Move mimedecode to https://phdru.name/Software/Python/mimedecode/ .
 
 
 Release 3.1.

@@ -44,9 +44,9 @@ Version 2.8.0 (2017-11-03)
 
 
 WHERE TO GET
-   Home page: http://phdru.name/Software/Python/#mimedecode
+   Home page: https://phdru.name/Software/Python/#mimedecode
     git clone https://github.com/phdru/mimedecode.git
-    git clone http://git.phdru.name/mimedecode.git
+    git clone https://git.phdru.name/mimedecode.git
     git clone  git://git.phdru.name/mimedecode.git
 
    Requires: Python 2.7 or Python 3.3+, m_lib.defenc 1.0+.
@@ -54,7 +54,7 @@ WHERE TO GET
 
    Recommends: configured mailcap database.
 
-   Documentation: http://phdru.name/Software/Python/mimedecode.html
+   Documentation: https://phdru.name/Software/Python/mimedecode.html
       (also included in the package in html, man and txt formats).
 
 

@@ -9,15 +9,15 @@ Installation using pip:
 
     System-wide:
 
-    sudo pip install --trusted-host phdru.name --find-links=http://phdru.name/Software/Python/ mimedecode
+    sudo pip install --trusted-host phdru.name --find-links=https://phdru.name/Software/Python/ mimedecode
 
     User mode:
 
-    pip install --trusted-host phdru.name --find-links=http://phdru.name/Software/Python/ --user mimedecode
+    pip install --trusted-host phdru.name --find-links=https://phdru.name/Software/Python/ --user mimedecode
 
     Virtual envs:
 
-    pip install --trusted-host phdru.name --find-links=http://phdru.name/Software/Python/ mimedecode
+    pip install --trusted-host phdru.name --find-links=https://phdru.name/Software/Python/ mimedecode
 
 Installation from sources:
 
