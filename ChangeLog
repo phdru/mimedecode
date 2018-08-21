@@ -1,3 +1,7 @@
+Version 3.0.0 (2018-??-??)
+
+   Drop support for Python 3.3.
+
 Version 2.9.0 (2017-12-12)
 
    Split mimedecode.py into a mimedecode library and a small script.

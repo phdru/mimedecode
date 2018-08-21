@@ -41,7 +41,6 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
@@ -52,7 +51,7 @@ setup(
             'mimedecode = mimedecode.__main__:main'
         ]
     },
-    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*',
+    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
     install_requires=['m_lib.defenc>=1.0'],
     tests_require=['m_lib>=3.1'],
 )
