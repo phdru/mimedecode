@@ -30,17 +30,11 @@ everything else. This is how it could be done:
    mimedecode -t application/pdf -t application/postscript -t text/plain -b text/html -B 'image/*' -i '*/*'
 
 
-Version 2.9.0 (2017-12-12)
+Version 3.0.0 (2019-02-01)
 
-   Split mimedecode.py into mimedecode library and a small script.
+   Python 3.7.
 
-   Make the library executable via ``python -m mimedecode``.
-
-Version 2.8.0 (2017-11-03)
-
-   Python 3.
-
-   Stop supporting Python 2.6.
+   Drop support for Python 3.3.
 
 
 WHERE TO GET
