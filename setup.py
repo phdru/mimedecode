@@ -4,31 +4,24 @@ from os.path import abspath, dirname, join
 from setuptools import setup
 import sys
 
+versionpath = join(abspath(dirname(__file__)), 'mimedecode', '__version__.py')
+mimedecode_version = {}
+
 if sys.version_info[:2] == (2, 7):
-    from imp import load_source
+    execfile(versionpath, mimedecode_version)
 
 elif sys.version_info >= (3, 4):
-    from importlib.machinery import SourceFileLoader
-    import types
-
-    def load_source(fullname, path):
-        loader = SourceFileLoader(fullname, path)
-        loaded = types.ModuleType(loader.name)
-        loader.exec_module(loaded)
-        return loaded
+    exec(open(versionpath, 'rU').read(), mimedecode_version)
 
 else:
     raise ImportError("mimedecode requires Python 2.7 or 3.4+")
 
-versionpath = join(abspath(dirname(__file__)), "mimedecode", "__version__.py")
-mimedecode_version = load_source("mimedecode_version", versionpath)
-
 setup(
     name="mimedecode",
-    version=mimedecode_version.__version__,
+    version=mimedecode_version['__version__'],
     description="A program to decode MIME messages",
     long_description="A program to decode MIME messages. " +
-    mimedecode_version.__copyright__,
+    mimedecode_version['__copyright__'],
     long_description_content_type="text/plain",
     author="Oleg Broytman",
     author_email="phd@phdru.name",
@@ -38,12 +31,12 @@ setup(
         'Documentation': 'https://phdru.name/Software/Python/mimedecode.html',
         'Download':
             'https://phdru.name/Software/Python/'
-            'mimedecode-%s.tar.bz2' % mimedecode_version.__version__,
+            'mimedecode-%s.tar.bz2' % mimedecode_version['__version__'],
         'Git repo': 'https://git.phdru.name/mimedecode.git',
         'Github repo': 'https://github.com/phdru/mimedecode',
         'Issue tracker': 'https://github.com/phdru/mimedecode/issues',
     },
-    license=mimedecode_version.__license__,
+    license=mimedecode_version['__license__'],
     keywords=['email', 'MIME'],
     platforms="Any",
     classifiers=[
