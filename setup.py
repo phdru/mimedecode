@@ -8,7 +8,7 @@ versionpath = join(abspath(dirname(__file__)), 'mimedecode', '__version__.py')
 mimedecode_version = {}
 
 if sys.version_info[:2] == (2, 7):
-    execfile(versionpath, mimedecode_version)
+    execfile(versionpath, mimedecode_version)  # noqa: F821 'execfile' Py3
 
 elif sys.version_info >= (3, 4):
     exec(open(versionpath, 'rU').read(), mimedecode_version)
