@@ -227,29 +227,28 @@ def decode_body(msg, s):
         charset = msg.get_content_charset()
     else:
         charset = None
-    filename = tempfile.mktemp()
+    tmpfile = tempfile.NamedTemporaryFile()
     command = None
 
     entries = mailcap.lookup(caps, content_type, "view")
     for entry in entries:
         if 'copiousoutput' in entry:
             if 'test' in entry:
-                test = mailcap.subst(entry['test'], content_type, filename)
+                test = mailcap.subst(entry['test'], content_type, tmpfile.name)
                 if test and os.system(test) != 0:
                     continue
-            command = mailcap.subst(entry["view"], content_type, filename)
+            command = mailcap.subst(entry["view"], content_type, tmpfile.name)
             break
 
     if not command:
         return s
 
-    outfile = open(filename, 'wb')
     if charset and bytes is not str and isinstance(s, bytes):  # Python3
         s = s.decode(charset, "replace")
     if not isinstance(s, bytes):
         s = s.encode(g.default_encoding, "replace")
-    outfile.write(s)
-    outfile.close()
+    tmpfile.write(s)
+    tmpfile.flush()
 
     pipe = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
     new_s = pipe.stdout.read()
@@ -268,7 +267,7 @@ def decode_body(msg, s):
         msg["X-MIME-Autoconverted"] = \
             "failed conversion from %s to text/plain by %s id %s" \
             % (content_type, g.host_name, command.split()[0])
-    os.remove(filename)
+    tmpfile.close()  # Will be removed on close
 
     return s
 

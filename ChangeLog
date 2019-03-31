@@ -1,3 +1,7 @@
+Version 3.0.1 (2019-??-??)
+
+   Replaced outdated and insecure `mktemp` with `NamedTemporaryFile`.
+
 Version 3.0.0 (2019-02-01)
 
    Python 3.7.
