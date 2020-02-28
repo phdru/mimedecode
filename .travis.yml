@@ -27,7 +27,7 @@ matrix:
     env: TOXENV=pypy
 
 install:
-  - travis_retry pip install --upgrade "pip < 19.1" setuptools tox ppu
+  - travis_retry pip install --upgrade "pip<19.1" "setuptools<44" tox ppu
 
 script:
   - tox
