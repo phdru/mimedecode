@@ -530,3 +530,4 @@ def open_output_file(filename):
     except Exception:
         if create:
             shutil.rmtree(full_dir)
+        raise
