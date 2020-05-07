@@ -1,6 +1,7 @@
 """Decode MIME message"""
 
 import os
+import shutil
 import subprocess
 import sys
 
@@ -528,4 +529,4 @@ def open_output_file(filename):
         return open(fullpath, 'wb')
     except Exception:
         if create:
-            os.removedirs(full_dir)
+            shutil.rmtree(full_dir)
