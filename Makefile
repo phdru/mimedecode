@@ -4,9 +4,8 @@ all: docs test clean distr
 
 
 .PHONY: docs
-docs: mimedecode.html mimedecode.man mimedecode.txt
-
-include Makefile.xsltproc
+docs:
+	make -C docs html man text
 
 
 .PHONY: distr

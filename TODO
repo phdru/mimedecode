@@ -1,6 +1,3 @@
-Convert mimedecode.docbook to something simpler - asciidoc, markdown, reST.
-
-
 Convert mimedecode.py library from global functions to a class.
 
 

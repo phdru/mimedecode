@@ -30,7 +30,10 @@ everything else. This is how it could be done:
    mimedecode -t application/pdf -t application/postscript -t text/plain -b text/html -B 'image/*' -i '*/*'
 
 
-Version 3.0.1 (2020-??-??)
+Version 3.1.0 (2020-??-??)
+
+   Convert mimedecode.docbook to reST. Generate html/man/text
+   using Sphinx.
 
    Replaced outdated and insecure `mktemp` with `NamedTemporaryFile`.
 
@@ -56,7 +59,7 @@ AUTHOR
    Oleg Broytman <phd@phdru.name>
 
 COPYRIGHT
-   Copyright (C) 2001-2018 PhiloSoft Design.
+   Copyright (C) 2001-2020 PhiloSoft Design.
 
 LICENSE
    GPL

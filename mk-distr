@@ -5,11 +5,10 @@ umask 022 &&
 git archive --format=tar --prefix=mimedecode/ "${1:-HEAD}" |
    (cd "$HOME/tmp" && exec tar xf -) &&
 
-# Copy mimedecode.docbook with timestamp to avoid rebuilding
-cp -p mimedecode.docbook mimedecode.man mimedecode.html mimedecode.txt \
-   "$HOME/tmp/mimedecode" &&
+cp -p docs/_build/html/mimedecode.html docs/_build/man/mimedecode.1 \
+   docs/_build/text/mimedecode.txt "$HOME/tmp/mimedecode" &&
 
 cd "$HOME/tmp/mimedecode" &&
-chmod a+r mimedecode.man mimedecode.html mimedecode.txt &&
+chmod a+r mimedecode.html mimedecode.1 mimedecode.txt &&
 python setup.py sdist --formats=bztar &&
 cd dist && mv mimedecode-*.tar.bz2 ../.. && cd ../.. && exec rm -rf mimedecode

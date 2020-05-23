@@ -1,5 +1,7 @@
-global-include Makefile* *.py *.txt *.txt-py3
+global-include Makefile* *.py *.rst *.txt *.txt-py3
 include ANNOUNCE ChangeLog MANIFEST.in TODO
-include mimedecode.docbook mimedecode.man mimedecode.html
+include mimedecode.1 mimedecode.html
 include mk-distr tox.ini
 include test/.mailcap test/README test/test_all
+recursive-include docs* *.css *.js *.html *.gif *.png
+recursive-exclude docs*/_build *
