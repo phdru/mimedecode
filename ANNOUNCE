@@ -30,14 +30,14 @@ everything else. This is how it could be done:
    mimedecode -t application/pdf -t application/postscript -t text/plain -b text/html -B 'image/*' -i '*/*'
 
 
-Version 3.1.0 (2020-??-??)
+Version 3.1.0 (2021-??-??)
 
    Convert mimedecode.docbook to reST. Generate html/man/text
    using Sphinx.
 
    Replaced outdated and insecure `mktemp` with `NamedTemporaryFile`.
 
-   Python 3.8.
+   Python 3.8, 3.9.
 
 
 WHERE TO GET
