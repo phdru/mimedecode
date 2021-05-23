@@ -10,7 +10,7 @@ Welcome to mimedecode's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   mimedecode
 
 Indices and tables
 ==================
