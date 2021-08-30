@@ -28,7 +28,6 @@ jobs:
           python --version
           python -m pip install --upgrade "pip<21.0" "setuptools<45" wheel
           pip --version
-          python -m pip --version
-          python -m pip install --upgrade virtualenv tox tox-gh-actions
+          pip install --upgrade virtualenv tox tox-gh-actions
       - name: Run tox targets for ${{ matrix.python-version }}
         run: python -m tox
