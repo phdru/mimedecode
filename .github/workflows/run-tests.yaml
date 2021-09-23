@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      # Setup Python/pip
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
@@ -24,11 +26,14 @@ jobs:
           # This path is specific to Linux/Unix
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip
+
+      # Setup tox
       - name: Install dependencies
         run: |
           python --version
           python -m pip install --upgrade "pip<21.0" "setuptools<45" wheel
           pip --version
           pip install --upgrade virtualenv tox tox-gh-actions
+
       - name: Run tox targets for ${{ matrix.python-version }}
         run: tox
