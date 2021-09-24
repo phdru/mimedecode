@@ -30,6 +30,12 @@ everything else. This is how it could be done:
    mimedecode -t application/pdf -t application/postscript -t text/plain -b text/html -B 'image/*' -i '*/*'
 
 
+Version 3.1.0.post1 (2021-09-24)
+
+   GitHub Actions.
+
+   Stop testing at Travis.
+
 Version 3.1.0 (2021-05-23)
 
    Convert mimedecode.docbook to reST. Generate html/man/text
