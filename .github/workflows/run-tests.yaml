@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [2.7, 3.5, 3.6, 3.7, 3.8, 3.9, 'pypy-2.7']
+        python-version: ["2.7", "3.5", "3.6", "3.7", "3.8", "3.9", "3.10", "pypy-2.7"]
 
     name: Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
@@ -31,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: |
           python --version
-          python -m pip install --upgrade "pip<21.0" "setuptools<45" wheel
+          python -m pip install --upgrade pip setuptools wheel
           pip --version
           pip install --upgrade virtualenv tox tox-gh-actions
 
