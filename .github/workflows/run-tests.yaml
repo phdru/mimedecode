@@ -36,4 +36,6 @@ jobs:
           pip install --upgrade virtualenv tox tox-gh-actions
 
       - name: Run tox targets for ${{ matrix.python-version }}
-        run: tox
+        run: |
+          tox --version
+          tox
