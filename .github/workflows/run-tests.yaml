@@ -32,9 +32,22 @@ jobs:
           python --version
           python -m pip install --upgrade pip setuptools wheel
           pip --version
-          pip install --upgrade virtualenv tox tox-gh-actions
+          pip install --upgrade virtualenv tox
+      - name: Set TOXENV
+        run: |
+          import os, sys
+          if hasattr(sys, 'pypy_version_info'):
+            toxenv = 'pypy'
+          else:
+            pyver = '%d%d' % tuple(sys.version_info[:2])
+            toxenv = 'py%s' % pyver
+          with open(os.environ['GITHUB_ENV'], 'a') as f:
+            f.write('TOXENV=' + toxenv + '\n')
+        shell: python
+
 
       - name: Run tox targets for ${{ matrix.python-version }}
         run: |
+          python -c "import os; print(os.environ['TOXENV'])"
           tox --version
           tox
