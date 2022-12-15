@@ -39,7 +39,7 @@ jobs:
           python --version
           python -m pip install --upgrade pip setuptools wheel
           pip --version
-          pip install --upgrade virtualenv tox
+          pip install --upgrade virtualenv "tox >= 2.0, < 4"
       - name: Set TOXENV
         run: |
           import os, sys
