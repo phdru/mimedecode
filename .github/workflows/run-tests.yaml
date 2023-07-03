@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: ["2.7", "3.5", "3.6", "3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "pypy3.7"]
+        python-version: ["2.7", "3.5", "3.6", "3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "=3.9[build=*_pypy]"]
 
     name: Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
@@ -18,9 +18,9 @@ jobs:
 
       # Setup Python/pip
       - uses: actions/checkout@v4
-      - uses: s-weigand/setup-conda@v1
+      - uses: conda-incubator/setup-miniconda@v3
         with:
-          conda-channels: conda-forge
+          miniforge-version: latest
           python-version: ${{ matrix.python-version }}
         if: ${{ runner.os == 'Linux' && !contains(fromJSON(env.not_in_conda), matrix.python-version) }}
       - uses: actions/setup-python@v4
@@ -42,27 +42,30 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel
           pip --version
           pip install --upgrade virtualenv "tox >= 2.0, < 4"
+        shell: bash -el {0}
       - name: Set TOXENV
         run: |
+          python -c "
           import os, sys
           ld_library_path = None
           if hasattr(sys, 'pypy_version_info'):
-            toxenv = 'pypy3'
+              toxenv = 'pypy3'
           else:
-            pyver = '%d%d' % tuple(sys.version_info[:2])
-            if os.name == 'posix':
-              if pyver == '27':  # Python 2.7 on Linux requires `$LD_LIBRARY_PATH`
-                ld_library_path = os.path.join(
-                  os.path.dirname(os.path.dirname(sys.executable)), 'lib')
-            toxenv = 'py%s' % pyver
+              pyver = '%d%d' % tuple(sys.version_info[:2])
+              if (pyver == '27') and (os.name == 'posix'):  # Python 2.7 on Linux requires `$LD_LIBRARY_PATH`
+                  ld_library_path = os.path.join(
+                      os.path.dirname(os.path.dirname(sys.executable)), 'lib')
+              toxenv = 'py%s' % pyver
           with open(os.environ['GITHUB_ENV'], 'a') as f:
-            if ld_library_path:
-              f.write('LD_LIBRARY_PATH=' + ld_library_path + '\n')
-            f.write('TOXENV=' + toxenv + '\n')
-        shell: python
+              if ld_library_path:
+                  f.write('LD_LIBRARY_PATH=' + ld_library_path + '\n')
+              f.write('TOXENV=' + toxenv + '\n')
+          "
+        shell: bash -el {0}
 
       - name: Run tox targets for ${{ matrix.python-version }}
         run: |
           python -c "import os; print(os.environ['TOXENV'])"
           tox --version
           tox
+        shell: bash -el {0}
