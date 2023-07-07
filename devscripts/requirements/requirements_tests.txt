@@ -1,3 +1,1 @@
--r requirements.txt
-
-m_lib>=3.1
+m_lib.full>=1.0.1
