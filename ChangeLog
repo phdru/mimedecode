@@ -1,3 +1,7 @@
+Version 3.1.0.post5 (2023-07-07)
+
+   Install all Python and PyPy versions from ``conda-forge``.
+
 Version 3.1.0.post4 (2022-12-15)
 
    Use ``conda`` to install old Python versions.

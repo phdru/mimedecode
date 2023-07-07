@@ -5,11 +5,11 @@ on: [push, pull_request]
 jobs:
   run-tests:
     env:
-      not_in_conda: "['3.11', 'pypy-3.7']"
+      not_in_conda: "[]"
 
     strategy:
       matrix:
-        python-version: ["2.7", "3.5", "3.6", "3.7", "3.8", "3.9", "3.10", "3.11", "pypy-3.7"]
+        python-version: ["2.7", "3.5", "3.6", "3.7", "3.8", "3.9", "3.10", "3.11", "pypy3.7"]
 
     name: Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
@@ -20,6 +20,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: s-weigand/setup-conda@v1
         with:
+          conda-channels: conda-forge
           python-version: ${{ matrix.python-version }}
         if: ${{ runner.os == 'Linux' && !contains(fromJSON(env.not_in_conda), matrix.python-version) }}
       - uses: actions/setup-python@v4
@@ -37,6 +38,7 @@ jobs:
       - name: Install dependencies
         run: |
           python --version
+          python -m ensurepip
           python -m pip install --upgrade pip setuptools wheel
           pip --version
           pip install --upgrade virtualenv "tox >= 2.0, < 4"
