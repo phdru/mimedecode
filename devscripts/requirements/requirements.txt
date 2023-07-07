@@ -1,5 +1,4 @@
 --trusted-host phdru.name
 --find-links=https://phdru.name/Software/Python/
---install-option=-O2
 
 m_lib.defenc>=1.0
