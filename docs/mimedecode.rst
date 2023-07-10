@@ -334,7 +334,7 @@ Oleg Broytman <phd@phdru.name>
 COPYRIGHT
 ---------
 
-Copyright (C) 2001-2022 PhiloSoft Design.
+Copyright (C) 2001-2023 PhiloSoft Design.
 
 LICENSE
 -------
