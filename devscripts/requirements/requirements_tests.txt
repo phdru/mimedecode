@@ -1,1 +1,2 @@
+setuptools
 m_lib.full>=1.0.1

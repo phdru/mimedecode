@@ -1,3 +1,7 @@
+Version 3.1.0.post7:
+
+    GHActions: Test with Python 3.12.
+
 Version 3.1.0.post5 (2023-07-07)
 
    Install all Python and PyPy versions from ``conda-forge``.
