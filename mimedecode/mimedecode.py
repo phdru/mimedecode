@@ -216,7 +216,10 @@ caps = None  # Globally stored mailcap database; initialized only if needed
 def decode_body(msg, s):
     "Decode body to plain text using first copiousoutput filter from mailcap"
 
-    import mailcap
+    try:
+        import mailcap
+    except ImportError:  # Python 3.13
+        from mimedecode import mailcap_312 as mailcap
     import tempfile
 
     global caps

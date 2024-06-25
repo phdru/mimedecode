@@ -1,3 +1,7 @@
+Version 3.2.0:
+
+    Copy ``mailcap.py`` from Python 3.12 because Python 3.13 dropped it.
+
 Version 3.1.0.post7:
 
     GHActions: Test with Python 3.12.
