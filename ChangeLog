@@ -1,4 +1,8 @@
-Version 3.2.0:
+Version 3.2.0.post1 (2024-07-11):
+
+    CI(GHActions): Switch to `setup-miniconda`.
+
+Version 3.2.0 (2024-06-25):
 
     Copy ``mailcap.py`` from Python 3.12 because Python 3.13 dropped it.
 
