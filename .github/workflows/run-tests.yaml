@@ -2,6 +2,10 @@ name: Run tests
 
 on: [push, pull_request]
 
+defaults:
+  run:
+    shell: bash -el {0}
+
 jobs:
   run-tests:
     env:
@@ -47,7 +51,6 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel
           pip --version
           pip install --upgrade virtualenv "tox >= 2.0, < 4"
-        shell: bash -el {0}
       - name: Set TOXENV
         run: |
           python -c "
@@ -66,11 +69,9 @@ jobs:
                   f.write('LD_LIBRARY_PATH=' + ld_library_path + '\n')
               f.write('TOXENV=' + toxenv + '\n')
           "
-        shell: bash -el {0}
 
       - name: Run tox targets for ${{ matrix.python-version }}
         run: |
           python -c "import os; print(os.environ['TOXENV'])"
           tox --version
           tox
-        shell: bash -el {0}
