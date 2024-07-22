@@ -1,6 +1,10 @@
+Version 3.2.0.post2 (2024-??-??):
+
+   CI(GHActions): Set ``bash`` as the default shell.
+
 Version 3.2.0.post1 (2024-07-11):
 
-    CI(GHActions): Switch to `setup-miniconda`.
+    CI(GHActions): Switch to ``setup-miniconda``.
 
 Version 3.2.0 (2024-06-25):
 
