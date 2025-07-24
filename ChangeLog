@@ -2,7 +2,7 @@ Version 3.2.0.post2 (2024-??-??):
 
    CI(GHActions): Set ``bash`` as the default shell.
 
-   CI(GHActions): Python 3.13.
+   CI(GHActions): Python 3.13, 3.14.
 
 Version 3.2.0.post1 (2024-07-11):
 

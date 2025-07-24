@@ -32,6 +32,8 @@ everything else. This is how it could be done:
 
 WHAT'S NEW
 
+    Tested with Python 3.14.
+
 Version 3.2.0.post1 (2024-07-11):
 
     CI(GHActions): Switch to `setup-miniconda`.
