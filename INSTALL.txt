@@ -2,7 +2,7 @@ mimedecode requires Python 2.7 or 3.4+.
 
 Installation script setup.py requires setuptools.
 
-mimedecode requires m_lib.defenc library. If you don't have it installed
+mimedecode requires m_lib_defenc library. If you don't have it installed
 setup.py will try to download and install it before installing mimedecode.
 
 Installation using pip:

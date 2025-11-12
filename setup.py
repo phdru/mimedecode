@@ -69,6 +69,6 @@ setup(
         ]
     },
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
-    install_requires=['m_lib.defenc>=1.0'],
+    install_requires=['m_lib_defenc>=1.1.1'],
     tests_require=['m_lib>=3.1'],
 )

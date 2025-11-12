@@ -1,2 +1,2 @@
 setuptools
-m_lib.full>=1.0.1
+m_lib_full>=1.0.2
